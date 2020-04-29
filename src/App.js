@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+
+
+/*
+  Not sure where to put the tooltip to prevent constant re-render of entire map component 
+  when mouse moves to different states.
+
+  This was original from docs.
+*/
+
+// import ReactTooltip from "react-tooltip";
+
+// import "./App.css";
+
+import MapChart from "./MapChart";
 
 function App() {
+  // const [content, setContent] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MapChart/>
+      {/* <MapChart setTooltipContent={setContent} /> */}
+      {/* <ReactTooltip>{content}</ReactTooltip> */}
     </div>
   );
 }
