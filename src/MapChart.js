@@ -41,6 +41,10 @@ const colorScale = scaleThreshold()
   .domain([1000,5000,10000,50000,100000]) // threshold limits
   .range(['FFD700','#FF8C00','#FF4500', '#FF0000', '#CC0000', '	#8B0000' ]) // color(strings) returned for threshold met
 
+const colorScaleHover = scaleThreshold() // controls background color of states on hover
+  .domain([1000,5000,10000,50000,100000]) // threshold limits
+  .range(['#ffe44d','#ffaf4d','#ff7c4d', '#ff4d4d', '#e60000', '#b30000' ]) // color(strings) returned for threshold met
+
 
 const MapChart = () => {
   console.log("rendered"); // renders when mouse moves to new state
@@ -77,16 +81,12 @@ const MapChart = () => {
                       key={geo.rsmKey}
                       stroke="#FFF"
                       geography={geo}
-                      // fill={colorScale(geo.properties.cases)}
-                      fill="#DDD"
+                      fill={colorScaleHover(geo.properties.cases)}
                       onMouseEnter={() => {
                         const { name, cases, recovered, deaths } = geo.properties;
-                        //This would allow me to show Cases inside the popup bubble
-                        //as long as i pull cases from properties above.^
                         setContent(
-                          `${name} => Cases: ${cases}\n Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
+                          `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
                         );
-                        // setTooltipContent(`${name}`);
                       }}
                       onMouseLeave={() => {
                         setContent("");
