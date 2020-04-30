@@ -1,4 +1,7 @@
+:focus{
+  outline:none;
+}
+
 .map{
   width: 60vw;
-
 }

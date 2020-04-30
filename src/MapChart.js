@@ -35,7 +35,7 @@ const offsets = {
  * 5000-9999 => 'FF4500' 
  * 10000-49999 => 'FF0000' 
  * 50000-99999 => 'CC0000' 
- * cases > 100000 => '8B0000' - darker
+ * 100000 < cases => '8B0000' - darker
  */
 // normal view
 const colorScale = scaleThreshold()
