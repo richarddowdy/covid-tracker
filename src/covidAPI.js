@@ -3,9 +3,11 @@ import axios from 'axios';
 /**
  * Returns the needed geo map data with covid data loaded in
  */
-async function fetchData(){
-  const response = await axios.get('https://covidtracking.com/api/states')
 
+
+async function fetchData(){
+  const response = await axios.get('https://www.covidtracking.com/api/states/current.json'); // /current.json is new
+  console.log(response);           // endpoint changed from earlier today???? This works 4-30-19 @ 00:30
 
   //pulls state abbreviation, positive, negative values from response
   /**
