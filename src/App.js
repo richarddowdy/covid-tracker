@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import ReactDOM from "react-dom";
 
 
@@ -18,12 +18,13 @@ import Header from "./Header";
 
 function App() {
   // const [content, setContent] = useState("");
+  // console.log(content);
+
   return (
-    <div>
+    <div className="container-fluid bg-light">
       <Header/>
-      <MapChart/>
-      {/* <MapChart setTooltipContent={setContent} /> */}
-      {/* <ReactTooltip>{content}</ReactTooltip> */}
+      <MapChart />
+
     </div>
   );
 }
