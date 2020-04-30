@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+// import ReactDOM from "react-dom";
 
 
 /*
@@ -14,11 +14,13 @@ import ReactDOM from "react-dom";
 // import "./App.css";
 
 import MapChart from "./MapChart";
+import Header from "./Header";
 
 function App() {
   // const [content, setContent] = useState("");
   return (
     <div>
+      <Header/>
       <MapChart/>
       {/* <MapChart setTooltipContent={setContent} /> */}
       {/* <ReactTooltip>{content}</ReactTooltip> */}

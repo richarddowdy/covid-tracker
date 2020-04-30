@@ -6,13 +6,14 @@ import axios from 'axios';
 
 
 async function fetchData(){
-  const response = await axios.get('https://www.covidtracking.com/api/states/current.json'); // /current.json is new
+  const response = await axios.get('https://www.covidtracking.com/api/states'); // /current.json is new
   console.log(response);           // endpoint changed from earlier today???? This works 4-30-19 @ 00:30
 
   //pulls state abbreviation, positive, negative values from response
   /**
    * North Carolina =>  { state: NC,
    *                      positive: 1235,
+   *                      deaths: 123,
    *                      negative: 321 or "Unknown"
    *                    } 
    */
