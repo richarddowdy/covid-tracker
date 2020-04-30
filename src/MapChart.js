@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import { geoCentroid } from "d3-geo";
+import { scaleThreshold } from "d3-scale";
 import "./MapChart.css";
 import {
   ComposableMap,
@@ -25,6 +26,21 @@ const offsets = {
   MD: [47, 10],
   DC: [49, 21],
 };
+
+/**
+ * d3 methods stringed together
+ * returns color for highest threshold met
+ * cases < 999 => 'FFD700' - lighter
+ * 1000-4999 => 'FF8C00' 
+ * 5000-9999 => 'FF4500' 
+ * 10000-49999 => 'FF0000' 
+ * 50000-99999 => 'CC0000' 
+ * cases > 100000 => '8B0000' - darker
+ */
+const colorScale = scaleThreshold()
+  .domain([1000,5000,10000,50000,100000]) // threshold limits
+  .range(['FFD700','#FF8C00','#FF4500', '#FF0000', '#CC0000', '	#8B0000' ]) // color(strings) returned for threshold met
+
 
 const MapChart = () => {
   console.log("rendered"); // renders when mouse moves to new state
@@ -61,14 +77,14 @@ const MapChart = () => {
                       key={geo.rsmKey}
                       stroke="#FFF"
                       geography={geo}
+                      // fill={colorScale(geo.properties.cases)}
                       fill="#DDD"
                       onMouseEnter={() => {
-                        //  console.log(geo.properties);
-                        const { name, cases, recovered } = geo.properties;
+                        const { name, cases, recovered, deaths } = geo.properties;
                         //This would allow me to show Cases inside the popup bubble
                         //as long as i pull cases from properties above.^
                         setContent(
-                          `${name} => Cases: ${cases}\n Recovered: ${recovered}`
+                          `${name} => Cases: ${cases}\n Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
                         );
                         // setTooltipContent(`${name}`);
                       }}
@@ -77,17 +93,9 @@ const MapChart = () => {
                       }}
                       style={{
                         default: {
-                          fill: "#D6D6DA",
+                          fill: colorScale(geo.properties.cases),
                           outline: "",
                         },
-                        // hover: {
-                        //   fill: "#F53",
-                        //   outline: "none"
-                        // },
-                        // pressed: {
-                        //   fill: "#E42",
-                        //   outline: "none"
-                        // }
                       }}
                     />
                   ))}

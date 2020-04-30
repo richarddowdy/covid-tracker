@@ -19,6 +19,7 @@ async function fetchData(){
   for(let state of response.data){
     statesData[state.state] = {
       positive: state.positive,
+      deaths: state.death,
       recovered: state.recovered
     }
   }
@@ -45,6 +46,7 @@ async function fetchData(){
             "id": "01",
             "properties": { "name": "Alabama",
                             "cases": statesData["AL"].positive,
+                            "deaths": statesData["AL"].deaths,
                             "recovered": statesData['AL'].recovered || "Unknown" }
           },
           {
@@ -191,6 +193,7 @@ async function fetchData(){
             "id": "02",
             "properties": { "name": "Alaska",
                             "cases": statesData["AK"].positive,
+                            "deaths": statesData["AK"].deaths,
                             "recovered": statesData["AK"].recovered || "Unknown"  }
           },
           {
@@ -199,6 +202,7 @@ async function fetchData(){
             "id": "04",
             "properties": { "name": "Arizona",
                             "cases": statesData["AZ"].positive,
+                            "deaths": statesData["AZ"].deaths,
                             "recovered": statesData["AZ"].recovered || "Unknown" }
           },
           {
@@ -207,6 +211,7 @@ async function fetchData(){
             "id": "08",
             "properties": { "name": "Colorado",
                             "cases": statesData["CO"].positive,
+                            "deaths": statesData["CO"].deaths,
                             "recovered": statesData["CO"].recovered || "Unknown" }
           },
           {
@@ -226,6 +231,7 @@ async function fetchData(){
             "id": "12",
             "properties": { "name": "Florida",
                             "cases": statesData["FL"].positive,
+                            "deaths": statesData["FL"].deaths,
                             "recovered": statesData["FL"].recovered || "Unknown" }
           },
           {
@@ -234,6 +240,7 @@ async function fetchData(){
             "id": "13",
             "properties": { "name": "Georgia",
                             "cases": statesData["GA"].positive,
+                            "deaths": statesData["GA"].deaths,
                             "recovered": statesData["GA"].recovered || "Unknown" }
           },
           {
@@ -242,6 +249,7 @@ async function fetchData(){
             "id": "18",
             "properties": { "name": "Indiana",
                             "cases": statesData["IN"].positive,
+                            "deaths": statesData["IN"].deaths,
                             "recovered": statesData["IN"].recovered || "Unknown" }
           },
           {
@@ -250,6 +258,7 @@ async function fetchData(){
             "id": "20",
             "properties": { "name": "Kansas",
                             "cases": statesData["KS"].positive,
+                            "deaths": statesData["KS"].deaths,
                             "recovered": statesData["KS"].recovered || "Unknown" }
           },
           {
@@ -267,6 +276,7 @@ async function fetchData(){
             "id": "23",
             "properties": { "name": "Maine",
                             "cases": statesData["ME"].positive,
+                            "deaths": statesData["ME"].deaths,
                             "recovered": statesData["ME"].recovered || "Unknown" }
           },
           {
@@ -279,6 +289,7 @@ async function fetchData(){
             "id": "25",
             "properties": { "name": "Massachusetts",
                             "cases": statesData["MA"].positive,
+                            "deaths": statesData["MA"].deaths,
                             "recovered": statesData["MA"].recovered || "Unknown" }
           },
           {
@@ -287,6 +298,7 @@ async function fetchData(){
             "id": "27",
             "properties": { "name": "Minnesota",
                             "cases": statesData["MN"].positive,
+                            "deaths": statesData["MN"].deaths,
                             "recovered": statesData["MN"].recovered || "Unknown" }
           },
           {
@@ -295,6 +307,7 @@ async function fetchData(){
             "id": "34",
             "properties": { "name": "New Jersey",
                             "cases": statesData["NJ"].positive,
+                            "deaths": statesData["NJ"].deaths,
                             "recovered": statesData["NJ"].recovered || "Unknown" }
           },
           {
@@ -303,6 +316,7 @@ async function fetchData(){
             "id": "37",
             "properties": { "name": "North Carolina",
                             "cases": statesData["NC"].positive,
+                            "deaths": statesData["NC"].deaths,
                             "recovered": statesData["NC"].recovered || "Unknown" }
           },
           {
@@ -311,6 +325,7 @@ async function fetchData(){
             "id": "38",
             "properties": { "name": "North Dakota",
                             "cases": statesData["ND"].positive,
+                            "deaths": statesData["ND"].deaths,
                             "recovered": statesData["ND"].recovered || "Unknown" }
           },
           {
@@ -319,6 +334,7 @@ async function fetchData(){
             "id": "40",
             "properties": { "name": "Oklahoma",
                             "cases": statesData["OK"].positive,
+                            "deaths": statesData["OK"].deaths,
                             "recovered": statesData["OK"].recovered || "Unknown" }
           },
           {
@@ -327,6 +343,7 @@ async function fetchData(){
             "id": "42",
             "properties": { "name": "Pennsylvania",
                             "cases": statesData["PA"].positive,
+                            "deaths": statesData["PA"].deaths,
                             "recovered": statesData["PA"].recovered || "Unknown" }
           },
           {
@@ -335,6 +352,7 @@ async function fetchData(){
             "id": "46",
             "properties": { "name": "South Dakota",
                             "cases": statesData["SD"].positive,
+                            "deaths": statesData["SD"].deaths,
                             "recovered": statesData["SD"].recovered || "Unknown" }
           },
           {
@@ -343,6 +361,7 @@ async function fetchData(){
             "id": "48",
             "properties": { "name": "Texas",
                             "cases": statesData["TX"].positive,
+                            "deaths": statesData["TX"].deaths,
                             "recovered": statesData["TX"].recovered || "Unknown" }
           },
           {
@@ -351,6 +370,7 @@ async function fetchData(){
             "id": "56",
             "properties": { "name": "Wyoming",
                             "cases": statesData["WY"].positive,
+                            "deaths": statesData["WY"].deaths,
                             "recovered": statesData["WY"].recovered || "Unknown" }
           },
           {
@@ -359,6 +379,7 @@ async function fetchData(){
             "id": "09",
             "properties": { "name": "Connecticut",
                             "cases": statesData["CT"].positive,
+                            "deaths": statesData["CT"].deaths,
                             "recovered": statesData["CT"].recovered || "Unknown" }
           },
           {
@@ -367,6 +388,7 @@ async function fetchData(){
             "id": "29",
             "properties": { "name": "Missouri",
                             "cases": statesData["MO"].positive,
+                            "deaths": statesData["MO"].deaths,
                             "recovered": statesData["MO"].recovered || "Unknown" }
           },
           {
@@ -375,6 +397,7 @@ async function fetchData(){
             "id": "54",
             "properties": { "name": "West Virginia",
                             "cases": statesData["WV"].positive,
+                            "deaths": statesData["WV"].deaths,
                             "recovered": statesData["WV"].recovered || "Unknown" }
           },
           {
@@ -383,6 +406,7 @@ async function fetchData(){
             "id": "17",
             "properties": { "name": "Illinois",
                             "cases": statesData["IL"].positive, 
+                            "deaths": statesData["IL"].deaths,
                             "recovered": statesData["IL"].recovered || "Unknown" }
           },
           {
@@ -391,6 +415,7 @@ async function fetchData(){
             "id": "35",
             "properties": { "name": "New Mexico",
                             "cases": statesData["NM"].positive,
+                            "deaths": statesData["NM"].deaths,
                             "recovered": statesData["NM"].recovered || "Unknown" }
           },
           {
@@ -399,6 +424,7 @@ async function fetchData(){
             "id": "05",
             "properties": { "name": "Arkansas",
                             "cases": statesData["AR"].positive,
+                            "deaths": statesData["AR"].deaths,
                             "recovered": statesData["AR"].recovered || "Unknown" }
           },
           {
@@ -417,6 +443,7 @@ async function fetchData(){
             "id": "06",
             "properties": { "name": "California",
                             "cases": statesData["CA"].positive,
+                            "deaths": statesData["CA"].deaths,
                             "recovered": statesData["CA"].recovered || "Unknown" }
           },
           {
@@ -425,6 +452,7 @@ async function fetchData(){
             "id": "10",
             "properties": { "name": "Delaware",
                             "cases": statesData["DE"].positive,
+                            "deaths": statesData["DE"].deaths,
                             "recovered": statesData["DE"].recovered || "Unknown" }
           },
           {
@@ -433,6 +461,7 @@ async function fetchData(){
             "id": "11",
             "properties": { "name": "District of Columbia",
                             "cases": statesData["DC"].positive,
+                            "deaths": statesData["DC"].deaths,
                             "recovered": statesData["DC"].recovered || "Unknown" }
           },
           {
@@ -450,6 +479,7 @@ async function fetchData(){
             "id": "15",
             "properties": { "name": "Hawaii",
                             "cases": statesData["HI"].positive,
+                            "deaths": statesData["HI"].deaths,
                             "recovered": statesData["HI"].recovered || "Unknown" }
           },
           {
@@ -458,6 +488,7 @@ async function fetchData(){
             "id": "19",
             "properties": { "name": "Iowa",
                             "cases": statesData["IA"].positive,
+                            "deaths": statesData["IA"].deaths,
                             "recovered": statesData["IA"].recovered || "Unknown" }
           },
           {
@@ -466,6 +497,7 @@ async function fetchData(){
             "id": "21",
             "properties": { "name": "Kentucky",
                             "cases": statesData["KY"].positive,
+                            "deaths": statesData["KY"].deaths,
                             "recovered": statesData["KY"].recovered || "Unknown" }
           },
           {
@@ -479,6 +511,7 @@ async function fetchData(){
             "id": "24",
             "properties": { "name": "Maryland",
                             "cases": statesData["MD"].positive,
+                            "deaths": statesData["MD"].deaths,
                             "recovered": statesData["MD"].recovered || "Unknown" }
           },
           {
@@ -500,6 +533,7 @@ async function fetchData(){
             "id": "26",
             "properties": { "name": "Michigan",
                             "cases": statesData["MI"].positive,
+                            "deaths": statesData["MI"].deaths,
                             "recovered": statesData["MI"].recovered || "Unknown" }
           },
           {
@@ -514,6 +548,7 @@ async function fetchData(){
             "id": "28",
             "properties": { "name": "Mississippi",
                             "cases": statesData["MS"].positive,
+                            "deaths": statesData["MS"].deaths,
                             "recovered": statesData["MS"].recovered || "Unknown" }
           },
           {
@@ -522,6 +557,7 @@ async function fetchData(){
             "id": "30",
             "properties": { "name": "Montana",
                             "cases": statesData["MT"].positive,
+                            "deaths": statesData["MT"].deaths,
                             "recovered": statesData["MT"].recovered || "Unknown" }
           },
           {
@@ -530,6 +566,7 @@ async function fetchData(){
             "id": "33",
             "properties": { "name": "New Hampshire",
                             "cases": statesData["NH"].positive,
+                            "deaths": statesData["NH"].deaths,
                             "recovered": statesData["NH"].recovered || "Unknown" }
           },
           {
@@ -546,6 +583,7 @@ async function fetchData(){
             "id": "36",
             "properties": { "name": "New York",
                             "cases": statesData["NY"].positive,
+                            "deaths": statesData["NY"].deaths,
                             "recovered": statesData["NY"].recovered || "Unknown" }
           },
           {
@@ -554,6 +592,7 @@ async function fetchData(){
             "id": "39",
             "properties": { "name": "Ohio",
                             "cases": statesData["OH"].positive,
+                            "deaths": statesData["OH"].deaths,
                             "recovered": statesData["OH"].recovered || "Unknown" }
           },
           {
@@ -562,6 +601,7 @@ async function fetchData(){
             "id": "41",
             "properties": { "name": "Oregon",
                             "cases": statesData["OR"].positive,
+                            "deaths": statesData["OR"].deaths,
                             "recovered": statesData["OR"].recovered || "Unknown" }
           },
           {
@@ -570,6 +610,7 @@ async function fetchData(){
             "id": "47",
             "properties": { "name": "Tennessee",
                             "cases": statesData["TN"].positive,
+                            "deaths": statesData["TN"].deaths,
                             "recovered": statesData["TN"].recovered || "Unknown" }
           },
           {
@@ -578,6 +619,7 @@ async function fetchData(){
             "id": "49",
             "properties": { "name": "Utah",
                             "cases": statesData["UT"].positive,
+                            "deaths": statesData["UT"].deaths,
                             "recovered": statesData["UT"].recovered || "Unknown" }
           },
           {
@@ -591,6 +633,7 @@ async function fetchData(){
             "id": "51",
             "properties": { "name": "Virginia",
                             "cases": statesData["VA"].positive,
+                            "deaths": statesData["VA"].deaths,
                             "recovered": statesData["VA"].recovered || "Unknown" }
                           
           },
@@ -612,6 +655,7 @@ async function fetchData(){
             "id": "53",
             "properties": { "name": "Washington",
                             "cases": statesData["WA"].positive,
+                            "deaths": statesData["WA"].deaths,
                             "recovered": statesData["WA"].recovered || "Unknown" }
           },
           {
@@ -632,6 +676,7 @@ async function fetchData(){
             "id": "55",
             "properties": { "name": "Wisconsin",
                             "cases": statesData["WI"].positive,
+                            "deaths": statesData["WI"].deaths,
                             "recovered": statesData["WI"].recovered || "Unknown" }
           },
           {
@@ -640,6 +685,7 @@ async function fetchData(){
             "id": "31",
             "properties": { "name": "Nebraska",
                             "cases": statesData["NE"].positive,
+                            "deaths": statesData["NE"].deaths,
                             "recovered": statesData["NE"].recovered || "Unknown" }
           },
           {
@@ -648,6 +694,7 @@ async function fetchData(){
             "id": "45",
             "properties": { "name": "South Carolina",
                             "cases": statesData["SC"].positive,
+                            "deaths": statesData["SC"].deaths,
                             "recovered": statesData["SC"].recovered || "Unknown" }
           },
           {
@@ -656,6 +703,7 @@ async function fetchData(){
             "id": "16",
             "properties": { "name": "Idaho",
                             "cases": statesData["ID"].positive,
+                            "deaths": statesData["ID"].deaths,
                             "recovered": statesData["ID"].recovered || "Unknown" }
           },
           {
@@ -664,6 +712,7 @@ async function fetchData(){
             "id": "32",
             "properties": { "name": "Nevada",
                             "cases": statesData["NV"].positive,
+                            "deaths": statesData["NV"].deaths,
                             "recovered": statesData["NV"].recovered || "Unknown" }
           },
           {
@@ -672,6 +721,7 @@ async function fetchData(){
             "id": "50",
             "properties": { "name": "Vermont",
                             "cases": statesData["VT"].positive,
+                            "deaths": statesData["VT"].deaths,
                             "recovered": statesData["VT"].recovered || "Unknown" }
           },
           {
@@ -689,6 +739,7 @@ async function fetchData(){
             "id": "22",
             "properties": { "name": "Louisiana",
                             "cases": statesData["LA"].positive,
+                            "deaths": statesData["LA"].deaths,
                             "recovered": statesData["LA"].recovered || "Unknown" }
           },
           {
@@ -703,6 +754,7 @@ async function fetchData(){
             "id": "44",
             "properties": { "name": "Rhode Island",
                             "cases": statesData["RI"].positive,
+                            "deaths": statesData["RI"].deaths,
                             "recovered": statesData["RI"].recovered || "Unknown" }
           }
         ]
