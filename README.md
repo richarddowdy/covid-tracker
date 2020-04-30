@@ -12,3 +12,6 @@ The map uses the [react-simple-maps](https://github.com/zcreativelabs/react-simp
 
 ## **COVID-19 Data**
 The COVID-19 data is provided by the  [COVID Tracking Project](https://covidtracking.com/api) API.
+
+## **Map Background Color**
+The state's background colors are made possible by the library [d3-scale](https://github.com/d3/d3-scale). The specific method used in this app is `scaleThreshold()`.
