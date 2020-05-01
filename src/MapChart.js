@@ -30,7 +30,7 @@ const offsets = {
 };
 
 const MapChart = () => {
-  console.log("rendered"); // renders when mouse moves to new state
+  // console.log("rendered"); // renders when mouse moves to new state
 
   const [loadComplete, setLoadComplete] = useState(false);
   const [mapData, setMapData] = useState({});
@@ -81,72 +81,72 @@ const MapChart = () => {
               data-tip=""
               projection="geoAlbersUsa"
             >
-              <Geographies geography={mapData}>
-                {({ geographies }) => (
-                  <>
-                    {geographies.map((geo) => (
-                      <Geography
-                        key={geo.rsmKey}
-                        stroke="#FFF"
-                        geography={geo}
-                        fill={colorScaleHover(geo.properties.cases)}
-                        onMouseEnter={() => {
-                          const {
-                            name,
-                            cases,
-                            recovered,
-                            deaths,
-                          } = geo.properties;
-                          setContent(
-                            `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
-                          );
-                        }}
-                        onMouseLeave={() => {
-                          setContent("");
-                        }}
-                        style={{
-                          default: {
-                            fill: colorScale(geo.properties.cases),
-                            outline: "",
-                          },
-                        }}
-                      />
-                    ))}
-                    {geographies.map((geo) => {
-                      const centroid = geoCentroid(geo);
-                      const cur = allStates.find((s) => s.val === geo.id);
-                      return (
-                        <g key={geo.rsmKey + "-name"}>
-                          {cur &&
-                            centroid[0] > -160 &&
-                            centroid[0] < -67 &&
-                            (Object.keys(offsets).indexOf(cur.id) === -1 ? (
-                              <Marker coordinates={centroid}>
-                                <text y="2" fontSize={16} textAnchor="middle">
-                                  {cur.id}
-                                </text>
-                              </Marker>
-                            ) : (
-                              <Annotation
-                                subject={centroid}
-                                dx={offsets[cur.id][0]}
-                                dy={offsets[cur.id][1]}
+            <Geographies geography={mapData}>
+              {({ geographies }) => (
+                <>
+                  {geographies.map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      stroke="#FFF"
+                      geography={geo}
+                      fill={colorScaleHover(geo.properties.cases)}
+                      onMouseEnter={() => {
+                        const {
+                          name,
+                          cases,
+                          recovered,
+                          deaths,
+                        } = geo.properties;
+                        setContent(
+                          `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
+                        );
+                      }}
+                      onMouseLeave={() => {
+                        setContent("");
+                      }}
+                      style={{
+                        default: {
+                          fill: colorScale(geo.properties.cases),
+                          outline: "",
+                        },
+                      }}
+                    />
+                  ))}
+                  {geographies.map((geo) => {
+                    const centroid = geoCentroid(geo);
+                    const cur = allStates.find((s) => s.val === geo.id);
+                    return (
+                      <g key={geo.rsmKey + "-name"}>
+                        {cur &&
+                          centroid[0] > -160 &&
+                          centroid[0] < -67 &&
+                          (Object.keys(offsets).indexOf(cur.id) === -1 ? (
+                            <Marker coordinates={centroid}>
+                              <text y="2" fontSize={16} textAnchor="middle">
+                                {cur.id}
+                              </text>
+                            </Marker>
+                          ) : (
+                            <Annotation
+                              subject={centroid}
+                              dx={offsets[cur.id][0]}
+                              dy={offsets[cur.id][1]}
+                            >
+                              <text
+                                x={4}
+                                fontSize={14}
+                                alignmentBaseline="middle"
                               >
-                                <text
-                                  x={4}
-                                  fontSize={14}
-                                  alignmentBaseline="middle"
-                                >
-                                  {cur.id}
-                                </text>
-                              </Annotation>
-                            ))}
-                        </g>
-                      );
-                    })}
-                  </>
-                )}
-              </Geographies>
+                                {cur.id}
+                              </text>
+                            </Annotation>
+                          ))}
+                      </g>
+                    );
+                  })}
+                </>
+              )}
+            </Geographies>
             </ComposableMap>
           </div>
 

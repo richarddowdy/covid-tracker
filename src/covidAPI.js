@@ -6,11 +6,11 @@ import axios from 'axios';
 
 
 async function fetchData(){
-  const response = await axios.get('https://www.covidtracking.com/api/v1/states/current.json'); // /current.json is new
-  console.log(response);           // endpoint changed from earlier today???? This works 4-30-19 @ 00:30
+  const response = await axios.get('https://www.covidtracking.com/api/v1/states/current.json');
 
-  //pulls state abbreviation, positive, negative values from response
   /**
+   * Pulls values for state abbreviation, positive, negative, deaths from response
+   * 
    * North Carolina =>  { state: NC,
    *                      positive: 1235,
    *                      deaths: 123,
@@ -27,11 +27,12 @@ async function fetchData(){
     }
   }
 
-  // console.log(statesData);
-
-  // data needed for map to display with 
-  // covid data added to state properties
-  // VERY LONG VARIABLE - COLLAPSE TO READ FILE EASIER
+/**
+ * Data needed for map to display with 
+ * covid data added to state properties
+ * 
+ * VERY LONG VARIABLE - COLLAPSE TO READ FILE EASIER
+ */
   const mapGeo = {
     "type": "Topology",
     "bbox": [-179.14733999999999, -14.552548999999999, 179.77847, 71.352561],
