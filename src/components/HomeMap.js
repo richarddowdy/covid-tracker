@@ -3,7 +3,7 @@ import ReactTooltip from "react-tooltip";
 import Header from "./Header";
 import MapChart from "./MapChart";
 
-import fetchData from "./covidAPI"; // custom function to get covid data and load it into map data
+import fetchData from "../actions/covidAPI"; // custom function to get covid data and load it into map data
 
 
 function HomeMap() {

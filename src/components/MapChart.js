@@ -13,7 +13,7 @@ import {
 } from "react-simple-maps";
 
 // Loads data needed for the map
-import allStates from "./allstates.json";
+import allStates from "../allstates.json";
 
 const offsets = {
   VT: [50, -8],
