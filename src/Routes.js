@@ -2,6 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import HomeMap from './HomeMap';
+import StateProfile from './StateProfile';
+import NotFound from './NotFound';
 
 function Routes() {
   
@@ -11,13 +13,13 @@ function Routes() {
         <HomeMap />
       </Route>
       
-      {/* <Route exact path="/states/:stateInitials????">
-
-      </Route> */}
+      <Route exact path="/states/:state">
+        <StateProfile />
+      </Route>
       
-      {/* <Route>
+      <Route>
         <NotFound />
-      </Route> */}
+      </Route>
     </Switch>
   )
 }

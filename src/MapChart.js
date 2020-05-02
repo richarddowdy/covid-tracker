@@ -1,7 +1,6 @@
-import React, { memo, useEffect, useState } from "react";
-import ReactTooltip from "react-tooltip";
+import React, { memo } from "react";
+import {useHistory } from "react-router-dom";
 import ColorLegendContainer from "./ColorLegendContainer";
-
 import { geoCentroid } from "d3-geo";
 import { scaleThreshold } from "d3-scale";
 import "./MapChart.css";
@@ -15,7 +14,6 @@ import {
 
 // Loads data needed for the map
 import allStates from "./allstates.json";
-import fetchData from "./covidAPI"; // custom function to get covid data and load it into map data
 
 const offsets = {
   VT: [50, -8],
@@ -29,15 +27,8 @@ const offsets = {
   DC: [49, 21],
 };
 
-const MapChart = () => {
-  // console.log("rendered"); // renders when mouse moves to new state
+const MapChart = ({ setContent, mapData }) => {
 
-  const [loadComplete, setLoadComplete] = useState(false);
-  const [mapData, setMapData] = useState({});
-
-  // content of the tooltip
-  const [content, setContent] = useState("");
-  
   /**
    * d3 methods stringed together
    * returns color for highest threshold met
@@ -57,30 +48,20 @@ const MapChart = () => {
     .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
     .range(["#ffe44d", "#ffaf4d", "#ff7c4d", "#ff4d4d", "#e60000", "#b30000"]); // color(strings) returned for threshold met
 
-  //custom function to get map data with covid data
-  async function getData() {
-    const covidMapData = await fetchData();
-    setMapData(covidMapData);
-    setLoadComplete(true);
-  }
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // console.log(mapData);
 
+  const history = useHistory();
+  const handleClick = (state) => {
+    history.push(`/states/${state}`);
+  };
 
   return (
     <>
-      {loadComplete ? (
-        
-        <div className="row align-items-center">
-          <div className="col-10">
-            <ReactTooltip>{content}</ReactTooltip>
-            <ComposableMap
-              className="map"
-              data-tip=""
-              projection="geoAlbersUsa"
-            >
+      <div className="row align-items-center">
+        <div className="col-10">
+          {/* <ReactTooltip>{content}</ReactTooltip> */}
+          <ComposableMap className="map" data-tip="" projection="geoAlbersUsa">
             <Geographies geography={mapData}>
               {({ geographies }) => (
                 <>
@@ -90,6 +71,7 @@ const MapChart = () => {
                       stroke="#FFF"
                       geography={geo}
                       fill={colorScaleHover(geo.properties.cases)}
+                      onClick={() => handleClick(geo.properties.abbreviation)}
                       onMouseEnter={() => {
                         const {
                           name,
@@ -122,7 +104,12 @@ const MapChart = () => {
                           centroid[0] < -67 &&
                           (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                             <Marker coordinates={centroid}>
-                              <text y="2" fontSize={16} textAnchor="middle">
+                              <text
+                                pointerEvents="none"
+                                y="2"
+                                fontSize={16}
+                                textAnchor="middle"
+                              >
                                 {cur.id}
                               </text>
                             </Marker>
@@ -147,16 +134,10 @@ const MapChart = () => {
                 </>
               )}
             </Geographies>
-            </ComposableMap>
-          </div>
-
-          <ColorLegendContainer />
-
+          </ComposableMap>
         </div>
-
-      ) : (
-        <p>LOADING....</p>
-      )}
+        <ColorLegendContainer />
+      </div>
     </>
   );
 };

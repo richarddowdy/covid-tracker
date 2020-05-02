@@ -3,8 +3,6 @@ import axios from 'axios';
 /**
  * Returns the needed geo map data with covid data loaded in
  */
-
-
 async function fetchData(){
   const response = await axios.get('https://www.covidtracking.com/api/v1/states/current.json');
 
@@ -17,10 +15,10 @@ async function fetchData(){
    *                      negative: 321 or "Unknown"
    *                    } 
    */
-
   const statesData = {}
   for(let state of response.data){
     statesData[state.state] = {
+      abbreviation: state.state,
       positive: state.positive,
       deaths: state.death,
       recovered: state.recovered
@@ -30,6 +28,7 @@ async function fetchData(){
 /**
  * Data needed for map to display with 
  * covid data added to state properties
+ * from above statesData object.
  * 
  * VERY LONG VARIABLE - COLLAPSE TO READ FILE EASIER
  */
@@ -49,6 +48,7 @@ async function fetchData(){
             "arcs": [[[0]], [[1, 2, 3, 4, 5]]],
             "id": "01",
             "properties": { "name": "Alabama",
+                            "abbreviation": statesData["AL"].abbreviation,
                             "cases": statesData["AL"].positive,
                             "deaths": statesData["AL"].deaths,
                             "recovered": statesData['AL'].recovered || "Unknown" }
@@ -196,6 +196,7 @@ async function fetchData(){
             ],
             "id": "02",
             "properties": { "name": "Alaska",
+                            "abbreviation": statesData["AK"].abbreviation,
                             "cases": statesData["AK"].positive,
                             "deaths": statesData["AK"].deaths,
                             "recovered": statesData["AK"].recovered || "Unknown"  }
@@ -205,6 +206,7 @@ async function fetchData(){
             "arcs": [[143, 144, 145, 146, 147]],
             "id": "04",
             "properties": { "name": "Arizona",
+                            "abbreviation": statesData["AZ"].abbreviation,
                             "cases": statesData["AZ"].positive,
                             "deaths": statesData["AZ"].deaths,
                             "recovered": statesData["AZ"].recovered || "Unknown" }
@@ -214,6 +216,7 @@ async function fetchData(){
             "arcs": [[148, 149, 150, 151, 152, 153]],
             "id": "08",
             "properties": { "name": "Colorado",
+                            "abbreviation": statesData["CO"].abbreviation,
                             "cases": statesData["CO"].positive,
                             "deaths": statesData["CO"].deaths,
                             "recovered": statesData["CO"].recovered || "Unknown" }
@@ -234,6 +237,7 @@ async function fetchData(){
             ],
             "id": "12",
             "properties": { "name": "Florida",
+                            "abbreviation": statesData["FL"].abbreviation,
                             "cases": statesData["FL"].positive,
                             "deaths": statesData["FL"].deaths,
                             "recovered": statesData["FL"].recovered || "Unknown" }
@@ -243,6 +247,7 @@ async function fetchData(){
             "arcs": [[165, 166, 167, 168, -164, -3]],
             "id": "13",
             "properties": { "name": "Georgia",
+                            "abbreviation": statesData["GA"].abbreviation,
                             "cases": statesData["GA"].positive,
                             "deaths": statesData["GA"].deaths,
                             "recovered": statesData["GA"].recovered || "Unknown" }
@@ -252,6 +257,7 @@ async function fetchData(){
             "arcs": [[169, 170, 171, 172, 173]],
             "id": "18",
             "properties": { "name": "Indiana",
+                            "abbreviation": statesData["IN"].abbreviation,
                             "cases": statesData["IN"].positive,
                             "deaths": statesData["IN"].deaths,
                             "recovered": statesData["IN"].recovered || "Unknown" }
@@ -261,6 +267,7 @@ async function fetchData(){
             "arcs": [[174, 175, 176, -151]],
             "id": "20",
             "properties": { "name": "Kansas",
+                            "abbreviation": statesData["KS"].abbreviation,
                             "cases": statesData["KS"].positive,
                             "deaths": statesData["KS"].deaths,
                             "recovered": statesData["KS"].recovered || "Unknown" }
@@ -279,6 +286,7 @@ async function fetchData(){
             ],
             "id": "23",
             "properties": { "name": "Maine",
+                            "abbreviation": statesData["ME"].abbreviation,
                             "cases": statesData["ME"].positive,
                             "deaths": statesData["ME"].deaths,
                             "recovered": statesData["ME"].recovered || "Unknown" }
@@ -292,6 +300,7 @@ async function fetchData(){
             ],
             "id": "25",
             "properties": { "name": "Massachusetts",
+                            "abbreviation": statesData["MA"].abbreviation,
                             "cases": statesData["MA"].positive,
                             "deaths": statesData["MA"].deaths,
                             "recovered": statesData["MA"].recovered || "Unknown" }
@@ -301,6 +310,7 @@ async function fetchData(){
             "arcs": [[196, 197, 198, 199, 200]],
             "id": "27",
             "properties": { "name": "Minnesota",
+                            "abbreviation": statesData["MN"].abbreviation,
                             "cases": statesData["MN"].positive,
                             "deaths": statesData["MN"].deaths,
                             "recovered": statesData["MN"].recovered || "Unknown" }
@@ -310,6 +320,7 @@ async function fetchData(){
             "arcs": [[201, 202, 203, 204, 205, 206, 207, 208]],
             "id": "34",
             "properties": { "name": "New Jersey",
+                            "abbreviation": statesData["NJ"].abbreviation,
                             "cases": statesData["NJ"].positive,
                             "deaths": statesData["NJ"].deaths,
                             "recovered": statesData["NJ"].recovered || "Unknown" }
@@ -319,6 +330,7 @@ async function fetchData(){
             "arcs": [[[209]], [[210]], [[211, 212, 213, -167, 214]]],
             "id": "37",
             "properties": { "name": "North Carolina",
+                            "abbreviation": statesData["NC"].abbreviation,
                             "cases": statesData["NC"].positive,
                             "deaths": statesData["NC"].deaths,
                             "recovered": statesData["NC"].recovered || "Unknown" }
@@ -328,6 +340,7 @@ async function fetchData(){
             "arcs": [[215, -201, 216, 217]],
             "id": "38",
             "properties": { "name": "North Dakota",
+                            "abbreviation": statesData["ND"].abbreviation,
                             "cases": statesData["ND"].positive,
                             "deaths": statesData["ND"].deaths,
                             "recovered": statesData["ND"].recovered || "Unknown" }
@@ -337,6 +350,7 @@ async function fetchData(){
             "arcs": [[-152, -177, 218, 219, 220, 221]],
             "id": "40",
             "properties": { "name": "Oklahoma",
+                            "abbreviation": statesData["OK"].abbreviation,
                             "cases": statesData["OK"].positive,
                             "deaths": statesData["OK"].deaths,
                             "recovered": statesData["OK"].recovered || "Unknown" }
@@ -346,6 +360,7 @@ async function fetchData(){
             "arcs": [[222, 223, -204, 224, 225, 226, 227]],
             "id": "42",
             "properties": { "name": "Pennsylvania",
+                            "abbreviation": statesData["PA"].abbreviation,
                             "cases": statesData["PA"].positive,
                             "deaths": statesData["PA"].deaths,
                             "recovered": statesData["PA"].recovered || "Unknown" }
@@ -355,6 +370,7 @@ async function fetchData(){
             "arcs": [[228, -217, -200, 229, 230, 231]],
             "id": "46",
             "properties": { "name": "South Dakota",
+                            "abbreviation": statesData["SD"].abbreviation,
                             "cases": statesData["SD"].positive,
                             "deaths": statesData["SD"].deaths,
                             "recovered": statesData["SD"].recovered || "Unknown" }
@@ -364,6 +380,7 @@ async function fetchData(){
             "arcs": [[-221, 232, 233, 234, 235, 236, 237]],
             "id": "48",
             "properties": { "name": "Texas",
+                            "abbreviation": statesData["TX"].abbreviation,
                             "cases": statesData["TX"].positive,
                             "deaths": statesData["TX"].deaths,
                             "recovered": statesData["TX"].recovered || "Unknown" }
@@ -373,6 +390,7 @@ async function fetchData(){
             "arcs": [[-232, 238, -149, 239, 240, 241]],
             "id": "56",
             "properties": { "name": "Wyoming",
+                            "abbreviation": statesData["WY"].abbreviation,
                             "cases": statesData["WY"].positive,
                             "deaths": statesData["WY"].deaths,
                             "recovered": statesData["WY"].recovered || "Unknown" }
@@ -382,6 +400,7 @@ async function fetchData(){
             "arcs": [[-195, 242, 243, 244]],
             "id": "09",
             "properties": { "name": "Connecticut",
+                            "abbreviation": statesData["CT"].abbreviation,
                             "cases": statesData["CT"].positive,
                             "deaths": statesData["CT"].deaths,
                             "recovered": statesData["CT"].recovered || "Unknown" }
@@ -391,6 +410,7 @@ async function fetchData(){
             "arcs": [[245, 246, 247, 248, 249, 250, 251, -219, -176, 252]],
             "id": "29",
             "properties": { "name": "Missouri",
+                            "abbreviation": statesData["MO"].abbreviation,
                             "cases": statesData["MO"].positive,
                             "deaths": statesData["MO"].deaths,
                             "recovered": statesData["MO"].recovered || "Unknown" }
@@ -400,6 +420,7 @@ async function fetchData(){
             "arcs": [[253, -227, 254, 255, 256]],
             "id": "54",
             "properties": { "name": "West Virginia",
+                            "abbreviation": statesData["WV"].abbreviation,
                             "cases": statesData["WV"].positive,
                             "deaths": statesData["WV"].deaths,
                             "recovered": statesData["WV"].recovered || "Unknown" }
@@ -409,6 +430,7 @@ async function fetchData(){
             "arcs": [[257, 258, 259, -174, 260, -247]],
             "id": "17",
             "properties": { "name": "Illinois",
+                            "abbreviation": statesData["IL"].abbreviation,
                             "cases": statesData["IL"].positive, 
                             "deaths": statesData["IL"].deaths,
                             "recovered": statesData["IL"].recovered || "Unknown" }
@@ -418,6 +440,7 @@ async function fetchData(){
             "arcs": [[-153, -222, -238, 261, -147]],
             "id": "35",
             "properties": { "name": "New Mexico",
+                            "abbreviation": statesData["NM"].abbreviation,
                             "cases": statesData["NM"].positive,
                             "deaths": statesData["NM"].deaths,
                             "recovered": statesData["NM"].recovered || "Unknown" }
@@ -427,6 +450,7 @@ async function fetchData(){
             "arcs": [[-252, 262, 263, 264, -235, 233, -233, -220]],
             "id": "05",
             "properties": { "name": "Arkansas",
+                            "abbreviation": statesData["AR"].abbreviation,
                             "cases": statesData["AR"].positive,
                             "deaths": statesData["AR"].deaths,
                             "recovered": statesData["AR"].recovered || "Unknown" }
@@ -446,6 +470,7 @@ async function fetchData(){
             ],
             "id": "06",
             "properties": { "name": "California",
+                            "abbreviation": statesData["CA"].abbreviation,
                             "cases": statesData["CA"].positive,
                             "deaths": statesData["CA"].deaths,
                             "recovered": statesData["CA"].recovered || "Unknown" }
@@ -455,6 +480,7 @@ async function fetchData(){
             "arcs": [[[-209, 277]], [[-225, -203, 278, 279]]],
             "id": "10",
             "properties": { "name": "Delaware",
+                            "abbreviation": statesData["DE"].abbreviation,
                             "cases": statesData["DE"].positive,
                             "deaths": statesData["DE"].deaths,
                             "recovered": statesData["DE"].recovered || "Unknown" }
@@ -464,6 +490,7 @@ async function fetchData(){
             "arcs": [[280, 281]],
             "id": "11",
             "properties": { "name": "District of Columbia",
+                            "abbreviation": statesData["DC"].abbreviation,
                             "cases": statesData["DC"].positive,
                             "deaths": statesData["DC"].deaths,
                             "recovered": statesData["DC"].recovered || "Unknown" }
@@ -482,6 +509,7 @@ async function fetchData(){
             ],
             "id": "15",
             "properties": { "name": "Hawaii",
+                            "abbreviation": statesData["HI"].abbreviation,
                             "cases": statesData["HI"].positive,
                             "deaths": statesData["HI"].deaths,
                             "recovered": statesData["HI"].recovered || "Unknown" }
@@ -491,6 +519,7 @@ async function fetchData(){
             "arcs": [[-199, 290, -258, -246, 291, -230]],
             "id": "19",
             "properties": { "name": "Iowa",
+                            "abbreviation": statesData["IA"].abbreviation,
                             "cases": statesData["IA"].positive,
                             "deaths": statesData["IA"].deaths,
                             "recovered": statesData["IA"].recovered || "Unknown" }
@@ -500,6 +529,7 @@ async function fetchData(){
             "arcs": [[[-261, -173, 292, -257, 293, 294, -248]], [[295, -250]]],
             "id": "21",
             "properties": { "name": "Kentucky",
+                            "abbreviation": statesData["KY"].abbreviation,
                             "cases": statesData["KY"].positive,
                             "deaths": statesData["KY"].deaths,
                             "recovered": statesData["KY"].recovered || "Unknown" }
@@ -514,6 +544,7 @@ async function fetchData(){
             ],
             "id": "24",
             "properties": { "name": "Maryland",
+                            "abbreviation": statesData["MD"].abbreviation,
                             "cases": statesData["MD"].positive,
                             "deaths": statesData["MD"].deaths,
                             "recovered": statesData["MD"].recovered || "Unknown" }
@@ -536,6 +567,7 @@ async function fetchData(){
             ],
             "id": "26",
             "properties": { "name": "Michigan",
+                            "abbreviation": statesData["MI"].abbreviation,
                             "cases": statesData["MI"].positive,
                             "deaths": statesData["MI"].deaths,
                             "recovered": statesData["MI"].recovered || "Unknown" }
@@ -551,6 +583,7 @@ async function fetchData(){
             ],
             "id": "28",
             "properties": { "name": "Mississippi",
+                            "abbreviation": statesData["MS"].abbreviation,
                             "cases": statesData["MS"].positive,
                             "deaths": statesData["MS"].deaths,
                             "recovered": statesData["MS"].recovered || "Unknown" }
@@ -560,6 +593,7 @@ async function fetchData(){
             "arcs": [[330, -218, -229, -242, 331]],
             "id": "30",
             "properties": { "name": "Montana",
+                            "abbreviation": statesData["MT"].abbreviation,
                             "cases": statesData["MT"].positive,
                             "deaths": statesData["MT"].deaths,
                             "recovered": statesData["MT"].recovered || "Unknown" }
@@ -569,6 +603,7 @@ async function fetchData(){
             "arcs": [[332, -185, 333, -190, 334]],
             "id": "33",
             "properties": { "name": "New Hampshire",
+                            "abbreviation": statesData["NH"].abbreviation,
                             "cases": statesData["NH"].positive,
                             "deaths": statesData["NH"].deaths,
                             "recovered": statesData["NH"].recovered || "Unknown" }
@@ -586,6 +621,7 @@ async function fetchData(){
             ],
             "id": "36",
             "properties": { "name": "New York",
+                            "abbreviation": statesData["NY"].abbreviation,
                             "cases": statesData["NY"].positive,
                             "deaths": statesData["NY"].deaths,
                             "recovered": statesData["NY"].recovered || "Unknown" }
@@ -595,6 +631,7 @@ async function fetchData(){
             "arcs": [[[344]], [[345]], [[-316, 346, -228, -254, -293, -172]]],
             "id": "39",
             "properties": { "name": "Ohio",
+                            "abbreviation": statesData["OH"].abbreviation,
                             "cases": statesData["OH"].positive,
                             "deaths": statesData["OH"].deaths,
                             "recovered": statesData["OH"].recovered || "Unknown" }
@@ -604,6 +641,7 @@ async function fetchData(){
             "arcs": [[347, 348, 349, 274, -275, -274, 350]],
             "id": "41",
             "properties": { "name": "Oregon",
+                            "abbreviation": statesData["OR"].abbreviation,
                             "cases": statesData["OR"].positive,
                             "deaths": statesData["OR"].deaths,
                             "recovered": statesData["OR"].recovered || "Unknown" }
@@ -613,6 +651,7 @@ async function fetchData(){
             "arcs": [[-251, -296, -249, -295, 351, -215, -166, -2, -328, -263]],
             "id": "47",
             "properties": { "name": "Tennessee",
+                            "abbreviation": statesData["TN"].abbreviation,
                             "cases": statesData["TN"].positive,
                             "deaths": statesData["TN"].deaths,
                             "recovered": statesData["TN"].recovered || "Unknown" }
@@ -622,6 +661,7 @@ async function fetchData(){
             "arcs": [[352, -240, -154, -146, 353]],
             "id": "49",
             "properties": { "name": "Utah",
+                            "abbreviation": statesData["UT"].abbreviation,
                             "cases": statesData["UT"].positive,
                             "deaths": statesData["UT"].deaths,
                             "recovered": statesData["UT"].recovered || "Unknown" }
@@ -636,6 +676,7 @@ async function fetchData(){
             ],
             "id": "51",
             "properties": { "name": "Virginia",
+                            "abbreviation": statesData["VA"].abbreviation,
                             "cases": statesData["VA"].positive,
                             "deaths": statesData["VA"].deaths,
                             "recovered": statesData["VA"].recovered || "Unknown" }
@@ -658,6 +699,7 @@ async function fetchData(){
             ],
             "id": "53",
             "properties": { "name": "Washington",
+                            "abbreviation": statesData["WA"].abbreviation,
                             "cases": statesData["WA"].positive,
                             "deaths": statesData["WA"].deaths,
                             "recovered": statesData["WA"].recovered || "Unknown" }
@@ -679,6 +721,7 @@ async function fetchData(){
             ],
             "id": "55",
             "properties": { "name": "Wisconsin",
+                            "abbreviation": statesData["WI"].abbreviation,
                             "cases": statesData["WI"].positive,
                             "deaths": statesData["WI"].deaths,
                             "recovered": statesData["WI"].recovered || "Unknown" }
@@ -688,6 +731,7 @@ async function fetchData(){
             "arcs": [[-231, -292, -253, -175, -150, -239]],
             "id": "31",
             "properties": { "name": "Nebraska",
+                            "abbreviation": statesData["NE"].abbreviation,
                             "cases": statesData["NE"].positive,
                             "deaths": statesData["NE"].deaths,
                             "recovered": statesData["NE"].recovered || "Unknown" }
@@ -697,6 +741,7 @@ async function fetchData(){
             "arcs": [[-214, 394, -168]],
             "id": "45",
             "properties": { "name": "South Carolina",
+                            "abbreviation": statesData["SC"].abbreviation,
                             "cases": statesData["SC"].positive,
                             "deaths": statesData["SC"].deaths,
                             "recovered": statesData["SC"].recovered || "Unknown" }
@@ -706,6 +751,7 @@ async function fetchData(){
             "arcs": [[-369, 403, -332, -241, -353, 404, -349]],
             "id": "16",
             "properties": { "name": "Idaho",
+                            "abbreviation": statesData["ID"].abbreviation,
                             "cases": statesData["ID"].positive,
                             "deaths": statesData["ID"].deaths,
                             "recovered": statesData["ID"].recovered || "Unknown" }
@@ -715,6 +761,7 @@ async function fetchData(){
             "arcs": [[-275, -350, -405, -354, -145, -276]],
             "id": "32",
             "properties": { "name": "Nevada",
+                            "abbreviation": statesData["NV"].abbreviation,
                             "cases": statesData["NV"].positive,
                             "deaths": statesData["NV"].deaths,
                             "recovered": statesData["NV"].recovered || "Unknown" }
@@ -724,6 +771,7 @@ async function fetchData(){
             "arcs": [[405, -335, -189, -343]],
             "id": "50",
             "properties": { "name": "Vermont",
+                            "abbreviation": statesData["VT"].abbreviation,
                             "cases": statesData["VT"].positive,
                             "deaths": statesData["VT"].deaths,
                             "recovered": statesData["VT"].recovered || "Unknown" }
@@ -742,6 +790,7 @@ async function fetchData(){
             ],
             "id": "22",
             "properties": { "name": "Louisiana",
+                            "abbreviation": statesData["LA"].abbreviation,
                             "cases": statesData["LA"].positive,
                             "deaths": statesData["LA"].deaths,
                             "recovered": statesData["LA"].recovered || "Unknown" }
@@ -757,6 +806,7 @@ async function fetchData(){
             ],
             "id": "44",
             "properties": { "name": "Rhode Island",
+                            "abbreviation": statesData["RI"].abbreviation,
                             "cases": statesData["RI"].positive,
                             "deaths": statesData["RI"].deaths,
                             "recovered": statesData["RI"].recovered || "Unknown" }

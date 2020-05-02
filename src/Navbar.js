@@ -7,8 +7,7 @@ function NavBar() {
     <div className="row navbar text-light bg-dark">
       <h1 style={{float:'left'}}>Covid-Tracker</h1>
       <div style={{float: 'right'}} className="text-light">
-        <NavLink to="/" style={{marginRight: '15px'}}>Map</NavLink>
-        {/* <NavLink to=""></NavLink> */}
+        <NavLink className="text-white" to="/" style={{marginRight: '15px'}}>Map</NavLink>
       </div>
     </div>
   );

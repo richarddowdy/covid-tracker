@@ -13,10 +13,7 @@ function App() {
 
       <Navbar />
       <Routes />
-      
-      
-      {/* <Header/>
-      <MapChart /> */}
+
     </div>
   );
 }
