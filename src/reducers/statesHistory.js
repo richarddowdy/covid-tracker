@@ -7,8 +7,7 @@ export default function rootReducer (state = {}, action){
   switch(action.type) {
 
     case FETCH_STATES_HISTORY:
-      console.log("in reducer", action.statesHistory)
-      return ({...action.statesHistory});
+      return ({ ...state, ...action.statesHistory  });
 
     default:
       return state;

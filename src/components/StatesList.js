@@ -9,18 +9,17 @@ function StateList(){
   const dispatch = useDispatch();
 
   const stateList = useSelector((st) => st.statesCurrent)
-  // console.log("list", stateList);
 
   useEffect(() => {
     async function getCurrentData(){
       dispatch(fetchStatesCurrentDataAPI());
     }
     if(!stateList || stateList.length === 0){
-      // console.log("inside effect")
       getCurrentData();
     }
   }, [stateList, dispatch]);
 
+  
   return (
     <>
       {stateList ?

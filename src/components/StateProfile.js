@@ -5,21 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStatesHistoryFromAPI } from "../actions/states";
 
 function StateProfile() {
+  const dispatch = useDispatch();
   const { state } = useParams();
 
   const currentState = useSelector((st) => st.statesHistory[state]);
-  // const store = useSelector((st) => st);
-  // console.log("current store", store)
-
-  console.log("current state", currentState);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getStateData() {
       dispatch(fetchStatesHistoryFromAPI());
     }
     if (!currentState) {
-      // console.log("inside useEffect", currentState);
       getStateData();
     }
   }, [currentState, state, dispatch]);

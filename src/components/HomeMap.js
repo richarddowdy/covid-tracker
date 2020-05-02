@@ -3,8 +3,8 @@ import ReactTooltip from "react-tooltip";
 import Header from "./Header";
 import MapChart from "./MapChart";
 
-// import { useDispatch } from "react-redux";
-// import { fetchStatesFromAPI } from "../actions/states";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchGeoDataAPI } from "../actions/geoData";
 
 
 import fetchData from "../actions/covidAPI"; // custom function to get covid data and load it into map data
@@ -12,32 +12,41 @@ import fetchData from "../actions/covidAPI"; // custom function to get covid dat
 
 function HomeMap() {
 
-  // const dispatch = useDispatch();
-
-  const [loadComplete, setLoadComplete] = useState(false);
-  const [mapData, setMapData] = useState({});
+  const dispatch = useDispatch();
+  const mapData = useSelector((st) => st.mapData);
 
   // content of the tooltip
   const [content, setContent] = useState("");
 
   //custom function to get map data with covid data
-  async function getData() {
+  // async function getData() {
 
-    // dispatch(fetchStatesFromAPI());
+  //   // dispatch(fetchStatesFromAPI());
 
-    const covidMapData = await fetchData();
-    setMapData(covidMapData);
-    setLoadComplete(true);
-  }
+  //   const covidMapData = await fetchData();
+  //   setMapData(covidMapData);
+  //   setLoadComplete(true);
+  // }
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
+
 
   useEffect(() => {
-    getData();
-  }, []);
+    async function getMapData(){
+      dispatch(fetchGeoDataAPI());
+    }
+    if(!mapData.type){
+      getMapData();
+    }
+  },[mapData, dispatch])
+
 
   return (
     <>
-      <Header />
-      {loadComplete ? 
+      <Header />    
+      {mapData.type ? 
         <>
           <MapChart setContent={setContent} mapData={mapData}/>
           <ReactTooltip>{content}</ReactTooltip>
