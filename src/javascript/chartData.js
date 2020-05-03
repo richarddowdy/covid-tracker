@@ -45,6 +45,7 @@ export function chartDataHelper(dataFromState){
       }
     )
   }
+  convertedChartData.sort((a,b) => a.Cases - b.Cases);
   return convertedChartData;
 }
 

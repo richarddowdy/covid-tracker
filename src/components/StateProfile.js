@@ -35,7 +35,7 @@ function StateProfile() {
           <h2>COVID-19 Daily Statistics</h2>
           <div style={{ margin: "50px auto", textAlign: "center", width: "80%", height:"300px"}}>
             <ResponsiveContainer>
-              <AreaChart width={700} height={300} data={chartDataHelper(currentState.reverse())} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+              <AreaChart width={700} height={300} data={chartDataHelper(currentState)} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                 <XAxis stroke="black" dataKey="humanDate" />
                 <YAxis stroke="black" style={{fontSize: "14px"}}/>
                 <Area type="monotone" dataKey="Cases" stackId="1" stroke="#FF0000" fill="#FF0000" />
