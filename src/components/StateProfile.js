@@ -32,7 +32,6 @@ function StateProfile() {
       {currentState ? (
         <>
           <h1 className="mt-5">{stateLabels[currentState[0].state]}</h1>
-          <h2>COVID-19 Daily Statistics</h2>
           <div style={{ margin: "50px auto", textAlign: "center", width: "80%", height:"300px"}}>
             <ResponsiveContainer>
               <AreaChart width={700} height={300} data={chartDataHelper(currentState)} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
@@ -45,6 +44,7 @@ function StateProfile() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
+          <h2>Progression of COVID-19 Infections in 2020</h2>
         </>
       ) : (
         <h1>LOADING STATE DATA</h1>
