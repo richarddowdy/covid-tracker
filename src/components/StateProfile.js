@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatesHistoryFromAPI } from "../actions/states";
-
-
 import { AreaChart, XAxis, YAxis, Tooltip, Area, ResponsiveContainer } from 'recharts';
-
 import {chartDataHelper} from '../javascript/chartData'
-
 import { stateLabels } from '../javascript/stateLabels';
+import './StateProfile.css'
 
 function StateProfile() {
   const dispatch = useDispatch();
@@ -32,6 +28,7 @@ function StateProfile() {
       {currentState ? (
         <>
           <h1 className="mt-5">{stateLabels[currentState[0].state]}</h1>
+          <p className="axis-label" >Number of Cases</p>
           <div style={{ margin: "50px auto", textAlign: "center", width: "80%", height:"300px"}}>
             <ResponsiveContainer>
               <AreaChart width={700} height={300} data={chartDataHelper(currentState)} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
