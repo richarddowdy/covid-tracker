@@ -39,17 +39,17 @@ const MapChart = ({ setContent, mapData }) => {
    * 50000-99999 => 'CC0000'
    * 100000 < cases => '8B0000' - darker
    */
+
   // normal view
   const colorScale = scaleThreshold()
     .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
-    .range(["FFD700", "#FF8C00", "#FF4500", "#FF0000", "#CC0000", "	#8B0000"]); // color(strings) returned for threshold met
+    .range(["FFD700", "#FF8C00", "#FF4500", "#FF0000", "#CC0000", "#8B0000"]); // color(strings) returned for threshold met
   // colors onHover
   const colorScaleHover = scaleThreshold() // controls background color of states on hover
     .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
     .range(["#ffe44d", "#ffaf4d", "#ff7c4d", "#ff4d4d", "#e60000", "#b30000"]); // color(strings) returned for threshold met
 
-  // console.log(mapData);
-
+  // Acts as link
   const history = useHistory();
   const handleClick = (state) => {
     history.push(`/states/${state}`);

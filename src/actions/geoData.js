@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { FETCH_GEODATA } from './types';
+import { BASE_URL } from '../javascript/baseUrl';
 
 export function fetchGeoDataAPI(){
   return async function (dispatch){
-    const response = await axios.get("https://www.covidtracking.com/api/v1/states/current.json");
+    const response = await axios.get(`${BASE_URL}states/current.json`);
 
     const statesData = {}
     for(let state of response.data){
