@@ -1,20 +1,3 @@
-// const result = [
-//   {
-//     date: dataFromState.date,
-//     Deaths: dataFromState.deaths,
-//     Cases: dataFromState.positive,
-//     Recovered: dataFromState.recovered,
-//     humanDate: humanReadable(dataFromState.date)
-//   },
-//   {
-//     date: dataFromState.date,
-//     Deaths: dataFromState.deaths,
-//     Cases: dataFromState.positive,
-//     Recovered: dataFromState.recovered,
-//     humanDate: humanReadable(dataFromState.date)
-//   }
-// ]
-
 const humanMonths = {
   "01": "Jan",
   "02": "Feb",
@@ -33,24 +16,37 @@ const humanMonths = {
 export function chartDataHelper(dataFromState){
   
   let convertedChartData = [];
-
+  
   for(let dayData of dataFromState){
     convertedChartData.push(
       {
-            date: dayData.date,
-            Deaths: dayData.death,
-            Cases: dayData.positive,
-            Recovered: dayData.recovered,
-            humanDate: makeHumanReadableDate(dayData.date)
+        date: dayData.date,
+        Deaths: dayData.death,
+        Cases: dayData.positive,
+        Recovered: dayData.recovered,
+        humanDate: makeHumanReadableDate(dayData.date)
       }
-    )
+      )
+    }
+    convertedChartData.sort((a,b) => a.Cases - b.Cases);
+    return convertedChartData;
   }
-  convertedChartData.sort((a,b) => a.Cases - b.Cases);
-  return convertedChartData;
-}
-
-function makeHumanReadableDate(date){
-  const days = String(date).slice(-2);
-  const month = humanMonths[String(date).slice(4,6)];
-  return `${days}-${month}`
-}
+  
+  function makeHumanReadableDate(date){
+    const days = String(date).slice(-2);
+    const month = humanMonths[String(date).slice(4,6)];
+    return `${days}-${month}`
+  }
+  
+  // const result = [
+  //   {
+  //     date: 20200205,
+  //     Cases: 1234,
+  //     Recovered: 123,
+  //     Deaths: 12,
+  //     humanDate: "05-Feb"
+  //   },
+  //   {
+  //     ...
+  //   }
+  // ]
