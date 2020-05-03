@@ -78,7 +78,7 @@ const MapChart = ({ setContent, mapData }) => {
                           deaths,
                         } = geo.properties;
                         setContent(
-                          `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}` // not sure why new line not working??
+                          `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}`
                         );
                       }}
                       onMouseLeave={() => {
