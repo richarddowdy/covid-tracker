@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import ColorLegendContainer from "./ColorLegendContainer";
 import { geoCentroid } from "d3-geo";

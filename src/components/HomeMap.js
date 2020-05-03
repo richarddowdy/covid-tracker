@@ -18,20 +18,6 @@ function HomeMap() {
   // content of the tooltip
   const [content, setContent] = useState("");
 
-  //custom function to get map data with covid data
-  // async function getData() {
-
-  //   // dispatch(fetchStatesFromAPI());
-
-  //   const covidMapData = await fetchData();
-  //   setMapData(covidMapData);
-  //   setLoadComplete(true);
-  // }
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
 
   useEffect(() => {
     async function getMapData(){

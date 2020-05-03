@@ -4,6 +4,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatesHistoryFromAPI } from "../actions/states";
 
+
+import { AreaChart, XAxis, YAxis, Tooltip, Area, ResponsiveContainer } from 'recharts';
+
+import {chartDataHelper} from '../javascript/chartData'
+
+import { stateLabels } from '../javascript/stateLabels';
+
 function StateProfile() {
   const dispatch = useDispatch();
   const { state } = useParams();
@@ -18,32 +25,28 @@ function StateProfile() {
       getStateData();
     }
   }, [currentState, state, dispatch]);
-
+  
+ 
   return (
     <>
       {currentState ? (
         <>
-          <h1>State Data for: {currentState[0].state}</h1>
-          <div>
-            {currentState.map((day) => {
-              return (
-                <div key={day.date}>
-                  <p>
-                    Total cases for {day.date}: {day.positive}
-                  </p>
-                </div>
-              );
-            })}
+          <h1 className="mt-5">{stateLabels[currentState[0].state]}</h1>
+          <h2>COVID-19 Daily Statistics</h2>
+          <div style={{ margin: "50px auto", textAlign: "center", width: "80%", height:"300px"}}>
+            <ResponsiveContainer>
+              <AreaChart width={700} height={300} data={chartDataHelper(currentState.reverse())} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                <XAxis stroke="black" dataKey="humanDate" />
+                <YAxis stroke="black" style={{fontSize: "14px"}}/>
+                <Area type="monotone" dataKey="Cases" stackId="1" stroke="#FF0000" fill="#FF0000" />
+                <Area type="monotone" dataKey="Recovered" stackId="2" stroke="blue" fill="blue" />
+                <Area type="monotone" dataKey="Deaths" stackId="3" stroke="black" fill="black" />
+                <Tooltip/>
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </>
       ) : (
-        // <div>
-        //   <h1>{`${state} Profile Coming Soon!`}</h1>
-        //   <h1>Current Cases: {cases}</h1>
-        //   <h1>Recovered Cases: {recovered}</h1>
-        //   <h1>Deaths: {deaths}</h1>
-        //   <h1>Increase since yesterday: {}</h1>
-        // </div>
         <h1>LOADING STATE DATA</h1>
       )}
     </>
