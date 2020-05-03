@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 import { fetchStatesCurrentDataAPI } from "../actions/states";
-import StateCard from "./StateCard";
+import StateRow from "./StateRow";
+import "./StateList.css";
 
 function StateList() {
   const dispatch = useDispatch();
@@ -19,20 +19,24 @@ function StateList() {
   }, [stateList, dispatch]);
 
   return (
-    <>
-      <h1 className="font-weight-bold m-5">States in Order of Most Cases</h1>
-      <div className="row justify-content-center">
-        {stateList ? (
-          <>
-            {stateList.map((state) => {
-              return <StateCard key={state.state} stateData={state} />;
-            })}
-          </>
-        ) : (
-          <h1>LOADING</h1>
-        )}
-      </div>
-    </>
+    <div className="pt-5 pb-5">
+      <table className="m-auto text-align-center">
+        <thead>
+          <tr>
+            <th className="p-3 font-weight-bold border-bottom">#</th>
+            <th className="p-3 font-weight-bold border-bottom">State</th>
+            <th className="p-3 font-weight-bold border-bottom">Cases</th>
+            <th className="p-3 font-weight-bold border-bottom">Recovered</th>
+            <th className="p-3 font-weight-bold border-bottom">Deaths</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stateList.map((state, idx) => {
+            return <StateRow key={state.state} stateData={state} idx={idx} />;
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
