@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomeMap from './HomeMap';
 import StateProfile from './StateProfile';
+import StatesList from './StatesList';
 import NotFound from './NotFound';
 
 function Routes() {
@@ -15,6 +16,10 @@ function Routes() {
       
       <Route exact path="/states/:state">
         <StateProfile />
+      </Route>
+
+      <Route exact path="/states">
+        <StatesList />
       </Route>
       
       <Route>

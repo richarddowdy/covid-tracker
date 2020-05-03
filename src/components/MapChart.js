@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import {useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ColorLegendContainer from "./ColorLegendContainer";
 import { geoCentroid } from "d3-geo";
 import { scaleThreshold } from "d3-scale";
@@ -13,7 +13,7 @@ import {
 } from "react-simple-maps";
 
 // Loads data needed for the map
-import allStates from "./allstates.json";
+import allStates from "../allstates.json";
 
 const offsets = {
   VT: [50, -8],
@@ -48,7 +48,6 @@ const MapChart = ({ setContent, mapData }) => {
     .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
     .range(["#ffe44d", "#ffaf4d", "#ff7c4d", "#ff4d4d", "#e60000", "#b30000"]); // color(strings) returned for threshold met
 
-
   // console.log(mapData);
 
   const history = useHistory();
@@ -60,7 +59,6 @@ const MapChart = ({ setContent, mapData }) => {
     <>
       <div className="row align-items-center">
         <div className="col-10">
-          {/* <ReactTooltip>{content}</ReactTooltip> */}
           <ComposableMap className="map" data-tip="" projection="geoAlbersUsa">
             <Geographies geography={mapData}>
               {({ geographies }) => (
