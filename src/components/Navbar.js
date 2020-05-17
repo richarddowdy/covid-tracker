@@ -5,10 +5,10 @@ function NavBar() {
 
   return (
     <div className="row navbar text-light bg-dark">
-      <h1 style={{float:'left'}}>Covid-Tracker</h1>
+      <NavLink to="/" style={{float:'left', fontSize:"38px", color:"white"}}>Covid-Tracker</NavLink>
       <div style={{float: 'right'}} className="text-light">
-        <NavLink className="text-white" to="/" style={{marginRight: '15px'}}>Map</NavLink>
-        <NavLink className="text-white" to="/states" style={{marginRight: '15px'}}>States</NavLink>
+        <NavLink className="text-white" to="/" style={{fontSize:"24px", marginRight: '15px'}}>Map</NavLink>
+        <NavLink className="text-white" to="/states" style={{fontSize:"24px", marginRight: '15px'}}>List</NavLink>
       </div>
     </div>
   );
