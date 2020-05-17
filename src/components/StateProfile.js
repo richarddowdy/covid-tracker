@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatesHistoryFromAPI } from "../actions/states";
-import { AreaChart, XAxis, YAxis, Tooltip, Area, ResponsiveContainer } from 'recharts';
+import { AreaChart, XAxis, YAxis, Tooltip, Area, ResponsiveContainer, Legend } from 'recharts';
 import {chartDataHelper} from '../javascript/chartData'
 import { stateLabels } from '../javascript/stateLabels';
 import './StateProfile.css'
@@ -38,6 +38,7 @@ function StateProfile() {
                 <Area type="monotone" dataKey="Recovered" stackId="2" stroke="blue" fill="blue" />
                 <Area type="monotone" dataKey="Deaths" stackId="3" stroke="black" fill="black" />
                 <Tooltip/>
+                <Legend iconSize={30} />
               </AreaChart>
             </ResponsiveContainer>
           </div>

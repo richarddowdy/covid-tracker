@@ -42,7 +42,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["AL"].abbreviation,
                               "cases": statesData["AL"].positive,
                               "deaths": statesData["AL"].deaths,
-                              "recovered": statesData['AL'].recovered || "Unknown" }
+                              "recovered": statesData['AL'].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -190,7 +190,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["AK"].abbreviation,
                               "cases": statesData["AK"].positive,
                               "deaths": statesData["AK"].deaths,
-                              "recovered": statesData["AK"].recovered || "Unknown"  }
+                              "recovered": statesData["AK"].recovered || "No Data"  }
             },
             {
               "type": "Polygon",
@@ -200,7 +200,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["AZ"].abbreviation,
                               "cases": statesData["AZ"].positive,
                               "deaths": statesData["AZ"].deaths,
-                              "recovered": statesData["AZ"].recovered || "Unknown" }
+                              "recovered": statesData["AZ"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -210,7 +210,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["CO"].abbreviation,
                               "cases": statesData["CO"].positive,
                               "deaths": statesData["CO"].deaths,
-                              "recovered": statesData["CO"].recovered || "Unknown" }
+                              "recovered": statesData["CO"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -231,7 +231,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["FL"].abbreviation,
                               "cases": statesData["FL"].positive,
                               "deaths": statesData["FL"].deaths,
-                              "recovered": statesData["FL"].recovered || "Unknown" }
+                              "recovered": statesData["FL"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -241,7 +241,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["GA"].abbreviation,
                               "cases": statesData["GA"].positive,
                               "deaths": statesData["GA"].deaths,
-                              "recovered": statesData["GA"].recovered || "Unknown" }
+                              "recovered": statesData["GA"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -251,7 +251,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["IN"].abbreviation,
                               "cases": statesData["IN"].positive,
                               "deaths": statesData["IN"].deaths,
-                              "recovered": statesData["IN"].recovered || "Unknown" }
+                              "recovered": statesData["IN"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -261,7 +261,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["KS"].abbreviation,
                               "cases": statesData["KS"].positive,
                               "deaths": statesData["KS"].deaths,
-                              "recovered": statesData["KS"].recovered || "Unknown" }
+                              "recovered": statesData["KS"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -280,7 +280,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["ME"].abbreviation,
                               "cases": statesData["ME"].positive,
                               "deaths": statesData["ME"].deaths,
-                              "recovered": statesData["ME"].recovered || "Unknown" }
+                              "recovered": statesData["ME"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -294,7 +294,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MA"].abbreviation,
                               "cases": statesData["MA"].positive,
                               "deaths": statesData["MA"].deaths,
-                              "recovered": statesData["MA"].recovered || "Unknown" }
+                              "recovered": statesData["MA"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -304,7 +304,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MN"].abbreviation,
                               "cases": statesData["MN"].positive,
                               "deaths": statesData["MN"].deaths,
-                              "recovered": statesData["MN"].recovered || "Unknown" }
+                              "recovered": statesData["MN"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -314,7 +314,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NJ"].abbreviation,
                               "cases": statesData["NJ"].positive,
                               "deaths": statesData["NJ"].deaths,
-                              "recovered": statesData["NJ"].recovered || "Unknown" }
+                              "recovered": statesData["NJ"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -324,7 +324,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NC"].abbreviation,
                               "cases": statesData["NC"].positive,
                               "deaths": statesData["NC"].deaths,
-                              "recovered": statesData["NC"].recovered || "Unknown" }
+                              "recovered": statesData["NC"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -334,7 +334,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["ND"].abbreviation,
                               "cases": statesData["ND"].positive,
                               "deaths": statesData["ND"].deaths,
-                              "recovered": statesData["ND"].recovered || "Unknown" }
+                              "recovered": statesData["ND"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -344,7 +344,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["OK"].abbreviation,
                               "cases": statesData["OK"].positive,
                               "deaths": statesData["OK"].deaths,
-                              "recovered": statesData["OK"].recovered || "Unknown" }
+                              "recovered": statesData["OK"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -354,7 +354,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["PA"].abbreviation,
                               "cases": statesData["PA"].positive,
                               "deaths": statesData["PA"].deaths,
-                              "recovered": statesData["PA"].recovered || "Unknown" }
+                              "recovered": statesData["PA"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -364,7 +364,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["SD"].abbreviation,
                               "cases": statesData["SD"].positive,
                               "deaths": statesData["SD"].deaths,
-                              "recovered": statesData["SD"].recovered || "Unknown" }
+                              "recovered": statesData["SD"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -374,7 +374,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["TX"].abbreviation,
                               "cases": statesData["TX"].positive,
                               "deaths": statesData["TX"].deaths,
-                              "recovered": statesData["TX"].recovered || "Unknown" }
+                              "recovered": statesData["TX"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -384,7 +384,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["WY"].abbreviation,
                               "cases": statesData["WY"].positive,
                               "deaths": statesData["WY"].deaths,
-                              "recovered": statesData["WY"].recovered || "Unknown" }
+                              "recovered": statesData["WY"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -394,7 +394,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["CT"].abbreviation,
                               "cases": statesData["CT"].positive,
                               "deaths": statesData["CT"].deaths,
-                              "recovered": statesData["CT"].recovered || "Unknown" }
+                              "recovered": statesData["CT"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -404,7 +404,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MO"].abbreviation,
                               "cases": statesData["MO"].positive,
                               "deaths": statesData["MO"].deaths,
-                              "recovered": statesData["MO"].recovered || "Unknown" }
+                              "recovered": statesData["MO"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -414,7 +414,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["WV"].abbreviation,
                               "cases": statesData["WV"].positive,
                               "deaths": statesData["WV"].deaths,
-                              "recovered": statesData["WV"].recovered || "Unknown" }
+                              "recovered": statesData["WV"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -424,7 +424,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["IL"].abbreviation,
                               "cases": statesData["IL"].positive, 
                               "deaths": statesData["IL"].deaths,
-                              "recovered": statesData["IL"].recovered || "Unknown" }
+                              "recovered": statesData["IL"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -434,7 +434,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NM"].abbreviation,
                               "cases": statesData["NM"].positive,
                               "deaths": statesData["NM"].deaths,
-                              "recovered": statesData["NM"].recovered || "Unknown" }
+                              "recovered": statesData["NM"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -444,7 +444,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["AR"].abbreviation,
                               "cases": statesData["AR"].positive,
                               "deaths": statesData["AR"].deaths,
-                              "recovered": statesData["AR"].recovered || "Unknown" }
+                              "recovered": statesData["AR"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -464,7 +464,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["CA"].abbreviation,
                               "cases": statesData["CA"].positive,
                               "deaths": statesData["CA"].deaths,
-                              "recovered": statesData["CA"].recovered || "Unknown" }
+                              "recovered": statesData["CA"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -474,7 +474,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["DE"].abbreviation,
                               "cases": statesData["DE"].positive,
                               "deaths": statesData["DE"].deaths,
-                              "recovered": statesData["DE"].recovered || "Unknown" }
+                              "recovered": statesData["DE"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -484,7 +484,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["DC"].abbreviation,
                               "cases": statesData["DC"].positive,
                               "deaths": statesData["DC"].deaths,
-                              "recovered": statesData["DC"].recovered || "Unknown" }
+                              "recovered": statesData["DC"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -503,7 +503,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["HI"].abbreviation,
                               "cases": statesData["HI"].positive,
                               "deaths": statesData["HI"].deaths,
-                              "recovered": statesData["HI"].recovered || "Unknown" }
+                              "recovered": statesData["HI"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -513,7 +513,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["IA"].abbreviation,
                               "cases": statesData["IA"].positive,
                               "deaths": statesData["IA"].deaths,
-                              "recovered": statesData["IA"].recovered || "Unknown" }
+                              "recovered": statesData["IA"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -523,7 +523,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["KY"].abbreviation,
                               "cases": statesData["KY"].positive,
                               "deaths": statesData["KY"].deaths,
-                              "recovered": statesData["KY"].recovered || "Unknown" }
+                              "recovered": statesData["KY"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -538,7 +538,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MD"].abbreviation,
                               "cases": statesData["MD"].positive,
                               "deaths": statesData["MD"].deaths,
-                              "recovered": statesData["MD"].recovered || "Unknown" }
+                              "recovered": statesData["MD"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -561,7 +561,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MI"].abbreviation,
                               "cases": statesData["MI"].positive,
                               "deaths": statesData["MI"].deaths,
-                              "recovered": statesData["MI"].recovered || "Unknown" }
+                              "recovered": statesData["MI"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -577,7 +577,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MS"].abbreviation,
                               "cases": statesData["MS"].positive,
                               "deaths": statesData["MS"].deaths,
-                              "recovered": statesData["MS"].recovered || "Unknown" }
+                              "recovered": statesData["MS"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -587,7 +587,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["MT"].abbreviation,
                               "cases": statesData["MT"].positive,
                               "deaths": statesData["MT"].deaths,
-                              "recovered": statesData["MT"].recovered || "Unknown" }
+                              "recovered": statesData["MT"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -597,7 +597,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NH"].abbreviation,
                               "cases": statesData["NH"].positive,
                               "deaths": statesData["NH"].deaths,
-                              "recovered": statesData["NH"].recovered || "Unknown" }
+                              "recovered": statesData["NH"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -615,7 +615,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NY"].abbreviation,
                               "cases": statesData["NY"].positive,
                               "deaths": statesData["NY"].deaths,
-                              "recovered": statesData["NY"].recovered || "Unknown" }
+                              "recovered": statesData["NY"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -625,7 +625,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["OH"].abbreviation,
                               "cases": statesData["OH"].positive,
                               "deaths": statesData["OH"].deaths,
-                              "recovered": statesData["OH"].recovered || "Unknown" }
+                              "recovered": statesData["OH"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -635,7 +635,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["OR"].abbreviation,
                               "cases": statesData["OR"].positive,
                               "deaths": statesData["OR"].deaths,
-                              "recovered": statesData["OR"].recovered || "Unknown" }
+                              "recovered": statesData["OR"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -645,7 +645,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["TN"].abbreviation,
                               "cases": statesData["TN"].positive,
                               "deaths": statesData["TN"].deaths,
-                              "recovered": statesData["TN"].recovered || "Unknown" }
+                              "recovered": statesData["TN"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -655,7 +655,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["UT"].abbreviation,
                               "cases": statesData["UT"].positive,
                               "deaths": statesData["UT"].deaths,
-                              "recovered": statesData["UT"].recovered || "Unknown" }
+                              "recovered": statesData["UT"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -670,7 +670,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["VA"].abbreviation,
                               "cases": statesData["VA"].positive,
                               "deaths": statesData["VA"].deaths,
-                              "recovered": statesData["VA"].recovered || "Unknown" }
+                              "recovered": statesData["VA"].recovered || "No Data" }
                             
             },
             {
@@ -693,7 +693,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["WA"].abbreviation,
                               "cases": statesData["WA"].positive,
                               "deaths": statesData["WA"].deaths,
-                              "recovered": statesData["WA"].recovered || "Unknown" }
+                              "recovered": statesData["WA"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -715,7 +715,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["WI"].abbreviation,
                               "cases": statesData["WI"].positive,
                               "deaths": statesData["WI"].deaths,
-                              "recovered": statesData["WI"].recovered || "Unknown" }
+                              "recovered": statesData["WI"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -725,7 +725,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NE"].abbreviation,
                               "cases": statesData["NE"].positive,
                               "deaths": statesData["NE"].deaths,
-                              "recovered": statesData["NE"].recovered || "Unknown" }
+                              "recovered": statesData["NE"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -735,7 +735,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["SC"].abbreviation,
                               "cases": statesData["SC"].positive,
                               "deaths": statesData["SC"].deaths,
-                              "recovered": statesData["SC"].recovered || "Unknown" }
+                              "recovered": statesData["SC"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -745,7 +745,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["ID"].abbreviation,
                               "cases": statesData["ID"].positive,
                               "deaths": statesData["ID"].deaths,
-                              "recovered": statesData["ID"].recovered || "Unknown" }
+                              "recovered": statesData["ID"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -755,7 +755,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["NV"].abbreviation,
                               "cases": statesData["NV"].positive,
                               "deaths": statesData["NV"].deaths,
-                              "recovered": statesData["NV"].recovered || "Unknown" }
+                              "recovered": statesData["NV"].recovered || "No Data" }
             },
             {
               "type": "Polygon",
@@ -765,7 +765,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["VT"].abbreviation,
                               "cases": statesData["VT"].positive,
                               "deaths": statesData["VT"].deaths,
-                              "recovered": statesData["VT"].recovered || "Unknown" }
+                              "recovered": statesData["VT"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -784,7 +784,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["LA"].abbreviation,
                               "cases": statesData["LA"].positive,
                               "deaths": statesData["LA"].deaths,
-                              "recovered": statesData["LA"].recovered || "Unknown" }
+                              "recovered": statesData["LA"].recovered || "No Data" }
             },
             {
               "type": "MultiPolygon",
@@ -800,7 +800,7 @@ export function fetchGeoDataAPI(){
                               "abbreviation": statesData["RI"].abbreviation,
                               "cases": statesData["RI"].positive,
                               "deaths": statesData["RI"].deaths,
-                              "recovered": statesData["RI"].recovered || "Unknown" }
+                              "recovered": statesData["RI"].recovered || "No Data" }
             }
           ]
         },
