@@ -22,7 +22,7 @@ export function fetchGeoDataAPI(){
      * covid data added to state properties
      * from above statesData object.
      * 
-     * VERY LONG VARIABLE - COLLAPSE TO READ FILE EASIER
+     * VERY LONG OBJECT - COLLAPSE TO READ FILE EASIER
      */
       const mapGeo = {
         "type": "Topology",
