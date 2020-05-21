@@ -7,9 +7,13 @@ import { BASE_URL } from '../javascript/baseUrl';
 
 export function fetchStatesHistoryFromAPI(){
   return async function (dispatch) {
-    const response = await axios.get(`${BASE_URL}states/daily.json`);
-    const grouped = _.groupBy(response.data, "state")
-    return dispatch(getStatesHistory(grouped));
+    try{
+      const response = await axios.get(`${BASE_URL}states/daily.json`);
+      const grouped = _.groupBy(response.data, "state")
+      return dispatch(getStatesHistory(grouped)); // TODO set loading to false
+    } catch (err) {
+      // TODO dispatch action creator with error
+    }
   }
 }
 
@@ -23,11 +27,15 @@ function getStatesHistory(statesHistory){
 
 export function fetchStatesCurrentDataAPI(){
   return async function (dispatch){
-    const response = await axios.get(`${BASE_URL}states/current.json`);
-    const fifteyStates = response.data.filter((element) => { 
-      return stateInitials.includes(element.state)
-    }).sort((a,b) => b.positive - a.positive);
-    return dispatch(getCurrentStatesData(fifteyStates));
+    try{
+      const response = await axios.get(`${BASE_URL}states/current.json`);
+      const fifteyStates = response.data.filter((element) => { 
+        return stateInitials.includes(element.state)
+      }).sort((a,b) => b.positive - a.positive);
+      return dispatch(getCurrentStatesData(fifteyStates)); // TODO set loading to false
+    } catch (err) {
+      // TODO dispatch action creator with error
+    }
   }
 };
 

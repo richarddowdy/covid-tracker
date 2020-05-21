@@ -15,9 +15,9 @@ function HomeMap() {
 
   useEffect(() => {
     async function getMapData(){
-      dispatch(fetchGeoDataAPI());
+      dispatch(fetchGeoDataAPI());// TODO should set loading to true
     }
-    if(!mapData.type){
+    if(!mapData.type){ // TODO change this to depend on success???
       getMapData();
     }
   },[mapData, dispatch])
@@ -26,7 +26,7 @@ function HomeMap() {
   return (
     <>
       <Header />    
-      {mapData.type ? 
+      {mapData.type ? /** TODO component should depend on loading from state instead of this */
         <>
           <MapChart setContent={setContent} mapData={mapData}/>
           <ReactTooltip>{content}</ReactTooltip>

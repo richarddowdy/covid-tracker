@@ -15,7 +15,7 @@ function StateProfile() {
 
   useEffect(() => {
     async function getStateData() {
-      dispatch(fetchStatesHistoryFromAPI());
+      dispatch(fetchStatesHistoryFromAPI());// TODO should set loading to true
     }
     if (!currentState) {
       getStateData();
@@ -24,8 +24,8 @@ function StateProfile() {
   
  
   return (
-    <>
-      {currentState ? (
+    <> 
+      {currentState ? ( // TODO component should depend on loading from state instead of this
         <>
           <h1 className="mt-5">{stateLabels[currentState[0].state]}</h1>
           <p className="axis-label" >Number of Cases</p>
