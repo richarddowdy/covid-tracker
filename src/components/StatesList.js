@@ -8,13 +8,8 @@ function StateList() {
   const dispatch = useDispatch();
 
   const stateList = useSelector((st) => st.statesCurrent.data);
-  console.log("state List", stateList)
-
-  const store = useSelector((st) => st.statesCurrent);
-  console.log("current store", store)
 
   const error = useSelector((st) => st.statesCurrent.error);
-  console.log("error", error)
 
   useEffect(() => {
     async function getCurrentData() {
@@ -27,14 +22,15 @@ function StateList() {
 
   return (
     <div className="pt-5 pb-5">
-      {error ? 
+      {error ?
         //if errors, show error message
-        <>
+        <div className="alert alert-danger">
           <p>{error.message}</p>
           <p>Please try refreshing the page.</p>
-        </> :
+        </div>
+        :
         // if no errors, build table
-        stateList ? 
+        stateList ?
           <table className="m-auto text-align-center">
             <thead>
               <tr>
@@ -46,17 +42,14 @@ function StateList() {
               </tr>
             </thead>
             <tbody>
-              {stateList ?
-                stateList.map((state, idx) => {
-                  return <StateRow key={state.state} stateData={state} idx={idx} />;
-                })
-                :
-                null
+              {stateList.map((state, idx) => {
+                return <StateRow key={state.state} stateData={state} idx={idx} />;
+              })
               }
             </tbody>
           </table>
-        :
-        <h1>LOADING...</h1>
+          :
+          <h1>LOADING...</h1>
       }
     </div>
   );
