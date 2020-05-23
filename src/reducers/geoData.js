@@ -7,6 +7,13 @@ export default function rootReducer (state = {}, action){
   switch(action.type) {
     
     case FETCH_GEODATA:
+    /**
+     * return {...state,
+     *         loading: false?,
+     *         error: false?,
+     *         data: {...action.data}
+     *    }
+     */
       return {...action.mapData}
 
     default:

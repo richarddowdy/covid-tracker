@@ -1,13 +1,36 @@
 import {
-  FETCH_STATES_CURRENT
+  FETCH_STATES_CURRENT,
+  FAILED_LOAD_CURRENT
 } from "../actions/types";
 
-export default function rootReducer (state = [], action){
+const INITIALSTATE = {
+  error: false,
+  data: []
+}
 
-  switch(action.type) {
+export default function rootReducer(state = INITIALSTATE, action) {
+
+  switch (action.type) {
+
+    case FAILED_LOAD_CURRENT:
+      return ({
+        ...state,
+        error: action.error,
+      })
+
+    // case LOADING_CURRENT_DATA:
+    //   return ({...state,
+    //            loading: action.loading
+    //           })
 
     case FETCH_STATES_CURRENT:
-      return ( [...action.statesCurrentData] );
+
+      return ({
+        ...state,
+        error: false,
+        data: [...action.statesCurrentData]
+      });
+
 
     default:
       return state;
