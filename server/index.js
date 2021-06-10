@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 
-const buildPath = path.join(__dirname, "../frontend", "build", "index.html");
+const buildPath = path.join(__dirname, "../frontend", "build");
 app.use(express.static(buildPath));
 
 app.get("/api/states/current", async (req, res) => {
