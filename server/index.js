@@ -1,6 +1,7 @@
 // server/index.js
 
 const { default: axios } = require("axios");
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
@@ -9,8 +10,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
 
+const buildPath = path.join(__dirname, "..", "build");
+app.use(express.static(buildPath));
+
 app.get("/api/states/current", async (req, res) => {
-  // console.log("HIT");
   try {
     const response = await axios.get("https://api.covidtracking.com/v1/states/current.json");
     return res.json(response.data);

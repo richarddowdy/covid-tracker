@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "heroku-postbuild": "npm run build --prefix frontend",
+    "install": "npm --prefix backend install server && npm --prefix frontend install frontend",
+    "dev:backend": "npm install --prefix server start",
+    "dev:frontend": "npm install --prefix frontend start",
+    "start": "npm start --prefix server"
+  }
+}
