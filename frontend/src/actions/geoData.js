@@ -1,53 +1,55 @@
-import axios from 'axios';
-import { FETCH_GEODATA } from './types';
-import { BASE_URL } from '../javascript/baseUrl';
+import axios from "axios";
+import { FETCH_GEODATA } from "./types";
+import { BASE_URL } from "../javascript/baseUrl";
 
-export function fetchGeoDataAPI(){
-  return async function (dispatch){
-    try{
-      const response = await axios.get(`${BASE_URL}states/current.json`);
-  
-      const statesData = {}
-      for(let state of response.data){
+export function fetchGeoDataAPI() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`${BASE_URL}states/current`);
+
+      const statesData = {};
+      for (let state of response.data) {
         statesData[state.state] = {
           abbreviation: state.state,
           positive: state.positive,
           deaths: state.death,
-          recovered: state.recovered
-        }
+          recovered: state.recovered,
+        };
       }
-    
-    /**
-     * Data needed for map to display with 
-     * covid data added to state properties
-     * from above statesData object.
-     * 
-     * VERY LONG OBJECT - COLLAPSE TO READ FILE EASIER
-     */
+
+      /**
+       * Data needed for map to display with
+       * covid data added to state properties
+       * from above statesData object.
+       *
+       * VERY LONG OBJECT - COLLAPSE TO READ FILE EASIER
+       */
       const mapGeo = {
-        "type": "Topology",
-        "bbox": [-179.14733999999999, -14.552548999999999, 179.77847, 71.352561],
-        "transform": {
-          "scale": [0.003589293992939929, 0.0008590596905969058],
-          "translate": [-179.14733999999999, -14.552548999999999]
+        type: "Topology",
+        bbox: [-179.14733999999999, -14.552548999999999, 179.77847, 71.352561],
+        transform: {
+          scale: [0.003589293992939929, 0.0008590596905969058],
+          translate: [-179.14733999999999, -14.552548999999999],
         },
-        "objects": {
-          "states": {
-            "type": "GeometryCollection",
-            "geometries": [
+        objects: {
+          states: {
+            type: "GeometryCollection",
+            geometries: [
               {
-                "type": "MultiPolygon",
-                "arcs": [[[0]], [[1, 2, 3, 4, 5]]],
-                "id": "01",
-                "properties": { "name": "Alabama",
-                                "abbreviation": statesData["AL"].abbreviation,
-                                "cases": statesData["AL"].positive,
-                                "deaths": statesData["AL"].deaths,
-                                "recovered": statesData['AL'].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[0]], [[1, 2, 3, 4, 5]]],
+                id: "01",
+                properties: {
+                  name: "Alabama",
+                  abbreviation: statesData["AL"].abbreviation,
+                  cases: statesData["AL"].positive,
+                  deaths: statesData["AL"].deaths,
+                  recovered: statesData["AL"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[6]],
                   [[7]],
                   [[8]],
@@ -184,38 +186,44 @@ export function fetchGeoDataAPI(){
                   [[139]],
                   [[140]],
                   [[141]],
-                  [[142]]
+                  [[142]],
                 ],
-                "id": "02",
-                "properties": { "name": "Alaska",
-                                "abbreviation": statesData["AK"].abbreviation,
-                                "cases": statesData["AK"].positive,
-                                "deaths": statesData["AK"].deaths,
-                                "recovered": statesData["AK"].recovered || "No Data"  }
+                id: "02",
+                properties: {
+                  name: "Alaska",
+                  abbreviation: statesData["AK"].abbreviation,
+                  cases: statesData["AK"].positive,
+                  deaths: statesData["AK"].deaths,
+                  recovered: statesData["AK"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[143, 144, 145, 146, 147]],
-                "id": "04",
-                "properties": { "name": "Arizona",
-                                "abbreviation": statesData["AZ"].abbreviation,
-                                "cases": statesData["AZ"].positive,
-                                "deaths": statesData["AZ"].deaths,
-                                "recovered": statesData["AZ"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[143, 144, 145, 146, 147]],
+                id: "04",
+                properties: {
+                  name: "Arizona",
+                  abbreviation: statesData["AZ"].abbreviation,
+                  cases: statesData["AZ"].positive,
+                  deaths: statesData["AZ"].deaths,
+                  recovered: statesData["AZ"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[148, 149, 150, 151, 152, 153]],
-                "id": "08",
-                "properties": { "name": "Colorado",
-                                "abbreviation": statesData["CO"].abbreviation,
-                                "cases": statesData["CO"].positive,
-                                "deaths": statesData["CO"].deaths,
-                                "recovered": statesData["CO"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[148, 149, 150, 151, 152, 153]],
+                id: "08",
+                properties: {
+                  name: "Colorado",
+                  abbreviation: statesData["CO"].abbreviation,
+                  cases: statesData["CO"].positive,
+                  deaths: statesData["CO"].deaths,
+                  recovered: statesData["CO"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[154]],
                   [[155]],
                   [[156]],
@@ -225,231 +233,260 @@ export function fetchGeoDataAPI(){
                   [[160]],
                   [[161]],
                   [[162]],
-                  [[163, 164, -4]]
+                  [[163, 164, -4]],
                 ],
-                "id": "12",
-                "properties": { "name": "Florida",
-                                "abbreviation": statesData["FL"].abbreviation,
-                                "cases": statesData["FL"].positive,
-                                "deaths": statesData["FL"].deaths,
-                                "recovered": statesData["FL"].recovered || "No Data" }
+                id: "12",
+                properties: {
+                  name: "Florida",
+                  abbreviation: statesData["FL"].abbreviation,
+                  cases: statesData["FL"].positive,
+                  deaths: statesData["FL"].deaths,
+                  recovered: statesData["FL"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[165, 166, 167, 168, -164, -3]],
-                "id": "13",
-                "properties": { "name": "Georgia",
-                                "abbreviation": statesData["GA"].abbreviation,
-                                "cases": statesData["GA"].positive,
-                                "deaths": statesData["GA"].deaths,
-                                "recovered": statesData["GA"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[165, 166, 167, 168, -164, -3]],
+                id: "13",
+                properties: {
+                  name: "Georgia",
+                  abbreviation: statesData["GA"].abbreviation,
+                  cases: statesData["GA"].positive,
+                  deaths: statesData["GA"].deaths,
+                  recovered: statesData["GA"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[169, 170, 171, 172, 173]],
-                "id": "18",
-                "properties": { "name": "Indiana",
-                                "abbreviation": statesData["IN"].abbreviation,
-                                "cases": statesData["IN"].positive,
-                                "deaths": statesData["IN"].deaths,
-                                "recovered": statesData["IN"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[169, 170, 171, 172, 173]],
+                id: "18",
+                properties: {
+                  name: "Indiana",
+                  abbreviation: statesData["IN"].abbreviation,
+                  cases: statesData["IN"].positive,
+                  deaths: statesData["IN"].deaths,
+                  recovered: statesData["IN"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[174, 175, 176, -151]],
-                "id": "20",
-                "properties": { "name": "Kansas",
-                                "abbreviation": statesData["KS"].abbreviation,
-                                "cases": statesData["KS"].positive,
-                                "deaths": statesData["KS"].deaths,
-                                "recovered": statesData["KS"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[174, 175, 176, -151]],
+                id: "20",
+                properties: {
+                  name: "Kansas",
+                  abbreviation: statesData["KS"].abbreviation,
+                  cases: statesData["KS"].positive,
+                  deaths: statesData["KS"].deaths,
+                  recovered: statesData["KS"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[177]],
-                  [[178]],
-                  [[179]],
-                  [[180]],
-                  [[181]],
-                  [[182]],
-                  [[183]],
-                  [[184, 185]]
-                ],
-                "id": "23",
-                "properties": { "name": "Maine",
-                                "abbreviation": statesData["ME"].abbreviation,
-                                "cases": statesData["ME"].positive,
-                                "deaths": statesData["ME"].deaths,
-                                "recovered": statesData["ME"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[177]], [[178]], [[179]], [[180]], [[181]], [[182]], [[183]], [[184, 185]]],
+                id: "23",
+                properties: {
+                  name: "Maine",
+                  abbreviation: statesData["ME"].abbreviation,
+                  cases: statesData["ME"].positive,
+                  deaths: statesData["ME"].deaths,
+                  recovered: statesData["ME"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[186]],
-                  [[187]],
-                  [[188, 189, 190, 191, 192, 193, 194, 195]]
-                ],
-                "id": "25",
-                "properties": { "name": "Massachusetts",
-                                "abbreviation": statesData["MA"].abbreviation,
-                                "cases": statesData["MA"].positive,
-                                "deaths": statesData["MA"].deaths,
-                                "recovered": statesData["MA"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[186]], [[187]], [[188, 189, 190, 191, 192, 193, 194, 195]]],
+                id: "25",
+                properties: {
+                  name: "Massachusetts",
+                  abbreviation: statesData["MA"].abbreviation,
+                  cases: statesData["MA"].positive,
+                  deaths: statesData["MA"].deaths,
+                  recovered: statesData["MA"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[196, 197, 198, 199, 200]],
-                "id": "27",
-                "properties": { "name": "Minnesota",
-                                "abbreviation": statesData["MN"].abbreviation,
-                                "cases": statesData["MN"].positive,
-                                "deaths": statesData["MN"].deaths,
-                                "recovered": statesData["MN"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[196, 197, 198, 199, 200]],
+                id: "27",
+                properties: {
+                  name: "Minnesota",
+                  abbreviation: statesData["MN"].abbreviation,
+                  cases: statesData["MN"].positive,
+                  deaths: statesData["MN"].deaths,
+                  recovered: statesData["MN"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[201, 202, 203, 204, 205, 206, 207, 208]],
-                "id": "34",
-                "properties": { "name": "New Jersey",
-                                "abbreviation": statesData["NJ"].abbreviation,
-                                "cases": statesData["NJ"].positive,
-                                "deaths": statesData["NJ"].deaths,
-                                "recovered": statesData["NJ"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[201, 202, 203, 204, 205, 206, 207, 208]],
+                id: "34",
+                properties: {
+                  name: "New Jersey",
+                  abbreviation: statesData["NJ"].abbreviation,
+                  cases: statesData["NJ"].positive,
+                  deaths: statesData["NJ"].deaths,
+                  recovered: statesData["NJ"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [[[209]], [[210]], [[211, 212, 213, -167, 214]]],
-                "id": "37",
-                "properties": { "name": "North Carolina",
-                                "abbreviation": statesData["NC"].abbreviation,
-                                "cases": statesData["NC"].positive,
-                                "deaths": statesData["NC"].deaths,
-                                "recovered": statesData["NC"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[209]], [[210]], [[211, 212, 213, -167, 214]]],
+                id: "37",
+                properties: {
+                  name: "North Carolina",
+                  abbreviation: statesData["NC"].abbreviation,
+                  cases: statesData["NC"].positive,
+                  deaths: statesData["NC"].deaths,
+                  recovered: statesData["NC"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[215, -201, 216, 217]],
-                "id": "38",
-                "properties": { "name": "North Dakota",
-                                "abbreviation": statesData["ND"].abbreviation,
-                                "cases": statesData["ND"].positive,
-                                "deaths": statesData["ND"].deaths,
-                                "recovered": statesData["ND"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[215, -201, 216, 217]],
+                id: "38",
+                properties: {
+                  name: "North Dakota",
+                  abbreviation: statesData["ND"].abbreviation,
+                  cases: statesData["ND"].positive,
+                  deaths: statesData["ND"].deaths,
+                  recovered: statesData["ND"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-152, -177, 218, 219, 220, 221]],
-                "id": "40",
-                "properties": { "name": "Oklahoma",
-                                "abbreviation": statesData["OK"].abbreviation,
-                                "cases": statesData["OK"].positive,
-                                "deaths": statesData["OK"].deaths,
-                                "recovered": statesData["OK"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-152, -177, 218, 219, 220, 221]],
+                id: "40",
+                properties: {
+                  name: "Oklahoma",
+                  abbreviation: statesData["OK"].abbreviation,
+                  cases: statesData["OK"].positive,
+                  deaths: statesData["OK"].deaths,
+                  recovered: statesData["OK"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[222, 223, -204, 224, 225, 226, 227]],
-                "id": "42",
-                "properties": { "name": "Pennsylvania",
-                                "abbreviation": statesData["PA"].abbreviation,
-                                "cases": statesData["PA"].positive,
-                                "deaths": statesData["PA"].deaths,
-                                "recovered": statesData["PA"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[222, 223, -204, 224, 225, 226, 227]],
+                id: "42",
+                properties: {
+                  name: "Pennsylvania",
+                  abbreviation: statesData["PA"].abbreviation,
+                  cases: statesData["PA"].positive,
+                  deaths: statesData["PA"].deaths,
+                  recovered: statesData["PA"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[228, -217, -200, 229, 230, 231]],
-                "id": "46",
-                "properties": { "name": "South Dakota",
-                                "abbreviation": statesData["SD"].abbreviation,
-                                "cases": statesData["SD"].positive,
-                                "deaths": statesData["SD"].deaths,
-                                "recovered": statesData["SD"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[228, -217, -200, 229, 230, 231]],
+                id: "46",
+                properties: {
+                  name: "South Dakota",
+                  abbreviation: statesData["SD"].abbreviation,
+                  cases: statesData["SD"].positive,
+                  deaths: statesData["SD"].deaths,
+                  recovered: statesData["SD"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-221, 232, 233, 234, 235, 236, 237]],
-                "id": "48",
-                "properties": { "name": "Texas",
-                                "abbreviation": statesData["TX"].abbreviation,
-                                "cases": statesData["TX"].positive,
-                                "deaths": statesData["TX"].deaths,
-                                "recovered": statesData["TX"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-221, 232, 233, 234, 235, 236, 237]],
+                id: "48",
+                properties: {
+                  name: "Texas",
+                  abbreviation: statesData["TX"].abbreviation,
+                  cases: statesData["TX"].positive,
+                  deaths: statesData["TX"].deaths,
+                  recovered: statesData["TX"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-232, 238, -149, 239, 240, 241]],
-                "id": "56",
-                "properties": { "name": "Wyoming",
-                                "abbreviation": statesData["WY"].abbreviation,
-                                "cases": statesData["WY"].positive,
-                                "deaths": statesData["WY"].deaths,
-                                "recovered": statesData["WY"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-232, 238, -149, 239, 240, 241]],
+                id: "56",
+                properties: {
+                  name: "Wyoming",
+                  abbreviation: statesData["WY"].abbreviation,
+                  cases: statesData["WY"].positive,
+                  deaths: statesData["WY"].deaths,
+                  recovered: statesData["WY"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-195, 242, 243, 244]],
-                "id": "09",
-                "properties": { "name": "Connecticut",
-                                "abbreviation": statesData["CT"].abbreviation,
-                                "cases": statesData["CT"].positive,
-                                "deaths": statesData["CT"].deaths,
-                                "recovered": statesData["CT"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-195, 242, 243, 244]],
+                id: "09",
+                properties: {
+                  name: "Connecticut",
+                  abbreviation: statesData["CT"].abbreviation,
+                  cases: statesData["CT"].positive,
+                  deaths: statesData["CT"].deaths,
+                  recovered: statesData["CT"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[245, 246, 247, 248, 249, 250, 251, -219, -176, 252]],
-                "id": "29",
-                "properties": { "name": "Missouri",
-                                "abbreviation": statesData["MO"].abbreviation,
-                                "cases": statesData["MO"].positive,
-                                "deaths": statesData["MO"].deaths,
-                                "recovered": statesData["MO"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[245, 246, 247, 248, 249, 250, 251, -219, -176, 252]],
+                id: "29",
+                properties: {
+                  name: "Missouri",
+                  abbreviation: statesData["MO"].abbreviation,
+                  cases: statesData["MO"].positive,
+                  deaths: statesData["MO"].deaths,
+                  recovered: statesData["MO"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[253, -227, 254, 255, 256]],
-                "id": "54",
-                "properties": { "name": "West Virginia",
-                                "abbreviation": statesData["WV"].abbreviation,
-                                "cases": statesData["WV"].positive,
-                                "deaths": statesData["WV"].deaths,
-                                "recovered": statesData["WV"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[253, -227, 254, 255, 256]],
+                id: "54",
+                properties: {
+                  name: "West Virginia",
+                  abbreviation: statesData["WV"].abbreviation,
+                  cases: statesData["WV"].positive,
+                  deaths: statesData["WV"].deaths,
+                  recovered: statesData["WV"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[257, 258, 259, -174, 260, -247]],
-                "id": "17",
-                "properties": { "name": "Illinois",
-                                "abbreviation": statesData["IL"].abbreviation,
-                                "cases": statesData["IL"].positive, 
-                                "deaths": statesData["IL"].deaths,
-                                "recovered": statesData["IL"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[257, 258, 259, -174, 260, -247]],
+                id: "17",
+                properties: {
+                  name: "Illinois",
+                  abbreviation: statesData["IL"].abbreviation,
+                  cases: statesData["IL"].positive,
+                  deaths: statesData["IL"].deaths,
+                  recovered: statesData["IL"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-153, -222, -238, 261, -147]],
-                "id": "35",
-                "properties": { "name": "New Mexico",
-                                "abbreviation": statesData["NM"].abbreviation,
-                                "cases": statesData["NM"].positive,
-                                "deaths": statesData["NM"].deaths,
-                                "recovered": statesData["NM"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-153, -222, -238, 261, -147]],
+                id: "35",
+                properties: {
+                  name: "New Mexico",
+                  abbreviation: statesData["NM"].abbreviation,
+                  cases: statesData["NM"].positive,
+                  deaths: statesData["NM"].deaths,
+                  recovered: statesData["NM"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-252, 262, 263, 264, -235, 233, -233, -220]],
-                "id": "05",
-                "properties": { "name": "Arkansas",
-                                "abbreviation": statesData["AR"].abbreviation,
-                                "cases": statesData["AR"].positive,
-                                "deaths": statesData["AR"].deaths,
-                                "recovered": statesData["AR"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-252, 262, 263, 264, -235, 233, -233, -220]],
+                id: "05",
+                properties: {
+                  name: "Arkansas",
+                  abbreviation: statesData["AR"].abbreviation,
+                  cases: statesData["AR"].positive,
+                  deaths: statesData["AR"].deaths,
+                  recovered: statesData["AR"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[265]],
                   [[266]],
                   [[267]],
@@ -458,92 +495,92 @@ export function fetchGeoDataAPI(){
                   [[270]],
                   [[271]],
                   [[272]],
-                  [[273, 274, 275, -144, 276]]
+                  [[273, 274, 275, -144, 276]],
                 ],
-                "id": "06",
-                "properties": { "name": "California",
-                                "abbreviation": statesData["CA"].abbreviation,
-                                "cases": statesData["CA"].positive,
-                                "deaths": statesData["CA"].deaths,
-                                "recovered": statesData["CA"].recovered || "No Data" }
+                id: "06",
+                properties: {
+                  name: "California",
+                  abbreviation: statesData["CA"].abbreviation,
+                  cases: statesData["CA"].positive,
+                  deaths: statesData["CA"].deaths,
+                  recovered: statesData["CA"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [[[-209, 277]], [[-225, -203, 278, 279]]],
-                "id": "10",
-                "properties": { "name": "Delaware",
-                                "abbreviation": statesData["DE"].abbreviation,
-                                "cases": statesData["DE"].positive,
-                                "deaths": statesData["DE"].deaths,
-                                "recovered": statesData["DE"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[-209, 277]], [[-225, -203, 278, 279]]],
+                id: "10",
+                properties: {
+                  name: "Delaware",
+                  abbreviation: statesData["DE"].abbreviation,
+                  cases: statesData["DE"].positive,
+                  deaths: statesData["DE"].deaths,
+                  recovered: statesData["DE"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[280, 281]],
-                "id": "11",
-                "properties": { "name": "District of Columbia",
-                                "abbreviation": statesData["DC"].abbreviation,
-                                "cases": statesData["DC"].positive,
-                                "deaths": statesData["DC"].deaths,
-                                "recovered": statesData["DC"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[280, 281]],
+                id: "11",
+                properties: {
+                  name: "District of Columbia",
+                  abbreviation: statesData["DC"].abbreviation,
+                  cases: statesData["DC"].positive,
+                  deaths: statesData["DC"].deaths,
+                  recovered: statesData["DC"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[282]],
-                  [[283]],
-                  [[284]],
-                  [[285]],
-                  [[286]],
-                  [[287]],
-                  [[288]],
-                  [[289]]
-                ],
-                "id": "15",
-                "properties": { "name": "Hawaii",
-                                "abbreviation": statesData["HI"].abbreviation,
-                                "cases": statesData["HI"].positive,
-                                "deaths": statesData["HI"].deaths,
-                                "recovered": statesData["HI"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[282]], [[283]], [[284]], [[285]], [[286]], [[287]], [[288]], [[289]]],
+                id: "15",
+                properties: {
+                  name: "Hawaii",
+                  abbreviation: statesData["HI"].abbreviation,
+                  cases: statesData["HI"].positive,
+                  deaths: statesData["HI"].deaths,
+                  recovered: statesData["HI"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-199, 290, -258, -246, 291, -230]],
-                "id": "19",
-                "properties": { "name": "Iowa",
-                                "abbreviation": statesData["IA"].abbreviation,
-                                "cases": statesData["IA"].positive,
-                                "deaths": statesData["IA"].deaths,
-                                "recovered": statesData["IA"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-199, 290, -258, -246, 291, -230]],
+                id: "19",
+                properties: {
+                  name: "Iowa",
+                  abbreviation: statesData["IA"].abbreviation,
+                  cases: statesData["IA"].positive,
+                  deaths: statesData["IA"].deaths,
+                  recovered: statesData["IA"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [[[-261, -173, 292, -257, 293, 294, -248]], [[295, -250]]],
-                "id": "21",
-                "properties": { "name": "Kentucky",
-                                "abbreviation": statesData["KY"].abbreviation,
-                                "cases": statesData["KY"].positive,
-                                "deaths": statesData["KY"].deaths,
-                                "recovered": statesData["KY"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[-261, -173, 292, -257, 293, 294, -248]], [[295, -250]]],
+                id: "21",
+                properties: {
+                  name: "Kentucky",
+                  abbreviation: statesData["KY"].abbreviation,
+                  cases: statesData["KY"].positive,
+                  deaths: statesData["KY"].deaths,
+                  recovered: statesData["KY"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[296, 297]],
-                  [[298]],
-                  [[299]],
-                  [[-226, -280, 300, 301, 302, 303, -281, 304, -255]]
-                ],
-                "id": "24",
-                "properties": { "name": "Maryland",
-                                "abbreviation": statesData["MD"].abbreviation,
-                                "cases": statesData["MD"].positive,
-                                "deaths": statesData["MD"].deaths,
-                                "recovered": statesData["MD"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[296, 297]], [[298]], [[299]], [[-226, -280, 300, 301, 302, 303, -281, 304, -255]]],
+                id: "24",
+                properties: {
+                  name: "Maryland",
+                  abbreviation: statesData["MD"].abbreviation,
+                  cases: statesData["MD"].positive,
+                  deaths: statesData["MD"].deaths,
+                  recovered: statesData["MD"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[305]],
                   [[306]],
                   [[307]],
@@ -555,128 +592,136 @@ export function fetchGeoDataAPI(){
                   [[313]],
                   [[314, 315, -171]],
                   [[316]],
-                  [[317, 318, 319, 320, 321, 322]]
+                  [[317, 318, 319, 320, 321, 322]],
                 ],
-                "id": "26",
-                "properties": { "name": "Michigan",
-                                "abbreviation": statesData["MI"].abbreviation,
-                                "cases": statesData["MI"].positive,
-                                "deaths": statesData["MI"].deaths,
-                                "recovered": statesData["MI"].recovered || "No Data" }
+                id: "26",
+                properties: {
+                  name: "Michigan",
+                  abbreviation: statesData["MI"].abbreviation,
+                  cases: statesData["MI"].positive,
+                  deaths: statesData["MI"].deaths,
+                  recovered: statesData["MI"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[323]],
-                  [[324]],
-                  [[325]],
-                  [[326]],
-                  [[-264, 327, -6, 328, 329]]
-                ],
-                "id": "28",
-                "properties": { "name": "Mississippi",
-                                "abbreviation": statesData["MS"].abbreviation,
-                                "cases": statesData["MS"].positive,
-                                "deaths": statesData["MS"].deaths,
-                                "recovered": statesData["MS"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[323]], [[324]], [[325]], [[326]], [[-264, 327, -6, 328, 329]]],
+                id: "28",
+                properties: {
+                  name: "Mississippi",
+                  abbreviation: statesData["MS"].abbreviation,
+                  cases: statesData["MS"].positive,
+                  deaths: statesData["MS"].deaths,
+                  recovered: statesData["MS"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[330, -218, -229, -242, 331]],
-                "id": "30",
-                "properties": { "name": "Montana",
-                                "abbreviation": statesData["MT"].abbreviation,
-                                "cases": statesData["MT"].positive,
-                                "deaths": statesData["MT"].deaths,
-                                "recovered": statesData["MT"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[330, -218, -229, -242, 331]],
+                id: "30",
+                properties: {
+                  name: "Montana",
+                  abbreviation: statesData["MT"].abbreviation,
+                  cases: statesData["MT"].positive,
+                  deaths: statesData["MT"].deaths,
+                  recovered: statesData["MT"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[332, -185, 333, -190, 334]],
-                "id": "33",
-                "properties": { "name": "New Hampshire",
-                                "abbreviation": statesData["NH"].abbreviation,
-                                "cases": statesData["NH"].positive,
-                                "deaths": statesData["NH"].deaths,
-                                "recovered": statesData["NH"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[332, -185, 333, -190, 334]],
+                id: "33",
+                properties: {
+                  name: "New Hampshire",
+                  abbreviation: statesData["NH"].abbreviation,
+                  cases: statesData["NH"].positive,
+                  deaths: statesData["NH"].deaths,
+                  recovered: statesData["NH"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[335]],
                   [[336]],
                   [[337]],
                   [[338, -207]],
                   [[339]],
                   [[340]],
-                  [[341, 342, -196, -245, 343, -205, -224]]
+                  [[341, 342, -196, -245, 343, -205, -224]],
                 ],
-                "id": "36",
-                "properties": { "name": "New York",
-                                "abbreviation": statesData["NY"].abbreviation,
-                                "cases": statesData["NY"].positive,
-                                "deaths": statesData["NY"].deaths,
-                                "recovered": statesData["NY"].recovered || "No Data" }
+                id: "36",
+                properties: {
+                  name: "New York",
+                  abbreviation: statesData["NY"].abbreviation,
+                  cases: statesData["NY"].positive,
+                  deaths: statesData["NY"].deaths,
+                  recovered: statesData["NY"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [[[344]], [[345]], [[-316, 346, -228, -254, -293, -172]]],
-                "id": "39",
-                "properties": { "name": "Ohio",
-                                "abbreviation": statesData["OH"].abbreviation,
-                                "cases": statesData["OH"].positive,
-                                "deaths": statesData["OH"].deaths,
-                                "recovered": statesData["OH"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[344]], [[345]], [[-316, 346, -228, -254, -293, -172]]],
+                id: "39",
+                properties: {
+                  name: "Ohio",
+                  abbreviation: statesData["OH"].abbreviation,
+                  cases: statesData["OH"].positive,
+                  deaths: statesData["OH"].deaths,
+                  recovered: statesData["OH"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[347, 348, 349, 274, -275, -274, 350]],
-                "id": "41",
-                "properties": { "name": "Oregon",
-                                "abbreviation": statesData["OR"].abbreviation,
-                                "cases": statesData["OR"].positive,
-                                "deaths": statesData["OR"].deaths,
-                                "recovered": statesData["OR"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[347, 348, 349, 274, -275, -274, 350]],
+                id: "41",
+                properties: {
+                  name: "Oregon",
+                  abbreviation: statesData["OR"].abbreviation,
+                  cases: statesData["OR"].positive,
+                  deaths: statesData["OR"].deaths,
+                  recovered: statesData["OR"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-251, -296, -249, -295, 351, -215, -166, -2, -328, -263]],
-                "id": "47",
-                "properties": { "name": "Tennessee",
-                                "abbreviation": statesData["TN"].abbreviation,
-                                "cases": statesData["TN"].positive,
-                                "deaths": statesData["TN"].deaths,
-                                "recovered": statesData["TN"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-251, -296, -249, -295, 351, -215, -166, -2, -328, -263]],
+                id: "47",
+                properties: {
+                  name: "Tennessee",
+                  abbreviation: statesData["TN"].abbreviation,
+                  cases: statesData["TN"].positive,
+                  deaths: statesData["TN"].deaths,
+                  recovered: statesData["TN"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[352, -240, -154, -146, 353]],
-                "id": "49",
-                "properties": { "name": "Utah",
-                                "abbreviation": statesData["UT"].abbreviation,
-                                "cases": statesData["UT"].positive,
-                                "deaths": statesData["UT"].deaths,
-                                "recovered": statesData["UT"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[352, -240, -154, -146, 353]],
+                id: "49",
+                properties: {
+                  name: "Utah",
+                  abbreviation: statesData["UT"].abbreviation,
+                  cases: statesData["UT"].positive,
+                  deaths: statesData["UT"].deaths,
+                  recovered: statesData["UT"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[354]],
-                  [[-302, 355]],
-                  [[356, -297]],
-                  [[-256, -305, -282, -304, 357, -212, -352, -294]]
-                ],
-                "id": "51",
-                "properties": { "name": "Virginia",
-                                "abbreviation": statesData["VA"].abbreviation,
-                                "cases": statesData["VA"].positive,
-                                "deaths": statesData["VA"].deaths,
-                                "recovered": statesData["VA"].recovered || "No Data" }
-                              
+                type: "MultiPolygon",
+                arcs: [[[354]], [[-302, 355]], [[356, -297]], [[-256, -305, -282, -304, 357, -212, -352, -294]]],
+                id: "51",
+                properties: {
+                  name: "Virginia",
+                  abbreviation: statesData["VA"].abbreviation,
+                  cases: statesData["VA"].positive,
+                  deaths: statesData["VA"].deaths,
+                  recovered: statesData["VA"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[358]],
                   [[359]],
                   [[360]],
@@ -687,18 +732,20 @@ export function fetchGeoDataAPI(){
                   [[365]],
                   [[366]],
                   [[367]],
-                  [[368, -348, 369]]
+                  [[368, -348, 369]],
                 ],
-                "id": "53",
-                "properties": { "name": "Washington",
-                                "abbreviation": statesData["WA"].abbreviation,
-                                "cases": statesData["WA"].positive,
-                                "deaths": statesData["WA"].deaths,
-                                "recovered": statesData["WA"].recovered || "No Data" }
+                id: "53",
+                properties: {
+                  name: "Washington",
+                  abbreviation: statesData["WA"].abbreviation,
+                  cases: statesData["WA"].positive,
+                  deaths: statesData["WA"].deaths,
+                  recovered: statesData["WA"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[370]],
                   [[371]],
                   [[372]],
@@ -709,158 +756,116 @@ export function fetchGeoDataAPI(){
                   [[377]],
                   [[378]],
                   [[379]],
-                  [[380, -323, 321, -321, 319, -319, 381, -259, -291, -198]]
+                  [[380, -323, 321, -321, 319, -319, 381, -259, -291, -198]],
                 ],
-                "id": "55",
-                "properties": { "name": "Wisconsin",
-                                "abbreviation": statesData["WI"].abbreviation,
-                                "cases": statesData["WI"].positive,
-                                "deaths": statesData["WI"].deaths,
-                                "recovered": statesData["WI"].recovered || "No Data" }
+                id: "55",
+                properties: {
+                  name: "Wisconsin",
+                  abbreviation: statesData["WI"].abbreviation,
+                  cases: statesData["WI"].positive,
+                  deaths: statesData["WI"].deaths,
+                  recovered: statesData["WI"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-231, -292, -253, -175, -150, -239]],
-                "id": "31",
-                "properties": { "name": "Nebraska",
-                                "abbreviation": statesData["NE"].abbreviation,
-                                "cases": statesData["NE"].positive,
-                                "deaths": statesData["NE"].deaths,
-                                "recovered": statesData["NE"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-231, -292, -253, -175, -150, -239]],
+                id: "31",
+                properties: {
+                  name: "Nebraska",
+                  abbreviation: statesData["NE"].abbreviation,
+                  cases: statesData["NE"].positive,
+                  deaths: statesData["NE"].deaths,
+                  recovered: statesData["NE"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-214, 394, -168]],
-                "id": "45",
-                "properties": { "name": "South Carolina",
-                                "abbreviation": statesData["SC"].abbreviation,
-                                "cases": statesData["SC"].positive,
-                                "deaths": statesData["SC"].deaths,
-                                "recovered": statesData["SC"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-214, 394, -168]],
+                id: "45",
+                properties: {
+                  name: "South Carolina",
+                  abbreviation: statesData["SC"].abbreviation,
+                  cases: statesData["SC"].positive,
+                  deaths: statesData["SC"].deaths,
+                  recovered: statesData["SC"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-369, 403, -332, -241, -353, 404, -349]],
-                "id": "16",
-                "properties": { "name": "Idaho",
-                                "abbreviation": statesData["ID"].abbreviation,
-                                "cases": statesData["ID"].positive,
-                                "deaths": statesData["ID"].deaths,
-                                "recovered": statesData["ID"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-369, 403, -332, -241, -353, 404, -349]],
+                id: "16",
+                properties: {
+                  name: "Idaho",
+                  abbreviation: statesData["ID"].abbreviation,
+                  cases: statesData["ID"].positive,
+                  deaths: statesData["ID"].deaths,
+                  recovered: statesData["ID"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[-275, -350, -405, -354, -145, -276]],
-                "id": "32",
-                "properties": { "name": "Nevada",
-                                "abbreviation": statesData["NV"].abbreviation,
-                                "cases": statesData["NV"].positive,
-                                "deaths": statesData["NV"].deaths,
-                                "recovered": statesData["NV"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[-275, -350, -405, -354, -145, -276]],
+                id: "32",
+                properties: {
+                  name: "Nevada",
+                  abbreviation: statesData["NV"].abbreviation,
+                  cases: statesData["NV"].positive,
+                  deaths: statesData["NV"].deaths,
+                  recovered: statesData["NV"].recovered || "No Data",
+                },
               },
               {
-                "type": "Polygon",
-                "arcs": [[405, -335, -189, -343]],
-                "id": "50",
-                "properties": { "name": "Vermont",
-                                "abbreviation": statesData["VT"].abbreviation,
-                                "cases": statesData["VT"].positive,
-                                "deaths": statesData["VT"].deaths,
-                                "recovered": statesData["VT"].recovered || "No Data" }
+                type: "Polygon",
+                arcs: [[405, -335, -189, -343]],
+                id: "50",
+                properties: {
+                  name: "Vermont",
+                  abbreviation: statesData["VT"].abbreviation,
+                  cases: statesData["VT"].positive,
+                  deaths: statesData["VT"].deaths,
+                  recovered: statesData["VT"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[406]],
-                  [[407]],
-                  [[408]],
-                  [[409]],
-                  [[410]],
-                  [[411]],
-                  [[412]],
-                  [[-265, -330, 413, -236]]
-                ],
-                "id": "22",
-                "properties": { "name": "Louisiana",
-                                "abbreviation": statesData["LA"].abbreviation,
-                                "cases": statesData["LA"].positive,
-                                "deaths": statesData["LA"].deaths,
-                                "recovered": statesData["LA"].recovered || "No Data" }
+                type: "MultiPolygon",
+                arcs: [[[406]], [[407]], [[408]], [[409]], [[410]], [[411]], [[412]], [[-265, -330, 413, -236]]],
+                id: "22",
+                properties: {
+                  name: "Louisiana",
+                  abbreviation: statesData["LA"].abbreviation,
+                  cases: statesData["LA"].positive,
+                  deaths: statesData["LA"].deaths,
+                  recovered: statesData["LA"].recovered || "No Data",
+                },
               },
               {
-                "type": "MultiPolygon",
-                "arcs": [
-                  [[-192, 414]],
-                  [[415]],
-                  [[416]],
-                  [[417]],
-                  [[-243, -194, 418]]
-                ],
-                "id": "44",
-                "properties": { "name": "Rhode Island",
-                                "abbreviation": statesData["RI"].abbreviation,
-                                "cases": statesData["RI"].positive,
-                                "deaths": statesData["RI"].deaths,
-                                "recovered": statesData["RI"].recovered || "No Data" }
-              }
-            ]
+                type: "MultiPolygon",
+                arcs: [[[-192, 414]], [[415]], [[416]], [[417]], [[-243, -194, 418]]],
+                id: "44",
+                properties: {
+                  name: "Rhode Island",
+                  abbreviation: statesData["RI"].abbreviation,
+                  cases: statesData["RI"].positive,
+                  deaths: statesData["RI"].deaths,
+                  recovered: statesData["RI"].recovered || "No Data",
+                },
+              },
+            ],
           },
-          "nation": {
-            "type": "GeometryCollection",
-            "geometries": [
+          nation: {
+            type: "GeometryCollection",
+            geometries: [
               {
-                "type": "MultiPolygon",
-                "arcs": [
+                type: "MultiPolygon",
+                arcs: [
                   [[0]],
                   [
                     [
-                      164,
-                      4,
-                      328,
-                      413,
-                      236,
-                      261,
-                      147,
-                      276,
-                      350,
-                      369,
-                      403,
-                      330,
-                      215,
-                      196,
-                      380,
-                      317,
-                      381,
-                      259,
-                      169,
-                      314,
-                      346,
-                      222,
-                      341,
-                      405,
-                      332,
-                      185,
-                      333,
-                      190,
-                      414,
-                      192,
-                      418,
-                      243,
-                      343,
-                      205,
-                      338,
-                      207,
-                      277,
-                      201,
-                      278,
-                      300,
-                      355,
-                      302,
-                      357,
-                      212,
-                      394,
-                      168
-                    ]
+                      164, 4, 328, 413, 236, 261, 147, 276, 350, 369, 403, 330, 215, 196, 380, 317, 381, 259, 169, 314,
+                      346, 222, 341, 405, 332, 185, 333, 190, 414, 192, 418, 243, 343, 205, 338, 207, 277, 201, 278,
+                      300, 355, 302, 357, 212, 394, 168,
+                    ],
                   ],
                   [[6]],
                   [[7]],
@@ -1109,13 +1114,13 @@ export function fetchGeoDataAPI(){
                   [[412]],
                   [[415]],
                   [[416]],
-                  [[417]]
-                ]
-              }
-            ]
-          }
+                  [[417]],
+                ],
+              },
+            ],
+          },
         },
-        "arcs": [
+        arcs: [
           [
             [25302, 52136],
             [56, 31],
@@ -1125,7 +1130,7 @@ export function fetchGeoDataAPI(){
             [-10, 16],
             [-18, -2],
             [-20, -17],
-            [-14, 15]
+            [-14, 15],
           ],
           [
             [25338, 57677],
@@ -1136,7 +1141,7 @@ export function fetchGeoDataAPI(){
             [93, -2],
             [37, 2],
             [159, -4],
-            [61, -5]
+            [61, -5],
           ],
           [
             [26061, 57664],
@@ -1180,7 +1185,7 @@ export function fetchGeoDataAPI(){
             [-3, -54],
             [20, -91],
             [7, -64],
-            [2, -61]
+            [2, -61],
           ],
           [
             [26229, 53027],
@@ -1204,7 +1209,7 @@ export function fetchGeoDataAPI(){
             [-8, -82],
             [-9, -15],
             [7, -24],
-            [-15, -26]
+            [-15, -26],
           ],
           [
             [25528, 52188],
@@ -1235,7 +1240,7 @@ export function fetchGeoDataAPI(){
             [-20, 40],
             [-15, -16],
             [-5, 23],
-            [-18, -22]
+            [-18, -22],
           ],
           [
             [25284, 52292],
@@ -1251,14 +1256,14 @@ export function fetchGeoDataAPI(){
             [19, 643],
             [12, 362],
             [-16, 35],
-            [-13, 85]
+            [-13, 85],
           ],
           [
             [8053, 88108],
             [6, 38],
             [18, -11],
             [-20, -43],
-            [-4, 16]
+            [-4, 16],
           ],
           [
             [7905, 86007],
@@ -1267,26 +1272,26 @@ export function fetchGeoDataAPI(){
             [-1, -46],
             [-28, -74],
             [-15, 19],
-            [0, 28]
+            [0, 28],
           ],
           [
             [7695, 85792],
             [26, -14],
             [-3, -36],
-            [-23, 50]
+            [-23, 50],
           ],
           [
             [7642, 85774],
             [22, -17],
             [-7, -33],
             [-14, 14],
-            [-1, 36]
+            [-1, 36],
           ],
           [
             [7602, 85813],
             [20, -2],
             [-5, -34],
-            [-15, 36]
+            [-15, 36],
           ],
           [
             [7594, 84711],
@@ -1294,14 +1299,14 @@ export function fetchGeoDataAPI(){
             [20, -13],
             [-8, -73],
             [-15, -17],
-            [-5, 58]
+            [-5, 58],
           ],
           [
             [7543, 85532],
             [12, 28],
             [21, -40],
             [-33, -2],
-            [0, 14]
+            [0, 14],
           ],
           [
             [7540, 87187],
@@ -1311,7 +1316,7 @@ export function fetchGeoDataAPI(){
             [-28, -64],
             [-9, -49],
             [5, -24],
-            [-36, -25]
+            [-36, -25],
           ],
           [
             [7464, 85521],
@@ -1319,13 +1324,13 @@ export function fetchGeoDataAPI(){
             [18, -28],
             [23, -4],
             [-33, -33],
-            [-22, 10]
+            [-22, 10],
           ],
           [
             [7385, 86976],
             [17, 6],
             [5, -88],
-            [-22, 82]
+            [-22, 82],
           ],
           [
             [7168, 84530],
@@ -1392,7 +1397,7 @@ export function fetchGeoDataAPI(){
             [-45, -13],
             [-86, 76],
             [-21, -13],
-            [-15, 29]
+            [-15, 29],
           ],
           [
             [7129, 86075],
@@ -1402,14 +1407,14 @@ export function fetchGeoDataAPI(){
             [-13, -16],
             [-29, -3],
             [-16, 59],
-            [4, 23]
+            [4, 23],
           ],
           [
             [6962, 82933],
             [31, 45],
             [8, -48],
             [-37, -9],
-            [-2, 12]
+            [-2, 12],
           ],
           [
             [6905, 82759],
@@ -1425,7 +1430,7 @@ export function fetchGeoDataAPI(){
             [-46, -6],
             [-32, -13],
             [-32, 25],
-            [-4, 35]
+            [-4, 35],
           ],
           [
             [6789, 83718],
@@ -1604,7 +1609,7 @@ export function fetchGeoDataAPI(){
             [-27, 5],
             [14, 30],
             [-15, 37],
-            [5, 23]
+            [5, 23],
           ],
           [
             [6782, 82633],
@@ -1615,7 +1620,7 @@ export function fetchGeoDataAPI(){
             [-12, -23],
             [-55, -73],
             [-29, -79],
-            [-19, 35]
+            [-19, 35],
           ],
           [
             [6519, 81925],
@@ -1627,7 +1632,7 @@ export function fetchGeoDataAPI(){
             [5, -68],
             [-7, -33],
             [-36, 13],
-            [-8, 62]
+            [-8, 62],
           ],
           [
             [6240, 82171],
@@ -1635,14 +1640,14 @@ export function fetchGeoDataAPI(){
             [14, 25],
             [13, -59],
             [-13, -63],
-            [-19, 50]
+            [-19, 50],
           ],
           [
             [6225, 82357],
             [9, 35],
             [3, -82],
             [-10, -1],
-            [-2, 48]
+            [-2, 48],
           ],
           [
             [6080, 82757],
@@ -1652,14 +1657,14 @@ export function fetchGeoDataAPI(){
             [-35, 23],
             [-16, -26],
             [-43, -6],
-            [0, 18]
+            [0, 18],
           ],
           [
             [5919, 82533],
             [19, 25],
             [11, -57],
             [-9, -11],
-            [-21, 43]
+            [-21, 43],
           ],
           [
             [5642, 81925],
@@ -1668,13 +1673,13 @@ export function fetchGeoDataAPI(){
             [27, -58],
             [-8, -18],
             [-21, 37],
-            [-25, -37]
+            [-25, -37],
           ],
           [
             [5573, 81984],
             [16, -49],
             [-27, 12],
-            [11, 37]
+            [11, 37],
           ],
           [
             [5524, 80844],
@@ -1683,14 +1688,14 @@ export function fetchGeoDataAPI(){
             [20, -25],
             [-9, -59],
             [-19, -15],
-            [-4, 39]
+            [-4, 39],
           ],
           [
             [5506, 81836],
             [8, 67],
             [10, 10],
             [11, -62],
-            [-29, -15]
+            [-29, -15],
           ],
           [
             [5485, 80904],
@@ -1699,7 +1704,7 @@ export function fetchGeoDataAPI(){
             [31, -2],
             [4, -99],
             [-27, -38],
-            [-9, 8]
+            [-9, 8],
           ],
           [
             [5445, 80747],
@@ -1707,7 +1712,7 @@ export function fetchGeoDataAPI(){
             [16, -42],
             [-1, -34],
             [-23, -4],
-            [-2, 67]
+            [-2, 67],
           ],
           [
             [5429, 81185],
@@ -1724,14 +1729,14 @@ export function fetchGeoDataAPI(){
             [-17, 22],
             [-2, -21],
             [-20, 8],
-            [-3, 164]
+            [-3, 164],
           ],
           [
             [5385, 80755],
             [21, 25],
             [11, -30],
             [-20, -26],
-            [-12, 31]
+            [-12, 31],
           ],
           [
             [5377, 81028],
@@ -1740,13 +1745,13 @@ export function fetchGeoDataAPI(){
             [5, -36],
             [-23, -38],
             [-9, -58],
-            [-5, 52]
+            [-5, 52],
           ],
           [
             [5303, 81352],
             [14, 11],
             [5, -42],
-            [-19, 31]
+            [-19, 31],
           ],
           [
             [5265, 80882],
@@ -1775,14 +1780,14 @@ export function fetchGeoDataAPI(){
             [-28, -71],
             [-18, -24],
             [-31, -141],
-            [-6, 77]
+            [-6, 77],
           ],
           [
             [5246, 85264],
             [5, 41],
             [14, -83],
             [-7, -25],
-            [-12, 67]
+            [-12, 67],
           ],
           [
             [5238, 81460],
@@ -1790,13 +1795,13 @@ export function fetchGeoDataAPI(){
             [36, -14],
             [-1, -78],
             [-50, 12],
-            [-7, 38]
+            [-7, 38],
           ],
           [
             [5213, 85252],
             [8, 77],
             [5, -57],
-            [-13, -20]
+            [-13, -20],
           ],
           [
             [5096, 81334],
@@ -1827,7 +1832,7 @@ export function fetchGeoDataAPI(){
             [4, 58],
             [-10, 43],
             [0, 104],
-            [-4, 28]
+            [-4, 28],
           ],
           [
             [5033, 85142],
@@ -1839,14 +1844,14 @@ export function fetchGeoDataAPI(){
             [-55, -273],
             [-22, -32],
             [-32, -4],
-            [-2, 46]
+            [-2, 46],
           ],
           [
             [4937, 81216],
             [27, 3],
             [-4, -71],
             [-26, 47],
-            [3, 21]
+            [3, 21],
           ],
           [
             [4863, 81217],
@@ -1854,7 +1859,7 @@ export function fetchGeoDataAPI(){
             [36, 8],
             [-9, -51],
             [-37, -10],
-            [0, 22]
+            [0, 22],
           ],
           [
             [4804, 81100],
@@ -1868,7 +1873,7 @@ export function fetchGeoDataAPI(){
             [-23, -57],
             [-28, 74],
             [-11, -38],
-            [-7, 37]
+            [-7, 37],
           ],
           [
             [4656, 80881],
@@ -1878,7 +1883,7 @@ export function fetchGeoDataAPI(){
             [-11, -53],
             [-13, -21],
             [-27, 58],
-            [-5, 60]
+            [-5, 60],
           ],
           [
             [4587, 90956],
@@ -1890,7 +1895,7 @@ export function fetchGeoDataAPI(){
             [-1, -50],
             [-75, -13],
             [-18, 19],
-            [-1, 32]
+            [-1, 32],
           ],
           [
             [4545, 80324],
@@ -1906,20 +1911,20 @@ export function fetchGeoDataAPI(){
             [-31, 37],
             [-18, -29],
             [-22, 57],
-            [8, 30]
+            [8, 30],
           ],
           [
             [4451, 81463],
             [14, -1],
             [-5, -38],
-            [-9, 39]
+            [-9, 39],
           ],
           [
             [3979, 80040],
             [12, 22],
             [16, -18],
             [-21, -37],
-            [-7, 33]
+            [-7, 33],
           ],
           [
             [3880, 79918],
@@ -1930,7 +1935,7 @@ export function fetchGeoDataAPI(){
             [-9, -45],
             [-26, -13],
             [-47, 27],
-            [-2, 14]
+            [-2, 14],
           ],
           [
             [3807, 79887],
@@ -1939,14 +1944,14 @@ export function fetchGeoDataAPI(){
             [-15, -32],
             [-13, 37],
             [-34, -4],
-            [-7, 10]
+            [-7, 10],
           ],
           [
             [3781, 79848],
             [17, 29],
             [7, -36],
             [-18, -14],
-            [-6, 21]
+            [-6, 21],
           ],
           [
             [3751, 80090],
@@ -1965,7 +1970,7 @@ export function fetchGeoDataAPI(){
             [16, 35],
             [-9, 20],
             [-16, -21],
-            [-4, 24]
+            [-4, 24],
           ],
           [
             [3635, 79967],
@@ -1985,14 +1990,14 @@ export function fetchGeoDataAPI(){
             [-25, 1],
             [-17, -20],
             [-18, 91],
-            [3, 25]
+            [3, 25],
           ],
           [
             [3608, 79782],
             [7, 15],
             [27, -33],
             [-32, -11],
-            [-2, 29]
+            [-2, 29],
           ],
           [
             [3261, 87028],
@@ -2046,7 +2051,7 @@ export function fetchGeoDataAPI(){
             [-32, 72],
             [-25, 10],
             [-2, 70],
-            [-28, 97]
+            [-28, 97],
           ],
           [
             [3147, 79003],
@@ -2131,7 +2136,7 @@ export function fetchGeoDataAPI(){
             [-28, 23],
             [-9, -45],
             [-49, 40],
-            [-15, 36]
+            [-15, 36],
           ],
           [
             [3070, 93368],
@@ -4156,7 +4161,7 @@ export function fetchGeoDataAPI(){
             [-38, 63],
             [-55, 60],
             [-46, 30],
-            [-15, 93]
+            [-15, 93],
           ],
           [
             [2812, 78476],
@@ -4198,14 +4203,14 @@ export function fetchGeoDataAPI(){
             [-15, 21],
             [-27, -49],
             [-54, -69],
-            [13, 45]
+            [13, 45],
           ],
           [
             [2752, 78371],
             [29, 49],
             [-1, -45],
             [-26, -25],
-            [-2, 21]
+            [-2, 21],
           ],
           [
             [2615, 78610],
@@ -4214,7 +4219,7 @@ export function fetchGeoDataAPI(){
             [4, -44],
             [-9, -45],
             [-12, -8],
-            [-6, 31]
+            [-6, 31],
           ],
           [
             [2607, 82847],
@@ -4225,13 +4230,13 @@ export function fetchGeoDataAPI(){
             [-23, 4],
             [-9, 46],
             [-20, 10],
-            [-10, 30]
+            [-10, 30],
           ],
           [
             [2611, 78728],
             [8, -39],
             [-15, 13],
-            [7, 26]
+            [7, 26],
           ],
           [
             [2547, 78457],
@@ -4245,7 +4250,7 @@ export function fetchGeoDataAPI(){
             [-30, 50],
             [-25, -29],
             [-19, 14],
-            [-3, 49]
+            [-3, 49],
           ],
           [
             [2517, 78521],
@@ -4254,14 +4259,14 @@ export function fetchGeoDataAPI(){
             [1, -31],
             [-14, -31],
             [-13, 16],
-            [-5, 36]
+            [-5, 36],
           ],
           [
             [2497, 78313],
             [4, 72],
             [33, -18],
             [-7, -57],
-            [-30, 3]
+            [-30, 3],
           ],
           [
             [2431, 83489],
@@ -4272,7 +4277,7 @@ export function fetchGeoDataAPI(){
             [-2, -56],
             [-32, -62],
             [-5, 31],
-            [-33, 17]
+            [-33, 17],
           ],
           [
             [2316, 78170],
@@ -4285,13 +4290,13 @@ export function fetchGeoDataAPI(){
             [-17, -26],
             [-15, -48],
             [-15, 21],
-            [2, 49]
+            [2, 49],
           ],
           [
             [2228, 78152],
             [9, -32],
             [-16, 2],
-            [7, 30]
+            [7, 30],
           ],
           [
             [2183, 78046],
@@ -4299,7 +4304,7 @@ export function fetchGeoDataAPI(){
             [16, -37],
             [-12, -55],
             [-19, -1],
-            [-2, 51]
+            [-2, 51],
           ],
           [
             [2036, 90914],
@@ -4357,7 +4362,7 @@ export function fetchGeoDataAPI(){
             [-49, 36],
             [-24, 83],
             [-7, 56],
-            [3, 73]
+            [3, 73],
           ],
           [
             [1818, 77819],
@@ -4369,7 +4374,7 @@ export function fetchGeoDataAPI(){
             [-28, -51],
             [-32, -27],
             [-22, -1],
-            [-4, 53]
+            [-4, 53],
           ],
           [
             [1695, 87369],
@@ -4389,14 +4394,14 @@ export function fetchGeoDataAPI(){
             [-26, -17],
             [-33, 46],
             [-58, 136],
-            [-37, 31]
+            [-37, 31],
           ],
           [
             [1687, 87598],
             [8, -5],
             [5, -84],
             [-20, 42],
-            [7, 47]
+            [7, 47],
           ],
           [
             [1421, 77626],
@@ -4429,7 +4434,7 @@ export function fetchGeoDataAPI(){
             [-29, 19],
             [-10, 49],
             [-11, -1],
-            [-10, 40]
+            [-10, 40],
           ],
           [
             [1064, 77503],
@@ -4479,20 +4484,20 @@ export function fetchGeoDataAPI(){
             [-13, -35],
             [-22, -8],
             [-33, 6],
-            [-32, 25]
+            [-32, 25],
           ],
           [
             [1013, 77451],
             [17, 17],
             [7, -29],
             [-22, -4],
-            [-2, 16]
+            [-2, 16],
           ],
           [
             [1005, 77685],
             [16, -19],
             [-11, -12],
-            [-5, 31]
+            [-5, 31],
           ],
           [
             [949, 77433],
@@ -4501,7 +4506,7 @@ export function fetchGeoDataAPI(){
             [1, -26],
             [-19, 3],
             [-22, -24],
-            [-5, 41]
+            [-5, 41],
           ],
           [
             [890, 77452],
@@ -4510,7 +4515,7 @@ export function fetchGeoDataAPI(){
             [15, -90],
             [-16, 5],
             [-17, 49],
-            [-21, 23]
+            [-21, 23],
           ],
           [
             [821, 77563],
@@ -4525,7 +4530,7 @@ export function fetchGeoDataAPI(){
             [3, 57],
             [-7, 2],
             [-8, 77],
-            [3, 16]
+            [3, 16],
           ],
           [
             [811, 77269],
@@ -4544,7 +4549,7 @@ export function fetchGeoDataAPI(){
             [-12, 12],
             [-5, -39],
             [-7, 45],
-            [-15, 22]
+            [-15, 22],
           ],
           [
             [601, 77040],
@@ -4584,14 +4589,14 @@ export function fetchGeoDataAPI(){
             [-14, 29],
             [-19, -108],
             [-14, 11],
-            [-2, 32]
+            [-2, 32],
           ],
           [
             [469, 77371],
             [13, 9],
             [2, -26],
             [-14, -17],
-            [-1, 34]
+            [-1, 34],
           ],
           [
             [402, 77131],
@@ -4613,7 +4618,7 @@ export function fetchGeoDataAPI(){
             [-40, -10],
             [-1, -43],
             [-10, 5],
-            [-9, 51]
+            [-9, 51],
           ],
           [
             [257, 77332],
@@ -4645,21 +4650,21 @@ export function fetchGeoDataAPI(){
             [-20, 1],
             [-13, 34],
             [-39, 66],
-            [0, 18]
+            [0, 18],
           ],
           [
             [130, 77016],
             [32, -12],
             [-3, -18],
             [-27, 7],
-            [-2, 23]
+            [-2, 23],
           ],
           [
             [81, 76979],
             [27, -17],
             [7, -23],
             [-25, 5],
-            [-9, 35]
+            [-9, 35],
           ],
           [
             [77, 77233],
@@ -4667,7 +4672,7 @@ export function fetchGeoDataAPI(){
             [20, -35],
             [0, -61],
             [-19, -10],
-            [-15, 54]
+            [-15, 54],
           ],
           [
             [43, 76751],
@@ -4676,14 +4681,14 @@ export function fetchGeoDataAPI(){
             [5, -50],
             [-12, -2],
             [-10, -32],
-            [-1, 81]
+            [-1, 81],
           ],
           [
             [3, 76640],
             [12, 18],
             [6, -59],
             [-18, -25],
-            [0, 66]
+            [0, 66],
           ],
           [
             [99917, 77451],
@@ -4696,7 +4701,7 @@ export function fetchGeoDataAPI(){
             [-12, -5],
             [-25, 29],
             [-11, 29],
-            [0, 71]
+            [0, 71],
           ],
           [
             [99678, 77049],
@@ -4720,7 +4725,7 @@ export function fetchGeoDataAPI(){
             [-30, 43],
             [-17, -8],
             [-22, 25],
-            [-22, 51]
+            [-22, 51],
           ],
           [
             [99628, 77446],
@@ -4729,14 +4734,14 @@ export function fetchGeoDataAPI(){
             [11, -33],
             [-14, -49],
             [-10, -4],
-            [-16, 91]
+            [-16, 91],
           ],
           [
             [99570, 77271],
             [19, -7],
             [21, -67],
             [-22, 15],
-            [-18, 59]
+            [-18, 59],
           ],
           [
             [99530, 77510],
@@ -4744,7 +4749,7 @@ export function fetchGeoDataAPI(){
             [17, -22],
             [3, -34],
             [-17, -20],
-            [-10, 54]
+            [-10, 54],
           ],
           [
             [99282, 77351],
@@ -4766,32 +4771,32 @@ export function fetchGeoDataAPI(){
             [-4, -70],
             [-11, 2],
             [-25, 40],
-            [0, 19]
+            [0, 19],
           ],
           [
             [98911, 77903],
             [26, -13],
             [-18, -27],
-            [-8, 40]
+            [-8, 40],
           ],
           [
             [98408, 78327],
             [22, -8],
             [3, -26],
             [-24, 15],
-            [-1, 19]
+            [-1, 19],
           ],
           [
             [98376, 78346],
             [14, -8],
             [0, -29],
-            [-14, 37]
+            [-14, 37],
           ],
           [
             [98352, 78374],
             [20, -27],
             [-12, -2],
-            [-8, 29]
+            [-8, 29],
           ],
           [
             [98210, 77943],
@@ -4806,7 +4811,7 @@ export function fetchGeoDataAPI(){
             [-21, 0],
             [-17, 52],
             [-35, -19],
-            [-30, 24]
+            [-30, 24],
           ],
           [
             [97960, 78551],
@@ -4828,7 +4833,7 @@ export function fetchGeoDataAPI(){
             [-3, 63],
             [-32, 56],
             [-35, -24],
-            [-15, 26]
+            [-15, 26],
           ],
           [
             [13347, 81071],
@@ -4836,7 +4841,7 @@ export function fetchGeoDataAPI(){
             [10, -28],
             [-5, -52],
             [-16, 34],
-            [2, 23]
+            [2, 23],
           ],
           [
             [13279, 80906],
@@ -4846,14 +4851,14 @@ export function fetchGeoDataAPI(){
             [-20, -68],
             [-24, -1],
             [-33, 63],
-            [-4, 44]
+            [-4, 44],
           ],
           [
             [13241, 80901],
             [26, 65],
             [8, -25],
             [-26, -58],
-            [-8, 18]
+            [-8, 18],
           ],
           [
             [13234, 81005],
@@ -4873,7 +4878,7 @@ export function fetchGeoDataAPI(){
             [-27, -2],
             [-13, 32],
             [-23, -36],
-            [-9, 33]
+            [-9, 33],
           ],
           [
             [13172, 81388],
@@ -4885,13 +4890,13 @@ export function fetchGeoDataAPI(){
             [-15, -111],
             [-23, 74],
             [-9, 113],
-            [-2, 88]
+            [-2, 88],
           ],
           [
             [12999, 82714],
             [4, 48],
             [9, -30],
-            [-13, -18]
+            [-13, -18],
           ],
           [
             [12979, 82569],
@@ -4900,7 +4905,7 @@ export function fetchGeoDataAPI(){
             [21, -38],
             [-1, -22],
             [-24, -37],
-            [-19, 28]
+            [-19, 28],
           ],
           [
             [12954, 82690],
@@ -4908,13 +4913,13 @@ export function fetchGeoDataAPI(){
             [17, 52],
             [-5, -50],
             [-18, -75],
-            [-14, 40]
+            [-14, 40],
           ],
           [
             [12888, 80934],
             [18, 6],
             [-4, -53],
-            [-14, 47]
+            [-14, 47],
           ],
           [
             [12850, 82395],
@@ -4925,7 +4930,7 @@ export function fetchGeoDataAPI(){
             [-13, -15],
             [-21, 61],
             [-9, 4],
-            [-6, 86]
+            [-6, 86],
           ],
           [
             [12838, 82543],
@@ -4941,21 +4946,21 @@ export function fetchGeoDataAPI(){
             [-44, -22],
             [-23, 65],
             [-24, 29],
-            [-6, 42]
+            [-6, 42],
           ],
           [
             [12768, 81460],
             [21, 27],
             [-2, -46],
             [-16, -11],
-            [-3, 30]
+            [-3, 30],
           ],
           [
             [12700, 80811],
             [9, 0],
             [10, -128],
             [-15, 29],
-            [-4, 99]
+            [-4, 99],
           ],
           [
             [12674, 81692],
@@ -4964,13 +4969,13 @@ export function fetchGeoDataAPI(){
             [20, -30],
             [1, -32],
             [-22, -72],
-            [-9, 50]
+            [-9, 50],
           ],
           [
             [12659, 81749],
             [12, 9],
             [-1, -36],
-            [-11, 27]
+            [-11, 27],
           ],
           [
             [12637, 81497],
@@ -5000,7 +5005,7 @@ export function fetchGeoDataAPI(){
             [17, 61],
             [-1, 78],
             [-29, 51],
-            [-14, -16]
+            [-14, -16],
           ],
           [
             [12629, 82086],
@@ -5173,14 +5178,14 @@ export function fetchGeoDataAPI(){
             [-27, -65],
             [-22, -33],
             [-23, 38],
-            [-5, 45]
+            [-5, 45],
           ],
           [
             [12611, 83642],
             [15, 25],
             [14, -33],
             [-27, -31],
-            [-2, 39]
+            [-2, 39],
           ],
           [
             [12594, 82026],
@@ -5189,7 +5194,7 @@ export function fetchGeoDataAPI(){
             [4, -52],
             [-8, -48],
             [-10, 3],
-            [-11, 75]
+            [-11, 75],
           ],
           [
             [12476, 82024],
@@ -5203,7 +5208,7 @@ export function fetchGeoDataAPI(){
             [-20, -56],
             [-18, 17],
             [8, 30],
-            [-14, 49]
+            [-14, 49],
           ],
           [
             [12463, 83115],
@@ -5285,7 +5290,7 @@ export function fetchGeoDataAPI(){
             [-20, 56],
             [-8, 75],
             [2, 43],
-            [-5, 91]
+            [-5, 91],
           ],
           [
             [12311, 84926],
@@ -5358,7 +5363,7 @@ export function fetchGeoDataAPI(){
             [-17, 45],
             [-9, 77],
             [-6, 101],
-            [3, 42]
+            [3, 42],
           ],
           [
             [12292, 85061],
@@ -5367,14 +5372,14 @@ export function fetchGeoDataAPI(){
             [-10, -5],
             [-22, 115],
             [-23, 19],
-            [-7, 41]
+            [-7, 41],
           ],
           [
             [12202, 85643],
             [15, -71],
             [0, -46],
             [-10, 29],
-            [-5, 88]
+            [-5, 88],
           ],
           [
             [12106, 83714],
@@ -5440,7 +5445,7 @@ export function fetchGeoDataAPI(){
             [-33, 16],
             [-21, -28],
             [-14, 79],
-            [-26, 72]
+            [-26, 72],
           ],
           [
             [12097, 84881],
@@ -5448,7 +5453,7 @@ export function fetchGeoDataAPI(){
             [19, -7],
             [16, -52],
             [-29, -6],
-            [-22, 47]
+            [-22, 47],
           ],
           [
             [12062, 83572],
@@ -5472,20 +5477,20 @@ export function fetchGeoDataAPI(){
             [-22, 4],
             [2, 29],
             [-13, 31],
-            [5, 22]
+            [5, 22],
           ],
           [
             [11978, 85151],
             [9, 14],
             [7, -59],
-            [-16, 45]
+            [-16, 45],
           ],
           [
             [11978, 84786],
             [30, 41],
             [3, -53],
             [-16, -19],
-            [-17, 31]
+            [-17, 31],
           ],
           [
             [11861, 84371],
@@ -5562,14 +5567,14 @@ export function fetchGeoDataAPI(){
             [-16, 57],
             [-26, 30],
             [-7, 49],
-            [-25, 36]
+            [-25, 36],
           ],
           [
             [9331, 87212],
             [28, -14],
             [12, -44],
             [-27, -9],
-            [-13, 67]
+            [-13, 67],
           ],
           [
             [9232, 87245],
@@ -5577,7 +5582,7 @@ export function fetchGeoDataAPI(){
             [58, -26],
             [-3, -31],
             [-21, -10],
-            [-50, 53]
+            [-50, 53],
           ],
           [
             [8867, 87809],
@@ -5585,7 +5590,7 @@ export function fetchGeoDataAPI(){
             [27, 3],
             [15, -16],
             [-18, -53],
-            [-50, 31]
+            [-50, 31],
           ],
           [
             [8817, 87545],
@@ -5594,7 +5599,7 @@ export function fetchGeoDataAPI(){
             [21, -89],
             [-11, -44],
             [-37, -10],
-            [-5, 41]
+            [-5, 41],
           ],
           [
             [8816, 87079],
@@ -5602,7 +5607,7 @@ export function fetchGeoDataAPI(){
             [43, 47],
             [1, -36],
             [-40, -59],
-            [-6, 34]
+            [-6, 34],
           ],
           [
             [8698, 86532],
@@ -5639,7 +5644,7 @@ export function fetchGeoDataAPI(){
             [-17, -57],
             [-9, 6],
             [-45, -47],
-            [-14, 23]
+            [-14, 23],
           ],
           [
             [8692, 87068],
@@ -5659,7 +5664,7 @@ export function fetchGeoDataAPI(){
             [-24, 45],
             [-3, 25],
             [-25, 7],
-            [-1, 25]
+            [-1, 25],
           ],
           [
             [8672, 87628],
@@ -5667,7 +5672,7 @@ export function fetchGeoDataAPI(){
             [17, -19],
             [17, -48],
             [-24, -45],
-            [-25, 81]
+            [-25, 81],
           ],
           [
             [17950, 55027],
@@ -5718,7 +5723,7 @@ export function fetchGeoDataAPI(){
             [-23, 63],
             [-7, 69],
             [-16, 57],
-            [1, 147]
+            [1, 147],
           ],
           [
             [17974, 57684],
@@ -5759,7 +5764,7 @@ export function fetchGeoDataAPI(){
             [5, 15],
             [1, 230],
             [-2, 272],
-            [0, 437]
+            [0, 437],
           ],
           [
             [18136, 60011],
@@ -5770,7 +5775,7 @@ export function fetchGeoDataAPI(){
             [160, 2],
             [6, -7],
             [235, 0],
-            [162, 1]
+            [162, 1],
           ],
           [
             [19531, 60009],
@@ -5781,7 +5786,7 @@ export function fetchGeoDataAPI(){
             [-1, -608],
             [1, -145],
             [-1, -113],
-            [0, -2847]
+            [0, -2847],
           ],
           [
             [19530, 53413],
@@ -5797,7 +5802,7 @@ export function fetchGeoDataAPI(){
             [-5, 17],
             [1, 60],
             [8, 16],
-            [17, 103]
+            [17, 103],
           ],
           [
             [19530, 64667],
@@ -5808,14 +5813,14 @@ export function fetchGeoDataAPI(){
             [137, -1],
             [242, 1],
             [7, 2],
-            [217, 2]
+            [217, 2],
           ],
           [
             [20922, 64668],
             [282, 1],
             [135, 0],
             [140, 0],
-            [0, -1163]
+            [0, -1163],
           ],
           [
             [21479, 63506],
@@ -5824,13 +5829,13 @@ export function fetchGeoDataAPI(){
             [1, -193],
             [0, -1270],
             [1, -137],
-            [0, -1089]
+            [0, -1089],
           ],
           [
             [21482, 60002],
             [-183, 3],
             [-22, 5],
-            [-62, 1]
+            [-62, 1],
           ],
           [
             [21215, 60011],
@@ -5843,7 +5848,7 @@ export function fetchGeoDataAPI(){
             [-2, 9],
             [-152, -1],
             [-230, -1],
-            [-222, 0]
+            [-222, 0],
           ],
           [
             [19531, 60009],
@@ -5855,28 +5860,28 @@ export function fetchGeoDataAPI(){
             [2, 216],
             [0, 1857],
             [1, 46],
-            [0, 536]
+            [0, 536],
           ],
           [
             [27414, 45876],
             [14, 60],
             [5, -33],
             [-14, -44],
-            [-5, 17]
+            [-5, 17],
           ],
           [
             [27386, 45813],
             [9, 39],
             [11, 4],
             [-5, -33],
-            [-15, -10]
+            [-15, -10],
           ],
           [
             [27310, 45701],
             [52, 90],
             [6, -30],
             [-45, -80],
-            [-13, 20]
+            [-13, 20],
           ],
           [
             [27118, 45540],
@@ -5895,7 +5900,7 @@ export function fetchGeoDataAPI(){
             [-3, -24],
             [-46, -73],
             [-36, -15],
-            [0, 27]
+            [0, 27],
           ],
           [
             [27062, 45510],
@@ -5903,14 +5908,14 @@ export function fetchGeoDataAPI(){
             [-10, -43],
             [-17, -14],
             [-13, 8],
-            [1, 25]
+            [1, 25],
           ],
           [
             [27020, 45533],
             [6, 35],
             [12, -10],
             [-5, -41],
-            [-13, 16]
+            [-13, 16],
           ],
           [
             [26992, 48019],
@@ -5926,14 +5931,14 @@ export function fetchGeoDataAPI(){
             [-7, 28],
             [-13, 115],
             [-6, 76],
-            [0, 50]
+            [0, 50],
           ],
           [
             [26806, 45614],
             [15, 13],
             [4, -23],
             [-20, -10],
-            [1, 20]
+            [1, 20],
           ],
           [
             [26322, 51623],
@@ -5941,7 +5946,7 @@ export function fetchGeoDataAPI(){
             [0, -29],
             [-16, -37],
             [-11, -6],
-            [-2, 25]
+            [-2, 25],
           ],
           [
             [26229, 53027],
@@ -5978,7 +5983,7 @@ export function fetchGeoDataAPI(){
             [33, -19],
             [17, -18],
             [14, 15],
-            [13, -19]
+            [13, -19],
           ],
           [
             [27221, 52688],
@@ -6279,19 +6284,19 @@ export function fetchGeoDataAPI(){
             [-65, -49],
             [-32, -15],
             [-7, 10],
-            [-63, -51]
+            [-63, -51],
           ],
           [
             [26061, 57664],
             [39, -2],
             [136, 6],
-            [183, 1]
+            [183, 1],
           ],
           [
             [26419, 57669],
             [196, -2],
             [-1, 6],
-            [143, 10]
+            [143, 10],
           ],
           [
             [26757, 57683],
@@ -6369,7 +6374,7 @@ export function fetchGeoDataAPI(){
             [21, -34],
             [11, 17],
             [22, -71],
-            [9, -4]
+            [9, -4],
           ],
           [
             [27376, 54230],
@@ -6411,7 +6416,7 @@ export function fetchGeoDataAPI(){
             [11, 24],
             [1, -81],
             [-16, -161],
-            [5, -70]
+            [5, -70],
           ],
           [
             [25527, 65491],
@@ -6423,7 +6428,7 @@ export function fetchGeoDataAPI(){
             [29, 1],
             [28, 25],
             [52, 75],
-            [31, 59]
+            [31, 59],
           ],
           [
             [25722, 65552],
@@ -6431,7 +6436,7 @@ export function fetchGeoDataAPI(){
             [198, -1],
             [187, 1],
             [87, 1],
-            [0, -75]
+            [0, -75],
           ],
           [
             [26284, 65477],
@@ -6440,7 +6445,7 @@ export function fetchGeoDataAPI(){
             [-3, -437],
             [0, -441],
             [-2, -278],
-            [0, -238]
+            [0, -238],
           ],
           [
             [26280, 62461],
@@ -6535,7 +6540,7 @@ export function fetchGeoDataAPI(){
             [-10, -40],
             [10, -91],
             [-12, -47],
-            [-23, 32]
+            [-23, 32],
           ],
           [
             [25386, 60941],
@@ -6588,7 +6593,7 @@ export function fetchGeoDataAPI(){
             [0, 294],
             [1, 247],
             [0, 1196],
-            [1, 254]
+            [1, 254],
           ],
           [
             [21479, 63506],
@@ -6600,7 +6605,7 @@ export function fetchGeoDataAPI(){
             [279, -1],
             [263, -1],
             [144, 0],
-            [133, 0]
+            [133, 0],
           ],
           [
             [23358, 63503],
@@ -6651,7 +6656,7 @@ export function fetchGeoDataAPI(){
             [-1, -52],
             [0, -779],
             [-1, -97],
-            [0, -281]
+            [0, -281],
           ],
           [
             [23550, 60009],
@@ -6665,13 +6670,13 @@ export function fetchGeoDataAPI(){
             [-154, 3],
             [-149, -4],
             [-209, -4],
-            [-155, -3]
+            [-155, -3],
           ],
           [
             [30863, 68384],
             [14, 7],
             [-7, -35],
-            [-7, 28]
+            [-7, 28],
           ],
           [
             [30827, 68345],
@@ -6680,25 +6685,25 @@ export function fetchGeoDataAPI(){
             [19, -55],
             [-15, -45],
             [-5, 34],
-            [-12, 17]
+            [-12, 17],
           ],
           [
             [30819, 68560],
             [3, 42],
             [11, -71],
-            [-14, 29]
+            [-14, 29],
           ],
           [
             [30732, 68434],
             [14, 2],
             [3, -41],
-            [-17, 39]
+            [-17, 39],
           ],
           [
             [30712, 67988],
             [8, 37],
             [1, -75],
-            [-9, 38]
+            [-9, 38],
           ],
           [
             [30703, 68290],
@@ -6712,7 +6717,7 @@ export function fetchGeoDataAPI(){
             [-12, 24],
             [5, 25],
             [-3, 50],
-            [-10, 3]
+            [-10, 3],
           ],
           [
             [30697, 68452],
@@ -6724,7 +6729,7 @@ export function fetchGeoDataAPI(){
             [1, -36],
             [-8, -70],
             [-10, -29],
-            [-4, 39]
+            [-4, 39],
           ],
           [
             [30213, 67064],
@@ -6740,7 +6745,7 @@ export function fetchGeoDataAPI(){
             [-5, 313],
             [0, 89],
             [-11, 861],
-            [-15, 757]
+            [-15, 757],
           ],
           [
             [30107, 69679],
@@ -6987,7 +6992,7 @@ export function fetchGeoDataAPI(){
             [-14, -80],
             [1, -22],
             [-14, -74],
-            [-9, -13]
+            [-9, -13],
           ],
           [
             [30332, 65028],
@@ -7000,7 +7005,7 @@ export function fetchGeoDataAPI(){
             [-10, -16],
             [-33, 4],
             [-41, 60],
-            [-3, 19]
+            [-3, 19],
           ],
           [
             [30177, 65078],
@@ -7015,11 +7020,11 @@ export function fetchGeoDataAPI(){
             [-41, 1],
             [-31, -9],
             [-18, -47],
-            [-16, 61]
+            [-16, 61],
           ],
           [
             [29500, 66699],
-            [224, -22]
+            [224, -22],
           ],
           [
             [29724, 66677],
@@ -7033,7 +7038,7 @@ export function fetchGeoDataAPI(){
             [9, 62],
             [36, 32],
             [15, -30],
-            [8, 13]
+            [8, 13],
           ],
           [
             [30181, 66846],
@@ -7131,16 +7136,16 @@ export function fetchGeoDataAPI(){
             [-6, -29],
             [-25, -23],
             [-12, 17],
-            [-10, -14]
+            [-10, -14],
           ],
           [
             [30097, 65246],
             [-3, 189],
-            [-18, 18]
+            [-18, 18],
           ],
           [
             [30076, 65453],
-            [-8, 41]
+            [-8, 41],
           ],
           [
             [30068, 65494],
@@ -7150,7 +7155,7 @@ export function fetchGeoDataAPI(){
             [2, 81],
             [-12, -6],
             [0, 147],
-            [-116, -13]
+            [-116, -13],
           ],
           [
             [29908, 65840],
@@ -7163,13 +7168,13 @@ export function fetchGeoDataAPI(){
             [1, 45],
             [-54, 3],
             [-118, 14],
-            [-15, -1]
+            [-15, -1],
           ],
           [
             [29438, 65889],
             [-6, 42],
             [34, 395],
-            [34, 373]
+            [34, 373],
           ],
           [
             [22823, 73980],
@@ -7288,7 +7293,7 @@ export function fetchGeoDataAPI(){
             [-61, -134],
             [-9, -25],
             [8, -50],
-            [14, -46]
+            [14, -46],
           ],
           [
             [24276, 71309],
@@ -7359,7 +7364,7 @@ export function fetchGeoDataAPI(){
             [2, -71],
             [10, -37],
             [-4, -44],
-            [8, -53]
+            [8, -53],
           ],
           [
             [24498, 67577],
@@ -7369,7 +7374,7 @@ export function fetchGeoDataAPI(){
             [-223, 0],
             [-180, 1],
             [-313, 0],
-            [-199, 0]
+            [-199, 0],
           ],
           [
             [23039, 67577],
@@ -7388,7 +7393,7 @@ export function fetchGeoDataAPI(){
             [22, 39],
             [12, 63],
             [14, 46],
-            [4, 128]
+            [4, 128],
           ],
           [
             [23008, 70412],
@@ -7436,17 +7441,17 @@ export function fetchGeoDataAPI(){
             [-8, 124],
             [-6, 24],
             [-11, 98],
-            [3, 40]
+            [3, 40],
           ],
           [
             [28860, 63072],
-            [14, 65]
+            [14, 65],
           ],
           [
             [28874, 63137],
             [9, 32],
             [5, 61],
-            [12, 42]
+            [12, 42],
           ],
           [
             [28900, 63272],
@@ -7487,7 +7492,7 @@ export function fetchGeoDataAPI(){
             [11, 49],
             [14, 124],
             [22, 69],
-            [16, 13]
+            [16, 13],
           ],
           [
             [29101, 65083],
@@ -7497,18 +7502,18 @@ export function fetchGeoDataAPI(){
             [-20, -187],
             [-12, -65],
             [-4, -65],
-            [-6, -22]
+            [-6, -22],
           ],
           [
             [29282, 64306],
-            [-7, -34]
+            [-7, -34],
           ],
           [
             [29275, 64272],
             [-37, -35],
             [-4, -84],
             [-9, -16],
-            [-3, -50]
+            [-3, -50],
           ],
           [
             [29222, 64087],
@@ -7556,11 +7561,11 @@ export function fetchGeoDataAPI(){
             [-10, 56],
             [-19, 25],
             [6, 140],
-            [-12, 29]
+            [-12, 29],
           ],
           [
             [28861, 63044],
-            [-1, 28]
+            [-1, 28],
           ],
           [
             [28814, 58772],
@@ -7569,7 +7574,7 @@ export function fetchGeoDataAPI(){
             [1, -47],
             [-15, 9],
             [2, 45],
-            [-18, 86]
+            [-18, 86],
           ],
           [
             [28734, 57762],
@@ -7594,7 +7599,7 @@ export function fetchGeoDataAPI(){
             [-24, -8],
             [-50, -64],
             [-43, -78],
-            [-19, -43]
+            [-19, -43],
           ],
           [
             [27156, 59531],
@@ -7612,7 +7617,7 @@ export function fetchGeoDataAPI(){
             [0, 10],
             [31, -2],
             [120, 0],
-            [142, 0]
+            [142, 0],
           ],
           [
             [28775, 59487],
@@ -7820,7 +7825,7 @@ export function fetchGeoDataAPI(){
             [-28, -2],
             [-30, -12],
             [-35, -42],
-            [-8, -17]
+            [-8, -17],
           ],
           [
             [28030, 56345],
@@ -7849,7 +7854,7 @@ export function fetchGeoDataAPI(){
             [-29, -47],
             [-28, -60],
             [-7, 21],
-            [-91, -99]
+            [-91, -99],
           ],
           [
             [26419, 57669],
@@ -7905,7 +7910,7 @@ export function fetchGeoDataAPI(){
             [7, 65],
             [6, 12],
             [-4, 80],
-            [9, 60]
+            [9, 60],
           ],
           [
             [20923, 73979],
@@ -7918,7 +7923,7 @@ export function fetchGeoDataAPI(){
             [135, 0],
             [141, 1],
             [256, 1],
-            [201, 0]
+            [201, 0],
           ],
           [
             [23008, 70412],
@@ -7932,17 +7937,17 @@ export function fetchGeoDataAPI(){
             [-123, 0],
             [-292, 1],
             [-173, 0],
-            [-105, 0]
+            [-105, 0],
           ],
           [
             [20924, 70423],
             [0, 2828],
             [-1, 17],
-            [0, 711]
+            [0, 711],
           ],
           [
             [23550, 60009],
-            [0, -581]
+            [0, -581],
           ],
           [
             [23550, 59428],
@@ -7957,7 +7962,7 @@ export function fetchGeoDataAPI(){
             [-1, -235],
             [-2, -170],
             [-2, -417],
-            [-5, -642]
+            [-5, -642],
           ],
           [
             [23587, 56097],
@@ -8095,12 +8100,12 @@ export function fetchGeoDataAPI(){
             [-179, 0],
             [-150, 0],
             [-175, 1],
-            [-210, 0]
+            [-210, 0],
           ],
           [
             [21214, 59429],
             [1, 119],
-            [0, 463]
+            [0, 463],
           ],
           [
             [27478, 65805],
@@ -8111,7 +8116,7 @@ export function fetchGeoDataAPI(){
             [13, 3],
             [3, -28],
             [36, 72],
-            [47, 74]
+            [47, 74],
           ],
           [
             [27689, 66145],
@@ -8144,7 +8149,7 @@ export function fetchGeoDataAPI(){
             [3, -22],
             [16, 8],
             [-1, -30],
-            [13, -55]
+            [13, -55],
           ],
           [
             [28900, 63272],
@@ -8152,7 +8157,7 @@ export function fetchGeoDataAPI(){
             [-22, 6],
             [-24, -20],
             [-15, -34],
-            [-20, -82]
+            [-20, -82],
           ],
           [
             [28796, 63179],
@@ -8160,23 +8165,23 @@ export function fetchGeoDataAPI(){
             [-118, -1],
             [-151, 0],
             [-236, 3],
-            [-305, -2]
+            [-305, -2],
           ],
           [
             [27769, 63178],
             [-167, 0],
             [-124, 0],
-            [0, 1068]
+            [0, 1068],
           ],
           [
             [27478, 64246],
-            [0, 1559]
+            [0, 1559],
           ],
           [
             [20920, 69320],
             [5, 4],
             [0, 872],
-            [-1, 227]
+            [-1, 227],
           ],
           [
             [23039, 67577],
@@ -8206,7 +8211,7 @@ export function fetchGeoDataAPI(){
             [17, -60],
             [10, -87],
             [-4, -45],
-            [13, -31]
+            [13, -31],
           ],
           [
             [23041, 66402],
@@ -8252,14 +8257,14 @@ export function fetchGeoDataAPI(){
             [-62, 4],
             [-178, 0],
             [-143, 1],
-            [-293, 1]
+            [-293, 1],
           ],
           [
             [20922, 66996],
             [0, 345],
             [-1, 8],
             [0, 1828],
-            [-1, 143]
+            [-1, 143],
           ],
           [
             [23587, 56097],
@@ -8277,16 +8282,16 @@ export function fetchGeoDataAPI(){
             [12, -17],
             [5, -30],
             [6, 21],
-            [16, -22]
+            [16, -22],
           ],
           [
             [23710, 55996],
-            [0, 0]
+            [0, 0],
           ],
           [
             [23710, 55996],
             [1, -11],
-            [0, -608]
+            [0, -608],
           ],
           [
             [23711, 55377],
@@ -8348,7 +8353,7 @@ export function fetchGeoDataAPI(){
             [-17, -45],
             [-2, -25],
             [9, -30],
-            [17, -94]
+            [17, -94],
           ],
           [
             [23768, 51502],
@@ -8797,7 +8802,7 @@ export function fetchGeoDataAPI(){
             [-9, 41],
             [-19, 38],
             [-11, -19],
-            [-11, 41]
+            [-11, 41],
           ],
           [
             [20232, 53938],
@@ -8821,11 +8826,11 @@ export function fetchGeoDataAPI(){
             [1, 434],
             [0, 809],
             [-1, 213],
-            [11, 0]
+            [11, 0],
           ],
           [
             [20922, 66996],
-            [0, -2328]
+            [0, -2328],
           ],
           [
             [19530, 64667],
@@ -8836,7 +8841,7 @@ export function fetchGeoDataAPI(){
             [-93, 2],
             [0, 442],
             [1, 219],
-            [-1, 508]
+            [-1, 508],
           ],
           [
             [18973, 65833],
@@ -8846,7 +8851,7 @@ export function fetchGeoDataAPI(){
             [-1, 26],
             [0, 516],
             [-1, 267],
-            [1, 140]
+            [1, 140],
           ],
           [
             [18973, 68711],
@@ -8870,7 +8875,7 @@ export function fetchGeoDataAPI(){
             [23, 7],
             [132, 0],
             [251, -2],
-            [115, -1]
+            [115, -1],
           ],
           [
             [29908, 65840],
@@ -8880,7 +8885,7 @@ export function fetchGeoDataAPI(){
             [-3, -209],
             [-12, -8],
             [3, -76],
-            [-8, -29]
+            [-8, -29],
           ],
           [
             [29891, 65039],
@@ -8914,7 +8919,7 @@ export function fetchGeoDataAPI(){
             [-29, -11],
             [-22, -54],
             [-9, 15],
-            [-15, -35]
+            [-15, -35],
           ],
           [
             [29390, 64649],
@@ -8924,7 +8929,7 @@ export function fetchGeoDataAPI(){
             [-19, 97],
             [4, 161],
             [5, 295],
-            [9, 422]
+            [9, 422],
           ],
           [
             [23231, 64184],
@@ -8944,7 +8949,7 @@ export function fetchGeoDataAPI(){
             [10, -2],
             [1, -56],
             [11, -31],
-            [19, -7]
+            [19, -7],
           ],
           [
             [24442, 63943],
@@ -9031,7 +9036,7 @@ export function fetchGeoDataAPI(){
             [14, 12],
             [17, -56],
             [8, -53],
-            [11, 14]
+            [11, 14],
           ],
           [
             [25079, 59990],
@@ -9050,13 +9055,13 @@ export function fetchGeoDataAPI(){
             [-13, -18],
             [-18, 78],
             [-13, -13],
-            [-13, -142]
+            [-13, -142],
           ],
           [
             [24999, 59427],
             [-8, -40],
             [-13, 7],
-            [2, 31]
+            [2, 31],
           ],
           [
             [24980, 59425],
@@ -9064,7 +9069,7 @@ export function fetchGeoDataAPI(){
             [-5, 49],
             [-21, 2],
             [-4, -30],
-            [9, -58]
+            [9, -58],
           ],
           [
             [24965, 59426],
@@ -9083,7 +9088,7 @@ export function fetchGeoDataAPI(){
             [1, -61],
             [-22, -40],
             [-3, -75],
-            [-12, -23]
+            [-12, -23],
           ],
           [
             [24911, 58847],
@@ -9103,7 +9108,7 @@ export function fetchGeoDataAPI(){
             [-323, 1],
             [-141, 0],
             [-222, 1],
-            [-210, 1]
+            [-210, 1],
           ],
           [
             [23358, 63503],
@@ -9122,7 +9127,7 @@ export function fetchGeoDataAPI(){
             [-11, 18],
             [-1, -33],
             [-20, 3],
-            [1, 63]
+            [1, 63],
           ],
           [
             [26900, 61666],
@@ -9195,7 +9200,7 @@ export function fetchGeoDataAPI(){
             [-11, 44],
             [9, 50],
             [14, -1],
-            [18, 27]
+            [18, 27],
           ],
           [
             [27769, 63178],
@@ -9240,7 +9245,7 @@ export function fetchGeoDataAPI(){
             [9, -12],
             [5, -43],
             [-6, -63],
-            [10, -14]
+            [10, -14],
           ],
           [
             [28258, 62713],
@@ -9333,7 +9338,7 @@ export function fetchGeoDataAPI(){
             [-15, 22],
             [-1, 33],
             [18, 34],
-            [-11, 29]
+            [-11, 29],
           ],
           [
             [27075, 60636],
@@ -9363,7 +9368,7 @@ export function fetchGeoDataAPI(){
             [11, 33],
             [1, 58],
             [-8, 36],
-            [1, 90]
+            [1, 90],
           ],
           [
             [24442, 63943],
@@ -9418,7 +9423,7 @@ export function fetchGeoDataAPI(){
             [-22, 37],
             [-2, 26],
             [-22, 35],
-            [0, 47]
+            [0, 47],
           ],
           [
             [24658, 66423],
@@ -9428,7 +9433,7 @@ export function fetchGeoDataAPI(){
             [194, -11],
             [41, 4],
             [152, 1],
-            [82, -5]
+            [82, -5],
           ],
           [
             [25450, 66403],
@@ -9442,7 +9447,7 @@ export function fetchGeoDataAPI(){
             [4, -75],
             [14, -93],
             [8, -20],
-            [2, -47]
+            [2, -47],
           ],
           [
             [25386, 60941],
@@ -9475,14 +9480,14 @@ export function fetchGeoDataAPI(){
             [-9, -65],
             [-16, -52],
             [-4, -55],
-            [14, -52]
+            [14, -52],
           ],
           [
             [20232, 53938],
             [-214, 0],
             [-254, 0],
             [0, -524],
-            [-234, -1]
+            [-234, -1],
           ],
           [
             [24911, 58847],
@@ -9530,7 +9535,7 @@ export function fetchGeoDataAPI(){
             [-9, -26],
             [-9, -100],
             [-25, 13],
-            [-3, -49]
+            [-3, -49],
           ],
           [
             [24751, 57677],
@@ -9634,7 +9639,7 @@ export function fetchGeoDataAPI(){
             [-11, 14],
             [-5, -39],
             [23, -62],
-            [-13, -59]
+            [-13, -59],
           ],
           [
             [24512, 55359],
@@ -9642,7 +9647,7 @@ export function fetchGeoDataAPI(){
             [-154, 5],
             [-157, 7],
             [-86, 0],
-            [-185, 2]
+            [-185, 2],
           ],
           [
             [16868, 55911],
@@ -9657,7 +9662,7 @@ export function fetchGeoDataAPI(){
             [-6, 35],
             [0, 74],
             [-20, 16],
-            [-12, 52]
+            [-12, 52],
           ],
           [
             [16867, 55390],
@@ -9669,14 +9674,14 @@ export function fetchGeoDataAPI(){
             [-17, 44],
             [-13, 72],
             [-14, 119],
-            [-6, 26]
+            [-6, 26],
           ],
           [
             [16741, 55926],
             [8, 7],
             [1, -41],
             [-11, 7],
-            [2, 27]
+            [2, 27],
           ],
           [
             [16637, 56552],
@@ -9685,7 +9690,7 @@ export function fetchGeoDataAPI(){
             [0, -30],
             [-17, -4],
             [-9, 21],
-            [7, 16]
+            [7, 16],
           ],
           [
             [16596, 55679],
@@ -9694,7 +9699,7 @@ export function fetchGeoDataAPI(){
             [8, -31],
             [-13, -15],
             [-20, 21],
-            [-9, 53]
+            [-9, 53],
           ],
           [
             [16501, 56608],
@@ -9710,7 +9715,7 @@ export function fetchGeoDataAPI(){
             [-17, -31],
             [-42, 24],
             [-1, 61],
-            [-12, 52]
+            [-12, 52],
           ],
           [
             [16410, 56520],
@@ -9723,7 +9728,7 @@ export function fetchGeoDataAPI(){
             [1, -48],
             [-41, -54],
             [-16, 37],
-            [-19, 86]
+            [-19, 86],
           ],
           [
             [16354, 56562],
@@ -9732,7 +9737,7 @@ export function fetchGeoDataAPI(){
             [6, -35],
             [13, -26],
             [-21, -6],
-            [-20, 22]
+            [-20, 22],
           ],
           [
             [15305, 65829],
@@ -9748,11 +9753,11 @@ export function fetchGeoDataAPI(){
             [154, -8],
             [114, -4],
             [197, 0],
-            [92, 2]
+            [92, 2],
           ],
           [
             [16479, 65825],
-            [0, -1]
+            [0, -1],
           ],
           [
             [16479, 65824],
@@ -9775,7 +9780,7 @@ export function fetchGeoDataAPI(){
             [313, -989],
             [234, -759],
             [70, -234],
-            [147, -492]
+            [147, -492],
           ],
           [
             [17950, 55027],
@@ -10008,11 +10013,11 @@ export function fetchGeoDataAPI(){
             [-17, 54],
             [10, 74],
             [5, 110],
-            [-3, 67]
+            [-3, 67],
           ],
           [
             [28861, 63044],
-            [-1, 28]
+            [-1, 28],
           ],
           [
             [28874, 63137],
@@ -10038,7 +10043,7 @@ export function fetchGeoDataAPI(){
             [10, 24],
             [4, -36],
             [5, -129],
-            [4, -244]
+            [4, -244],
           ],
           [
             [29002, 61700],
@@ -10046,18 +10051,18 @@ export function fetchGeoDataAPI(){
             [-74, 9],
             [-2, 72],
             [-25, 1311],
-            [0, 86]
+            [0, 86],
           ],
           [
             [28426, 62262],
             [21, 70],
             [37, -118],
-            [-36, -118]
+            [-36, -118],
           ],
           [
             [28448, 62096],
             [0, 93],
-            [-22, 73]
+            [-22, 73],
           ],
           [
             [6433, 39922],
@@ -10122,7 +10127,7 @@ export function fetchGeoDataAPI(){
             [-5, 114],
             [-7, 66],
             [-9, 8],
-            [-8, 108]
+            [-8, 108],
           ],
           [
             [6254, 41293],
@@ -10155,7 +10160,7 @@ export function fetchGeoDataAPI(){
             [-14, -24],
             [-26, 50],
             [-13, 58],
-            [-6, 58]
+            [-6, 58],
           ],
           [
             [6253, 40841],
@@ -10167,7 +10172,7 @@ export function fetchGeoDataAPI(){
             [-13, -19],
             [-5, 15],
             [-18, -23],
-            [-10, 32]
+            [-10, 32],
           ],
           [
             [6153, 41274],
@@ -10182,7 +10187,7 @@ export function fetchGeoDataAPI(){
             [-7, 60],
             [-3, 73],
             [-14, 32],
-            [-2, 32]
+            [-2, 32],
           ],
           [
             [6084, 41504],
@@ -10204,7 +10209,7 @@ export function fetchGeoDataAPI(){
             [-26, 31],
             [-15, -14],
             [-29, -5],
-            [-16, 17]
+            [-16, 17],
           ],
           [
             [5814, 42059],
@@ -10239,7 +10244,7 @@ export function fetchGeoDataAPI(){
             [-1, 31],
             [-14, 67],
             [0, 61],
-            [-13, 45]
+            [-13, 45],
           ],
           [
             [5394, 42585],
@@ -10264,7 +10269,7 @@ export function fetchGeoDataAPI(){
             [-36, 12],
             [-18, 71],
             [-24, 29],
-            [-9, 61]
+            [-9, 61],
           ],
           [
             [5266, 42374],
@@ -10279,7 +10284,7 @@ export function fetchGeoDataAPI(){
             [-20, -28],
             [-16, -97],
             [-12, 30],
-            [1, 40]
+            [1, 40],
           ],
           [
             [24498, 67577],
@@ -10300,7 +10305,7 @@ export function fetchGeoDataAPI(){
             [47, -37],
             [17, -20],
             [18, -109],
-            [0, -37]
+            [0, -37],
           ],
           [
             [23231, 64184],
@@ -10359,7 +10364,7 @@ export function fetchGeoDataAPI(){
             [0, 76],
             [9, 44],
             [-4, 44],
-            [-14, 8]
+            [-14, 8],
           ],
           [
             [26280, 62461],
@@ -10404,7 +10409,7 @@ export function fetchGeoDataAPI(){
             [21, -6],
             [21, -79],
             [13, -35],
-            [2, -44]
+            [2, -44],
           ],
           [
             [27075, 60636],
@@ -10428,7 +10433,7 @@ export function fetchGeoDataAPI(){
             [-39, -52],
             [-21, 2],
             [-33, -49],
-            [-8, -27]
+            [-8, -27],
           ],
           [
             [26599, 59546],
@@ -10456,22 +10461,22 @@ export function fetchGeoDataAPI(){
             [-137, 6],
             [-126, 0],
             [-84, 6],
-            [-33, -10]
+            [-33, -10],
           ],
           [
             [24980, 59425],
-            [-15, 1]
+            [-15, 1],
           ],
           [
             [28739, 61120],
-            [-14, 0]
+            [-14, 0],
           ],
           [
             [28725, 61120],
             [-1, 72],
             [8, 28],
             [11, -40],
-            [-4, -60]
+            [-4, -60],
           ],
           [
             [28711, 61320],
@@ -10481,13 +10486,13 @@ export function fetchGeoDataAPI(){
             [5, -118],
             [-15, 21],
             [4, 27],
-            [-14, 8]
+            [-14, 8],
           ],
           [
             [28627, 62072],
             [5, 20],
             [5, -46],
-            [-10, 26]
+            [-10, 26],
           ],
           [
             [29002, 61700],
@@ -10495,13 +10500,13 @@ export function fetchGeoDataAPI(){
             [-9, -105],
             [-5, -15],
             [-20, -211],
-            [-18, -120]
+            [-18, -120],
           ],
           [
             [28949, 61206],
             [-107, -38],
             [-6, -55],
-            [-6, 4]
+            [-6, 4],
           ],
           [
             [28830, 61117],
@@ -10681,14 +10686,14 @@ export function fetchGeoDataAPI(){
             [11, 82],
             [15, 57],
             [20, 30],
-            [-5, 10]
+            [-5, 10],
           ],
           [
             [28423, 61914],
             [-1, 45],
             [7, 27],
             [18, 25],
-            [1, 85]
+            [1, 85],
           ],
           [
             [28426, 62262],
@@ -10707,7 +10712,7 @@ export function fetchGeoDataAPI(){
             [-6, 45],
             [-15, -1],
             [-16, 25],
-            [-13, -3]
+            [-13, -3],
           ],
           [
             [26327, 70327],
@@ -10717,20 +10722,20 @@ export function fetchGeoDataAPI(){
             [-17, -58],
             [-23, 18],
             [-14, 61],
-            [-28, 85]
+            [-28, 85],
           ],
           [
             [26120, 70229],
             [5, 40],
             [7, -20],
-            [-12, -20]
+            [-12, -20],
           ],
           [
             [26084, 70289],
             [21, -39],
             [-4, -36],
             [-19, 38],
-            [2, 37]
+            [2, 37],
           ],
           [
             [26055, 70019],
@@ -10742,20 +10747,20 @@ export function fetchGeoDataAPI(){
             [-1, -85],
             [4, -83],
             [-19, -44],
-            [-19, 30]
+            [-19, 30],
           ],
           [
             [26035, 70180],
             [13, 8],
             [-5, -54],
             [-7, 1],
-            [-1, 45]
+            [-1, 45],
           ],
           [
             [25984, 69839],
             [13, -17],
             [1, -59],
-            [-14, 76]
+            [-14, 76],
           ],
           [
             [25933, 69486],
@@ -10763,13 +10768,13 @@ export function fetchGeoDataAPI(){
             [19, -25],
             [-6, -96],
             [-17, 52],
-            [-2, 46]
+            [-2, 46],
           ],
           [
             [25908, 69335],
             [11, 44],
             [6, -47],
-            [-17, 3]
+            [-17, 3],
           ],
           [
             [25759, 70041],
@@ -10777,7 +10782,7 @@ export function fetchGeoDataAPI(){
             [-8, -22],
             [-4, 36],
             [-14, 43],
-            [6, 7]
+            [6, 7],
           ],
           [
             [25722, 65552],
@@ -10992,13 +10997,13 @@ export function fetchGeoDataAPI(){
             [-11, -11],
             [-17, -72],
             [5, -79],
-            [-8, -9]
+            [-8, -9],
           ],
           [
             [26661, 65520],
             [-86, -11],
             [-167, -20],
-            [-124, -12]
+            [-124, -12],
           ],
           [
             [25045, 72671],
@@ -11020,7 +11025,7 @@ export function fetchGeoDataAPI(){
             [23, 0],
             [-59, -73],
             [-18, 3],
-            [-18, 52]
+            [-18, 52],
           ],
           [
             [24721, 71146],
@@ -11256,7 +11261,7 @@ export function fetchGeoDataAPI(){
             [-19, -65],
             [-20, -112],
             [-41, -174],
-            [6, -33]
+            [6, -33],
           ],
           [
             [25508, 69434],
@@ -11269,11 +11274,11 @@ export function fetchGeoDataAPI(){
             [-2, 34],
             [-11, 25],
             [-16, -47],
-            [-27, -10]
+            [-27, -10],
           ],
           [
             [25436, 69720],
-            [0, 0]
+            [0, 0],
           ],
           [
             [25436, 69720],
@@ -11313,23 +11318,23 @@ export function fetchGeoDataAPI(){
             [1, 27],
             [-28, 167],
             [-27, 16],
-            [-10, 24]
+            [-10, 24],
           ],
           [
             [24739, 71113],
-            [0, 0]
+            [0, 0],
           ],
           [
             [24739, 71113],
             [-12, -6],
-            [-6, 39]
+            [-6, 39],
           ],
           [
             [25252, 52115],
             [30, -13],
             [-14, -20],
             [-12, 9],
-            [-4, 24]
+            [-4, 24],
           ],
           [
             [25179, 52148],
@@ -11337,7 +11342,7 @@ export function fetchGeoDataAPI(){
             [30, -29],
             [6, -15],
             [-24, 5],
-            [-28, 26]
+            [-28, 26],
           ],
           [
             [25119, 52114],
@@ -11345,7 +11350,7 @@ export function fetchGeoDataAPI(){
             [15, 31],
             [-4, -29],
             [-21, -27],
-            [-5, 18]
+            [-5, 18],
           ],
           [
             [25071, 52140],
@@ -11354,13 +11359,13 @@ export function fetchGeoDataAPI(){
             [-5, -43],
             [-10, -7],
             [-17, 26],
-            [3, 12]
+            [3, 12],
           ],
           [
             [24751, 57677],
             [229, -2],
             [156, 1],
-            [202, 1]
+            [202, 1],
           ],
           [
             [25284, 52292],
@@ -11387,7 +11392,7 @@ export function fetchGeoDataAPI(){
             [-25, -57],
             [-8, -80],
             [-9, 10],
-            [-13, -16]
+            [-13, -16],
           ],
           [
             [24969, 52072],
@@ -11511,7 +11516,7 @@ export function fetchGeoDataAPI(){
             [-14, -26],
             [-9, 22],
             [3, 48],
-            [10, 50]
+            [10, 50],
           ],
           [
             [17580, 73980],
@@ -11529,7 +11534,7 @@ export function fetchGeoDataAPI(){
             [143, -1],
             [294, 0],
             [114, 0],
-            [167, 1]
+            [167, 1],
           ],
           [
             [18973, 68711],
@@ -11693,7 +11698,7 @@ export function fetchGeoDataAPI(){
             [-39, 152],
             [-1, 279],
             [1, 109],
-            [0, 804]
+            [0, 804],
           ],
           [
             [29991, 69339],
@@ -11707,12 +11712,12 @@ export function fetchGeoDataAPI(){
             [22, 42],
             [15, -61],
             [28, -5],
-            [13, 70]
+            [13, 70],
           ],
           [
             [30213, 67064],
             [-30, -174],
-            [-2, -44]
+            [-2, -44],
           ],
           [
             [29724, 66677],
@@ -11764,14 +11769,14 @@ export function fetchGeoDataAPI(){
             [4, 64],
             [18, 75],
             [-13, 89],
-            [11, 30]
+            [11, 30],
           ],
           [
             [29842, 64964],
             [3, 18],
             [27, 22],
             [-21, -43],
-            [-9, 3]
+            [-9, 3],
           ],
           [
             [29812, 64781],
@@ -11779,32 +11784,32 @@ export function fetchGeoDataAPI(){
             [11, -16],
             [0, -50],
             [-6, 35],
-            [-10, 11]
+            [-10, 11],
           ],
           [
             [29792, 64880],
             [16, 16],
             [-12, -43],
-            [-4, 27]
+            [-4, 27],
           ],
           [
             [29275, 64272],
             [5, -67],
             [-9, -39],
             [-38, -78],
-            [-11, -1]
+            [-11, -1],
           ],
           [
             [28633, 68013],
             [16, 50],
             [-5, -45],
-            [-11, -5]
+            [-11, -5],
           ],
           [
             [28611, 68032],
             [12, 40],
             [9, -5],
-            [-21, -35]
+            [-21, -35],
           ],
           [
             [27689, 66145],
@@ -11896,7 +11901,7 @@ export function fetchGeoDataAPI(){
             [53, -1],
             [107, 14],
             [24, -1],
-            [93, 10]
+            [93, 10],
           ],
           [
             [29478, 69336],
@@ -11932,7 +11937,7 @@ export function fetchGeoDataAPI(){
             [-6, -422],
             [0, -74],
             [-4, -37],
-            [8, -65]
+            [8, -65],
           ],
           [
             [29390, 64649],
@@ -11994,13 +11999,13 @@ export function fetchGeoDataAPI(){
             [3, 25],
             [-11, 39],
             [7, 35],
-            [-8, 36]
+            [-8, 36],
           ],
           [
             [26861, 65369],
             [16, 17],
             [-2, -36],
-            [-14, 19]
+            [-14, 19],
           ],
           [
             [26831, 65420],
@@ -12008,7 +12013,7 @@ export function fetchGeoDataAPI(){
             [11, -35],
             [-3, -35],
             [-14, -42],
-            [0, 22]
+            [0, 22],
           ],
           [
             [26661, 65520],
@@ -12046,7 +12051,7 @@ export function fetchGeoDataAPI(){
             [30, 17],
             [24, 34],
             [65, 69],
-            [17, 24]
+            [17, 24],
           ],
           [
             [15490, 70789],
@@ -12112,7 +12117,7 @@ export function fetchGeoDataAPI(){
             [11, 36],
             [163, 1],
             [250, -3],
-            [164, -3]
+            [164, -3],
           ],
           [
             [17338, 70482],
@@ -12166,7 +12171,7 @@ export function fetchGeoDataAPI(){
             [0, -54],
             [-11, -11],
             [-2, -59],
-            [0, -2105]
+            [0, -2105],
           ],
           [
             [17307, 65831],
@@ -12174,7 +12179,7 @@ export function fetchGeoDataAPI(){
             [-273, -5],
             [-26, -3],
             [-143, 2],
-            [-220, 2]
+            [-220, 2],
           ],
           [
             [15305, 65829],
@@ -12236,7 +12241,7 @@ export function fetchGeoDataAPI(){
             [11, -28],
             [12, 31],
             [15, 0],
-            [20, 51]
+            [20, 51],
           ],
           [
             [26599, 59546],
@@ -12248,7 +12253,7 @@ export function fetchGeoDataAPI(){
             [151, -2],
             [3, 26],
             [77, -5],
-            [-8, -28]
+            [-8, -28],
           ],
           [
             [18139, 65823],
@@ -12257,7 +12262,7 @@ export function fetchGeoDataAPI(){
             [192, 2],
             [5, -5],
             [196, 3],
-            [118, 3]
+            [118, 3],
           ],
           [
             [18136, 60011],
@@ -12271,13 +12276,13 @@ export function fetchGeoDataAPI(){
             [1, 149],
             [0, 628],
             [1, 266],
-            [0, 1156]
+            [0, 1156],
           ],
           [
             [28738, 60998],
             [7, -15],
             [-7, -27],
-            [0, 42]
+            [0, 42],
           ],
           [
             [28949, 61206],
@@ -12316,12 +12321,12 @@ export function fetchGeoDataAPI(){
             [15, 65],
             [1, 28],
             [-20, 21],
-            [25, 54]
+            [25, 54],
           ],
           [
             [28739, 61120],
             [-11, -44],
-            [-3, 44]
+            [-3, 44],
           ],
           [
             [28423, 61914],
@@ -12443,7 +12448,7 @@ export function fetchGeoDataAPI(){
             [8, -128],
             [12, -140],
             [9, -71],
-            [7, -94]
+            [7, -94],
           ],
           [
             [15775, 72069],
@@ -12455,28 +12460,28 @@ export function fetchGeoDataAPI(){
             [-18, -27],
             [-5, -26],
             [-18, -12],
-            [-2, 30]
+            [-2, 30],
           ],
           [
             [15740, 73454],
             [0, 40],
             [20, -41],
             [-17, -26],
-            [-3, 27]
+            [-3, 27],
           ],
           [
             [15720, 73667],
             [6, 14],
             [26, -115],
             [-18, 42],
-            [-14, 59]
+            [-14, 59],
           ],
           [
             [15715, 73495],
             [8, 29],
             [12, -47],
             [-15, -33],
-            [-5, 51]
+            [-5, 51],
           ],
           [
             [15707, 73080],
@@ -12515,7 +12520,7 @@ export function fetchGeoDataAPI(){
             [-5, 56],
             [-18, -4],
             [-3, 30],
-            [-22, 54]
+            [-22, 54],
           ],
           [
             [15649, 73739],
@@ -12523,20 +12528,20 @@ export function fetchGeoDataAPI(){
             [34, -53],
             [-8, -8],
             [-22, 20],
-            [-15, 45]
+            [-15, 45],
           ],
           [
             [15623, 73630],
             [17, 26],
             [2, -33],
-            [-19, 7]
+            [-19, 7],
           ],
           [
             [15618, 73982],
             [15, 0],
             [4, -29],
             [-17, -2],
-            [-2, 31]
+            [-2, 31],
           ],
           [
             [15586, 73509],
@@ -12560,14 +12565,14 @@ export function fetchGeoDataAPI(){
             [-22, 11],
             [-31, 62],
             [-6, 76],
-            [-9, 20]
+            [-9, 20],
           ],
           [
             [15577, 73617],
             [18, -10],
             [18, -54],
             [-30, 41],
-            [-6, 23]
+            [-6, 23],
           ],
           [
             [17306, 73978],
@@ -12584,7 +12589,7 @@ export function fetchGeoDataAPI(){
             [12, -40],
             [-17, -93],
             [7, -11],
-            [11, -93]
+            [11, -93],
           ],
           [
             [15490, 70789],
@@ -12842,34 +12847,34 @@ export function fetchGeoDataAPI(){
             [169, 0],
             [165, 1],
             [178, 0],
-            [325, -2]
+            [325, -2],
           ],
           [
             [25685, 69733],
             [6, 80],
             [31, -17],
             [-23, -128],
-            [-14, 65]
+            [-14, 65],
           ],
           [
             [25568, 69555],
             [12, 14],
             [2, -63],
             [-14, 23],
-            [0, 26]
+            [0, 26],
           ],
           [
             [24707, 71654],
             [8, 83],
             [12, 4],
             [-5, -75],
-            [-15, -12]
+            [-15, -12],
           ],
           [
             [24691, 71507],
             [21, 33],
             [-14, -47],
-            [-7, 14]
+            [-7, 14],
           ],
           [
             [24655, 71564],
@@ -12878,21 +12883,21 @@ export function fetchGeoDataAPI(){
             [5, -13],
             [-11, -48],
             [-24, -11],
-            [-5, 22]
+            [-5, 22],
           ],
           [
             [24625, 71464],
             [3, 27],
             [20, 41],
             [1, -19],
-            [-24, -49]
+            [-24, -49],
           ],
           [
             [24631, 71609],
             [14, -54],
             [-13, -3],
             [-8, 37],
-            [7, 20]
+            [7, 20],
           ],
           [
             [24621, 71679],
@@ -12904,7 +12909,7 @@ export function fetchGeoDataAPI(){
             [-17, -49],
             [-11, 42],
             [-16, 20],
-            [-2, 25]
+            [-2, 25],
           ],
           [
             [24616, 71401],
@@ -12915,13 +12920,13 @@ export function fetchGeoDataAPI(){
             [5, -35],
             [-17, -4],
             [-20, -37],
-            [-1, 37]
+            [-1, 37],
           ],
           [
             [24563, 71635],
             [15, 17],
             [-1, -44],
-            [-14, 27]
+            [-14, 27],
           ],
           [
             [24276, 71309],
@@ -12952,7 +12957,7 @@ export function fetchGeoDataAPI(){
             [42, -108],
             [13, -22],
             [9, 10],
-            [25, -27]
+            [25, -27],
           ],
           [
             [25508, 69434],
@@ -13030,7 +13035,7 @@ export function fetchGeoDataAPI(){
             [16, -59],
             [-4, -89],
             [-11, -107],
-            [6, -145]
+            [6, -145],
           ],
           [
             [2682, 386],
@@ -13038,14 +13043,14 @@ export function fetchGeoDataAPI(){
             [1, -51],
             [-9, 8],
             [-8, -28],
-            [-10, 60]
+            [-10, 60],
           ],
           [
             [2636, 452],
             [21, 8],
             [-4, -21],
             [-13, -12],
-            [-4, 25]
+            [-4, 25],
           ],
           [
             [2313, 271],
@@ -13059,7 +13064,7 @@ export function fetchGeoDataAPI(){
             [-29, -30],
             [-23, -89],
             [-11, 47],
-            [-13, 16]
+            [-13, 16],
           ],
           [
             [90204, 32599],
@@ -13078,20 +13083,20 @@ export function fetchGeoDataAPI(){
             [-18, 30],
             [-7, 101],
             [8, 50],
-            [-12, 59]
+            [-12, 59],
           ],
           [
             [90597, 35570],
             [10, 43],
             [4, -16],
             [-8, -45],
-            [-6, 18]
+            [-6, 18],
           ],
           [
             [90537, 37432],
             [5, 20],
             [1, -49],
-            [-6, 29]
+            [-6, 29],
           ],
           [
             [90507, 37973],
@@ -13101,7 +13106,7 @@ export function fetchGeoDataAPI(){
             [0, -66],
             [-9, -13],
             [-10, -55],
-            [-6, 22]
+            [-6, 22],
           ],
           [
             [90501, 34555],
@@ -13115,7 +13120,7 @@ export function fetchGeoDataAPI(){
             [-13, 7],
             [0, -73],
             [-12, 18],
-            [-5, 29]
+            [-5, 29],
           ],
           [
             [90487, 38800],
@@ -13124,14 +13129,14 @@ export function fetchGeoDataAPI(){
             [-1, -51],
             [-8, -23],
             [-7, 25],
-            [-1, 38]
+            [-1, 38],
           ],
           [
             [90486, 35993],
             [20, 2],
             [3, -36],
             [-19, -8],
-            [-4, 42]
+            [-4, 42],
           ],
           [
             [90472, 34420],
@@ -13142,7 +13147,7 @@ export function fetchGeoDataAPI(){
             [7, -40],
             [-2, -61],
             [-9, -29],
-            [-14, 109]
+            [-14, 109],
           ],
           [
             [90343, 33382],
@@ -13154,7 +13159,7 @@ export function fetchGeoDataAPI(){
             [-8, -39],
             [-11, -6],
             [-5, 23],
-            [-9, -7]
+            [-9, -7],
           ],
           [
             [28030, 56345],
@@ -13215,7 +13220,7 @@ export function fetchGeoDataAPI(){
             [-25, -59],
             [-9, 0],
             [-17, -67],
-            [5, -21]
+            [5, -21],
           ],
           [
             [31708, 38299],
@@ -13224,7 +13229,7 @@ export function fetchGeoDataAPI(){
             [9, -36],
             [-17, -36],
             [-12, 19],
-            [-3, 61]
+            [-3, 61],
           ],
           [
             [31642, 38028],
@@ -13235,13 +13240,13 @@ export function fetchGeoDataAPI(){
             [-11, -24],
             [-8, 12],
             [-17, -17],
-            [-9, 40]
+            [-9, 40],
           ],
           [
             [31637, 38350],
             [7, -14],
             [0, -44],
-            [-7, 58]
+            [-7, 58],
           ],
           [
             [31170, 38320],
@@ -13322,7 +13327,7 @@ export function fetchGeoDataAPI(){
             [7, 31],
             [-10, 101],
             [-13, 21],
-            [-9, 78]
+            [-9, 78],
           ],
           [
             [30985, 38023],
@@ -13330,7 +13335,7 @@ export function fetchGeoDataAPI(){
             [5, -43],
             [-15, -38],
             [-12, 32],
-            [2, 37]
+            [2, 37],
           ],
           [
             [31858, 38286],
@@ -13341,7 +13346,7 @@ export function fetchGeoDataAPI(){
             [1, -49],
             [-9, 20],
             [-13, -5],
-            [-5, 31]
+            [-5, 31],
           ],
           [
             [31828, 37522],
@@ -13356,7 +13361,7 @@ export function fetchGeoDataAPI(){
             [2, -18],
             [-32, -48],
             [-41, -30],
-            [-19, 2]
+            [-19, 2],
           ],
           [
             [31779, 38288],
@@ -13372,12 +13377,12 @@ export function fetchGeoDataAPI(){
             [-15, 23],
             [-7, -20],
             [-12, 49],
-            [-23, -10]
+            [-23, -10],
           ],
           [
             [17306, 73978],
             [171, 1],
-            [103, 1]
+            [103, 1],
           ],
           [
             [18139, 65823],
@@ -13387,7 +13392,7 @@ export function fetchGeoDataAPI(){
             [-63, -7],
             [-79, 0],
             [-293, 0],
-            [-184, 5]
+            [-184, 5],
           ],
           [
             [29478, 69336],
@@ -13396,7 +13401,7 @@ export function fetchGeoDataAPI(){
             [40, -9],
             [62, -5],
             [57, 2],
-            [168, 10]
+            [168, 10],
           ],
           [
             [25149, 51924],
@@ -13408,7 +13413,7 @@ export function fetchGeoDataAPI(){
             [8, 90],
             [4, 100],
             [-1, 46],
-            [-12, 106]
+            [-12, 106],
           ],
           [
             [25020, 51931],
@@ -13422,33 +13427,33 @@ export function fetchGeoDataAPI(){
             [-3, 47],
             [-10, -10],
             [-17, 10],
-            [-2, 22]
+            [-2, 22],
           ],
           [
             [24941, 51321],
             [17, 10],
             [-9, -42],
-            [-8, 32]
+            [-8, 32],
           ],
           [
             [24732, 50824],
             [7, 27],
             [13, -65],
             [-8, -14],
-            [-12, 52]
+            [-12, 52],
           ],
           [
             [24681, 50807],
             [39, -33],
             [-19, -8],
-            [-20, 41]
+            [-20, 41],
           ],
           [
             [24628, 50763],
             [25, 19],
             [2, -17],
             [-26, -20],
-            [-1, 18]
+            [-1, 18],
           ],
           [
             [24275, 51386],
@@ -13463,7 +13468,7 @@ export function fetchGeoDataAPI(){
             [-1, -40],
             [-14, -19],
             [-59, 115],
-            [4, 21]
+            [4, 21],
           ],
           [
             [24969, 52072],
@@ -13672,7 +13677,7 @@ export function fetchGeoDataAPI(){
             [-36, 7],
             [-58, -25],
             [-17, -13],
-            [-26, -53]
+            [-26, -53],
           ],
           [
             [30097, 65246],
@@ -13687,14 +13692,14 @@ export function fetchGeoDataAPI(){
             [-1, 55],
             [16, 95],
             [8, 68],
-            [17, 46]
+            [17, 46],
           ],
           [
             [30029, 65436],
             [5, 7],
             [11, -52],
             [-5, -7],
-            [-11, 52]
+            [-11, 52],
           ],
           [
             [30019, 65203],
@@ -13703,14 +13708,14 @@ export function fetchGeoDataAPI(){
             [5, 57],
             [4, -20],
             [0, -85],
-            [-11, -26]
+            [-11, -26],
           ],
           [
             [29960, 64853],
             [11, 80],
             [5, -14],
             [1, -76],
-            [-17, 10]
+            [-17, 10],
           ],
           [
             [30068, 65494],
@@ -13733,22 +13738,21 @@ export function fetchGeoDataAPI(){
             [-27, -18],
             [-27, -34],
             [-38, -30],
-            [-1, 16]
-          ]
-        ]
-      }
-  
-      return dispatch(getGeoData(mapGeo));// TODO should set loading to false
-    } catch (err){
+            [-1, 16],
+          ],
+        ],
+      };
+
+      return dispatch(getGeoData(mapGeo)); // TODO should set loading to false
+    } catch (err) {
       // TODO dispatch action creator with error
     }
-  }
-};
+  };
+}
 
-
-function getGeoData(mapData){
+function getGeoData(mapData) {
   return {
     type: FETCH_GEODATA,
-    mapData
-  }
+    mapData,
+  };
 }
