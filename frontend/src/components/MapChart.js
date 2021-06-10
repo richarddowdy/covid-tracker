@@ -4,13 +4,7 @@ import ColorLegendContainer from "./ColorLegendContainer";
 import { geoCentroid } from "d3-geo";
 import { scaleThreshold } from "d3-scale";
 import "./MapChart.css";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-  Annotation,
-} from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker, Annotation } from "react-simple-maps";
 
 // Loads data needed for the map
 import allStates from "../allstates.json";
@@ -28,7 +22,6 @@ const offsets = {
 };
 
 const MapChart = ({ setContent, mapData }) => {
-
   /**
    * d3 methods stringed together
    * returns color for highest threshold met
@@ -42,11 +35,11 @@ const MapChart = ({ setContent, mapData }) => {
 
   // normal view
   const colorScale = scaleThreshold()
-    .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
+    .domain([50000, 200000, 500000, 1000000, 2000000]) // threshold limits
     .range(["FFD700", "#FF8C00", "#FF4500", "#FF0000", "#CC0000", "#8B0000"]); // color(strings) returned for threshold met
   // colors onHover
   const colorScaleHover = scaleThreshold() // controls background color of states on hover
-    .domain([1000, 5000, 10000, 50000, 100000]) // threshold limits
+    .domain([50000, 200000, 500000, 1000000, 2000000]) // threshold limits
     .range(["#ffe44d", "#ffaf4d", "#ff7c4d", "#ff4d4d", "#e60000", "#b30000"]); // color(strings) returned for threshold met
 
   // Acts as link
@@ -71,15 +64,8 @@ const MapChart = ({ setContent, mapData }) => {
                       fill={colorScaleHover(geo.properties.cases)}
                       onClick={() => handleClick(geo.properties.abbreviation)}
                       onMouseEnter={() => {
-                        const {
-                          name,
-                          cases,
-                          recovered,
-                          deaths,
-                        } = geo.properties;
-                        setContent(
-                          `${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}`
-                        );
+                        const { name, cases, recovered, deaths } = geo.properties;
+                        setContent(`${name} Cases: ${cases} Recovered: ${recovered} Deaths: ${deaths}`);
                       }}
                       onMouseLeave={() => {
                         setContent("");
@@ -102,26 +88,13 @@ const MapChart = ({ setContent, mapData }) => {
                           centroid[0] < -67 &&
                           (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                             <Marker coordinates={centroid}>
-                              <text
-                                pointerEvents="none"
-                                y="2"
-                                fontSize={16}
-                                textAnchor="middle"
-                              >
+                              <text pointerEvents="none" y="2" fontSize={16} textAnchor="middle">
                                 {cur.id}
                               </text>
                             </Marker>
                           ) : (
-                            <Annotation
-                              subject={centroid}
-                              dx={offsets[cur.id][0]}
-                              dy={offsets[cur.id][1]}
-                            >
-                              <text
-                                x={4}
-                                fontSize={14}
-                                alignmentBaseline="middle"
-                              >
+                            <Annotation subject={centroid} dx={offsets[cur.id][0]} dy={offsets[cur.id][1]}>
+                              <text x={4} fontSize={14} alignmentBaseline="middle">
                                 {cur.id}
                               </text>
                             </Annotation>

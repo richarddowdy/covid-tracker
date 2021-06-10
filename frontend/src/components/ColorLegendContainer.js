@@ -1,33 +1,19 @@
-import React from 'react';
-import ColorIndicator from './ColorIndicator';
+import React from "react";
+import ColorIndicator from "./ColorIndicator";
 
-function ColorLegendContainer(){
+function ColorLegendContainer() {
+  const colorCodes = ["#FFD700", "#FF8C00", "#FF4500", "#FF0000", "#CC0000", "#8B0000"];
 
-  const colorCodes = ['#FFD700',
-                      '#FF8C00',
-                      '#FF4500',
-                      '#FF0000',
-                      '#CC0000',
-                      '#8B0000'
-                     ]
-
-  const ranges = ["999 or Less",
-                  "1,000 - 4,999",
-                  "5,000 - 9,999",
-                  "10,000 - 49,999",
-                  "50,000 - 99,999",
-                  "Over 100,000",
-                 ]
+  const ranges = ["50K or Less", "50k - 200k", "200k - 500k", "500k - 1M", "1M - 2M", "Over 2 Million"];
 
   return (
     <div>
       <h2 className="font-weight-bold">Key</h2>
-      {colorCodes.map((color,idx) => {
-        return <ColorIndicator key={idx} color={colorCodes[idx]} range={ranges[idx]}/>
+      {colorCodes.map((color, idx) => {
+        return <ColorIndicator key={idx} color={colorCodes[idx]} range={ranges[idx]} />;
       })}
     </div>
-  )
+  );
 }
-
 
 export default ColorLegendContainer;
