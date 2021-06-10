@@ -32,5 +32,6 @@ app.get("/api/states/daily", async (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(buildPath);
   console.log(`Server listening on ${PORT}`);
 });
