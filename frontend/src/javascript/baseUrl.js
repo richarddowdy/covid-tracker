@@ -1,7 +1,7 @@
-let BASE_API;
+let BASE_URL;
 
 process.env.NODE_ENV === "production"
-  ? (BASE_API = `${window.location.origin}/api`)
-  : (BASE_API = "http://localhost:3001/api/");
+  ? (BASE_URL = `${window.location.origin}/api`)
+  : (BASE_URL = "http://localhost:3001/api/");
 
-export { BASE_API };
+export { BASE_URL };
